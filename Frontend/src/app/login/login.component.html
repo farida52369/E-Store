@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Log in Form</title>
+</head>
+
+<body>
+    <div class="main">
+        <h1 class="logo">E-Store</h1>
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-form">
+                    <h2 class="form-title">Log In</h2>
+                    <form class="register-form" id="login-form" ngNativeValidate>
+                        <div class="form-group">
+                            <label for="your_email"></label>
+                            <input type="email" class="email-icon" name="your_email" id="your_email"
+                                placeholder="Enter Your Email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="your_pass"></label>
+                            <input type="password" class="pass-icon" name="your_pass" id="your_pass" minlength="8"
+                                placeholder="Enter Your Password" required />
+                        </div>
+                        <!-- <input type="submit" name="login" class="form-submit" value="Log In" /> -->
+                        <button class="form-submit" (click)="LogIn()"> Log In</button>
+                        <p>Do Not Have an Account? <a> Register</a></p>
+                    </form>
+                </div>
+                <div class="signin-image">
+                    <figure> <img src="/assets/login.jpg"></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
