@@ -6,6 +6,9 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 
+
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {path: 'profile' , component: ProfileComponent}
@@ -17,11 +20,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-
 export const routingComponents =[LoginComponent , ProfileComponent ]
-
-
-
-
