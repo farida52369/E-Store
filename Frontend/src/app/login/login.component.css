@@ -1,0 +1,168 @@
+
+.main {
+    max-width: 100%;
+   padding-block: 70px 70px ; 
+}
+
+body {
+    background-size: cover;
+   
+    line-height: 1.2;
+    color: #222;
+    background-color: white; /* #fce3e3; */
+    font-weight: 400;
+    height: auto; 
+    max-width: 100%;
+}
+.container {
+    width: 900px;
+    background-color: rgb(255, 253, 253);
+    
+    margin: 0 auto;
+    box-shadow: 0px 15px 18px 0.17px rgba(66, 2, 60, 0.05);
+    border-style:dashed;
+    border-color: #ee8cc2;
+
+}
+
+.signin-content {
+    display: flex;
+    padding-top: 67px;
+    padding-bottom: 87px;
+}
+
+.signin-image {
+    margin-left: auto;
+    margin-right: 90px;
+    width: 50%;
+    overflow: hidden;
+    height: 50%;
+}
+
+img {
+    max-width: 125%;
+    height: auto;
+    width: 125%;
+   
+}
+
+figure {
+    margin-bottom: 20px;
+   
+    
+}
+
+.signin-form {
+    padding: 0 30px;
+    width: 50%;
+    overflow: hidden;
+    margin-right: 90px;
+    margin-left: 80px;
+}
+
+.logo {
+    background: url("src\assets\iconSite.png") no-repeat 730px;
+    background-size: 40px;
+    position: relative;
+}
+
+.register-form {
+    width: 100%;
+}
+
+.form-title {
+    margin-bottom: 33px;
+    text-align: center;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+    overflow: hidden;
+
+}
+
+p {
+    margin-bottom: 0px;
+    font-size: 15px;
+    color: rgb(109, 105, 105);
+}
+
+h2 {
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #222;
+    font-size: 36px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #222;
+    font-size: 36px;
+}
+
+#your_email:hover {
+    border-color: rgb(245, 243, 243);
+}
+
+.form-submit {
+    display: inline-block;
+    background: #ee8cc2;
+    color: #fff;
+    border-bottom: none;
+    width: auto;
+    padding: 15px 39px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, .8);
+
+}
+
+.form-submit:hover {
+    background:rgb(150, 74, 127) /*#7f239b;*/
+}
+
+input {
+    width: 100%;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #999;
+    padding: 6px 30px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    border: none;
+    font-size: larger;
+
+}
+
+a {
+    color: #222;
+    font: bold;
+}
+
+.email-icon {
+    padding-left: 25px;
+    background: url("src\assets\email_icon.png") no-repeat left;
+    background-size: 20px;
+}
+
+.pass-icon {
+    padding-left: 25px;
+    background: url("src\assets\pass_icon.jpg") no-repeat left;
+    background-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*  --------------*/
