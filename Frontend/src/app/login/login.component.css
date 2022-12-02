@@ -1,13 +1,28 @@
+
 .main {
-    background: #fce3e3;
-    padding: 30px 0px;
+    max-width: 100%;
+   padding-block: 70px 70px ; 
 }
 
+body {
+    background-size: cover;
+   
+    line-height: 1.2;
+    color: #222;
+    background-color: white; /* #fce3e3; */
+    font-weight: 400;
+    height: auto; 
+    max-width: 100%;
+}
 .container {
     width: 900px;
-    background: #fff;
+    background-color: rgb(255, 253, 253);
+    
     margin: 0 auto;
-    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 15px 18px 0.17px rgba(66, 2, 60, 0.05);
+    border-style:dashed;
+    border-color: #ee8cc2;
+
 }
 
 .signin-content {
@@ -25,13 +40,16 @@
 }
 
 img {
-    max-width: 135%;
+    max-width: 125%;
     height: auto;
+    width: 125%;
+   
 }
 
 figure {
-    margin-bottom: 10px;
-    text-align: center;
+    margin-bottom: 20px;
+   
+    
 }
 
 .signin-form {
@@ -45,6 +63,7 @@ figure {
 .logo {
     background: url("src\assets\iconSite.png") no-repeat 730px;
     background-size: 40px;
+    position: relative;
 }
 
 .register-form {
@@ -85,15 +104,6 @@ h1 {
     font-size: 36px;
 }
 
-body {
-    font-size: 13px;
-    line-height: 1.8;
-    color: #222;
-    background: #f8f8f8;
-    font-weight: 400;
-    height: fit-content;
-}
-
 #your_email:hover {
     border-color: rgb(245, 243, 243);
 }
@@ -112,7 +122,7 @@ body {
 }
 
 .form-submit:hover {
-    background: #7f239b;
+    background:rgb(150, 74, 127) /*#7f239b;*/
 }
 
 input {

@@ -7,8 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   password: any
@@ -18,15 +16,14 @@ export class LoginComponent {
     this.email = (<HTMLInputElement>document.getElementById("your_email")).value;
     this.password = (<HTMLInputElement>document.getElementById("your_pass")).value;
     if (this.password === '' || this.email === '') {
-      alert("Please Enter Your Email and Password");
       return;
     }
     console.log("Email: " + this.email);
     console.log("Password: " + this.password);
   }
 
-  LogIn_Req_and_Res() {
-    this.http.get('http://localhost:4200/Login', {
+  LoginReqandRes() {
+    this.http.get('http://localhost:4200/login', {
       responseType: 'text',
       params: {
         email: this.email,
@@ -38,13 +35,14 @@ export class LoginComponent {
       .subscribe((response) => {
         this.res = response.body
         if (this.res === "true") {
-          this.router.navigateByUrl('MainPage');
+          this.router.navigateByUrl('main-page');
 
         } else {
-          alert("Wrong E-mail or Password!! Please Try Again.");
+          alert("Wrong e-mail or password!! Please try again.");
         }
 
       })
 
   }
+
 }
