@@ -1,0 +1,121 @@
+<html>
+    <body>
+    <div class="super">
+      <form>
+        <legend class="title">Register</legend>
+        <label for="fname" class="l">First Name</label>
+        <input v-model = "fname" type="text" id="fname" name="fname"><br>
+        <label for="lname" class="l">Last Name</label>
+        <input v-model = "lname" type="text" id="lname" name="lname"><br>
+        <label for="address" class="l" >Email</label>
+        <input v-model = "address" type="text" id="address" name="address" placeholder=" user@system.com"><br>
+        <label class="l">Password</label>
+        <input v-model = "password" type="password" id="password" placeholder="should be 8 characters or more"><br>
+        <label for="birthday" class="l">Birthday date</label>
+        <input type="date" id="birthday" name="trip-start" value="2000-01-01" min="1960-01-01" max="2007-12-31"><br>
+        <label for="phone" class="l">Phone</label>
+        <input v-model = "phone" type="text" id="phone" name="phone" placeholder="should be 11 number"><br>
+        <label for="gender" class="l">Gender</label>
+        <select  v-model = "gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="no">prefer not say</option>
+        </select><br>
+      </form>
+    </div>
+    <button class="cr" (click)='create()' >Submit</button>
+</body>
+</html>
+
+<style scoped>
+     body{
+      background-image: url('../assets/shop2.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size:50% 85%;
+      background-position:right;
+    }
+
+
+    .super{
+      margin-left:150px;
+      margin-top:10px;
+    }
+
+    input[type=text],input[type=password],input[type=date]{
+      width: 25%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid #ee8cc2;
+      border-radius: 4px;
+    }
+
+    input[type=text]:focus,input[type=password]:focus{
+      background-color: white;
+    }
+
+    select{
+      margin-bottom: 1em;
+      padding: .25em;
+      border: 0;
+      border-bottom: 2px solid currentcolor;
+      font-weight: bold;
+      letter-spacing: .15em;
+      border-radius: 0;
+      outline: 0;
+      border-bottom-color: #ee8cc2;
+    }
+    .super .l{
+      background-color: #ee8cc2;
+      display: inline-block;
+      padding: 10px 10px;
+      margin: 10px;
+      font-size: 20px;
+      color: rgb(3, 3, 3);
+      width: 130px;
+      text-align: center;
+    }
+
+     
+    .title{
+      display: inline-block;
+      padding: 10px 10px;
+      margin-left:15%;
+      font-size: 40px;
+      color: #ee8cc2;
+      width: 200px;
+      text-align: center;
+    }
+
+    .cr{
+      display:block;
+      padding: 15px 25px;
+      font-size: 24px;
+      text-align: center;
+      text-decoration: none;
+      background-color: #ee8cc2;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 9px #999;
+      margin-left: 500px;
+      margin-top: 20px;
+    }
+    .cr:active{box-shadow: 0 3px #999;}
+    .zr:active {
+      background-color: #ee8cc2;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+   
+
+    .cr{
+      font-family:Arial;
+      color:rgb(3, 3, 3);
+      outline: none;
+      cursor:pointer;
+    }
+    
+   
+    </style>
+
