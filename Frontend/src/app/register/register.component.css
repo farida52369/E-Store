@@ -1,0 +1,89 @@
+body{
+    background-image: url('/assets/shop2.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:50% 85%;
+    background-position:right;
+  }
+
+
+  .super{
+    margin-left:150px;
+    margin-top:10px;
+  }
+
+  input[type=text],input[type=password],input[type=date],input[type=email],input[type=tel]{
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ee8cc2;
+    border-radius: 4px;
+  }
+
+  input[type=text]:focus,input[type=password]:focus{
+    background-color: white;
+  }
+
+  select{
+    margin-bottom: 1em;
+    padding: .25em;
+    border: 0;
+    border-bottom: 2px solid currentcolor;
+    font-weight: bold;
+    letter-spacing: .15em;
+    border-radius: 0;
+    outline: 0;
+    border-bottom-color: #ee8cc2;
+  }
+  .super .l{
+    background-color: #ee8cc2;
+    display: inline-block;
+    padding: 10px 10px;
+    margin: 10px;
+    font-size: 20px;
+    color: rgb(3, 3, 3);
+    width: 130px;
+    text-align: center;
+  }
+
+   
+  .title{
+    display: inline-block;
+    padding: 10px 10px;
+    margin-left:15%;
+    font-size: 40px;
+    color: #ee8cc2;
+    width: 200px;
+    text-align: center;
+  }
+
+  .cr{
+    display:block;
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ee8cc2;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    margin-left: 500px;
+    margin-top: 20px;
+  }
+  .cr:active{box-shadow: 0 3px #999;}
+  .zr:active {
+    background-color: #ee8cc2;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+ 
+
+  .cr{
+    font-family:Arial;
+    color:rgb(3, 3, 3);
+    outline: none;
+    cursor:pointer;
+  }
+  
+ 
