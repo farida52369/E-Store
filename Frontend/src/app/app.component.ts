@@ -1,14 +1,11 @@
-import { Component} from '@angular/core';
-import { Router } from '@angular/router';
-import { Route } from '@angular/router';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent  {
-  title = 'E_store';
+export class AppComponent {
+  title = 'E Store';
 
-  constructor() { }
- 
+  constructor() {}
 }

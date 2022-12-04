@@ -1,73 +1,51 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { RegisterRequest } from '../dto/data';
+import { RegisterService } from './register.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent {
 
+  constructor(private registerSer: RegisterService) {}
 
-  fName:any = ""
-  lName:any = ""
-  address: any= ""
-  password:any = ""
-  //info:string = ''
-  info: any
-  UserName: any = ''
-  gender: any=''
-  phone: any=''
-  Bd: any=''
-
-
-  addFirstName(){
-    const inputFirst = (<HTMLInputElement>document.getElementById('fname'))
-    this.fName = inputFirst.value
-    console.log(this.fName)
-  }
-  addLastName(){
-    const inputLast = (<HTMLInputElement>document.getElementById('lname'))
-    this.lName = inputLast.value
-    console.log(this.lName)
-  }
-  addAddress(){
-    const inputMail = (<HTMLInputElement>document.getElementById('address'))
-    this.address =  inputMail.value
-    console.log(this.address)
+    // POSTING A SHAPE TO THE BACKEND
+    postingUser(user: RegisterRequest): void {
+      console.log('user => ', user)
+      this.registerSer.postUser(user).subscribe(
+        () => {
+          console.log("I POSTED THE USER TO THE SERVER :)")
+        }, (error: HttpErrorResponse) => 
+        console.log("7AZ AWFR EL MARA EL GAYA!!\nError: " + error.message)
+      )
     }
-  addPassword(){
-    const inputPass = (<HTMLInputElement>document.getElementById('password'))
-    this.password =  inputPass.value
-    console.log(this.password)
-  }
-  addPhone(){
-    const inputPh = (<HTMLInputElement>document.getElementById('phone'))
-    this.phone =  inputPh.value
-    console.log(this.phone)
-  }
-  addBd(){
-    const inputBd = (<HTMLInputElement>document.getElementById('birthday'))
-    this.Bd =  inputBd.value
-    console.log(this.Bd)
-  }
-  addg(){
-    const inputg = (<HTMLInputElement>document.getElementById('gender'))
-    this.gender =  inputg.value
-    console.log(this.gender)
-  }
  
- 
-  validation(){                                                                   
+  submit(){                                                            
+      const firstName = (<HTMLInputElement>document.getElementById('fname')).value
+      const lastName = (<HTMLInputElement>document.getElementById('lname')).value
+      const email = (<HTMLInputElement>document.getElementById('address')).value
+      const password = (<HTMLInputElement>document.getElementById('password')).value
+      const phoneNumber = (<HTMLInputElement>document.getElementById('phone')).value
+      const dateOfBirth = (<HTMLInputElement>document.getElementById('birthday')).value
+      const gender = (<HTMLInputElement>document.getElementById('gender')).value
+      console.log(firstName + " " + lastName + " " + email 
+      + " " + password + " " + phoneNumber + " " + dateOfBirth + " " + gender)
+      const user: RegisterRequest = {
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+        email: email,
+        gender: gender,
+        phoneNumber: phoneNumber,
+        dateOfBirth: dateOfBirth
+      }
+      this.postingUser(user);
 
-      this.addFirstName()
-      this.addLastName()
-      this.addAddress()
-      this.addPassword()
-      this.addPhone()
-      this.addBd()
-      this.addg()
-
+      /*
       if(this.fName=='' || this.lName==''){
         alert('Incomplete name')
         return false
@@ -127,6 +105,7 @@ export class RegisterComponent {
      this.info = JSON.stringify(result)
      console.log(this.info)
       return this.info
+      */
   
     }
 
@@ -136,7 +115,8 @@ export class RegisterComponent {
      // console.log(this.fName);
       //this.SIGNUP(this.INFO());
       //console.log(this.UserName);
-      this.validation()
+      // this.validation()
+      
       /*if(this.validation() && this.UserName!=""){
         this.router.navigateByUrl('/ver-bar')
       }

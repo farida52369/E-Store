@@ -12,7 +12,7 @@ export class LoginComponent {
   password: any
   email: any
   res: any;
-  LogIn() {
+  logIn() {
     this.email = (<HTMLInputElement>document.getElementById("your_email")).value;
     this.password = (<HTMLInputElement>document.getElementById("your_pass")).value;
     if (this.password === '' || this.email === '') {
