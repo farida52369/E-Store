@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <mat-sidenav-container class="sidebar-container">
+      <mat-sidenav #sidenav class="side-bar">
+        <h3 class="head">Trending</h3>
+        <p class="element">Best Sellers</p>
+        <p class="element">New Releases</p>
+        <p class="element">Top Rated</p>
+        <hr>
+        <h3 class="head">Categories</h3>
+        <p class="element">Mobiles & Tablets</p>
+        <p class="element">Computers</p>
+        <p class="element">Electronics</p>
+        <p class="element">Fashion</p>
+        <p class="element">Health & Beauty</p>
+        <p class="element">Supermarket</p>
+        <p class="element">Kitchen</p>
+        <p class="element">Toys & Games</p>
+        <p class="element">Sports & Fitness</p>
+        <p class="element">Books</p>
+      </mat-sidenav>
+      <mat-sidenav-content class="side-bar-content">
+        <ul class="nav-bar" id="nav">
+          <li class="nav">
+            <button mat-button (click)="sidenav.toggle()">
+              <div class="one"></div>
+              <div class="two"></div>
+              <div class="three"></div>
+            </button>
+          </li>
+          <li class="label">EShop</li>
+          <input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
+          <li><a href="#cart"><i class="fa fa-shopping-cart"></i>  Cart</a></li>
+          <li (click)="updateStatus()" id="log-in"><a href="login"><i class="fa fa-sign-in"></i>  Log In</a></li>
+          <li id="sign-up"><a href="register"><i class="fa fa-user-plus"></i>  Sign Up</a></li>
+          <li id="profile"><a href="profile"><i class="fa fa-user"></i>  Profile</a></li>
+        </ul>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </body>
+</html>
