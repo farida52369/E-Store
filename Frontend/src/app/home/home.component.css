@@ -112,3 +112,7 @@ li a:hover {
 #profile {
   display: none;
 }
+
+#logout {
+  display: none;
+}

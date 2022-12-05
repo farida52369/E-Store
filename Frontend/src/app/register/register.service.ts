@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,11 @@ import { environment } from 'src/environments/environment';
 export class RegisterService {
 
   constructor(private http: HttpClient) { }
+  postUser(user: any): Observable<string> {
 
-  postUser(user: any): Observable<void> {
-    const headers = { 'content-type': 'application/json' };
-    const body = JSON.stringify(user);
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/auth/register`, body, {
-      'headers': headers
-    })
+    const headers = { 'content-type': 'application/json'};
+ return this.http.post<string>(`${environment.apiBaseUrl}/api/auth/register`, user, 
+ { headers, responseType: 'text' as 'json'  });
+ 
   }
 }

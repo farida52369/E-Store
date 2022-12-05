@@ -1,38 +1,49 @@
 import { Component } from '@angular/core';
+import {  Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { LoginRequest } from '../dto/data';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private loginSer: LoginService, private router: Router) {}
+  constructor(private loginSer : LoginService , private router: Router) { }
 
-  postingUser(user: LoginRequest): void {
-    console.log('user => ', user);
+
+   postingUser(user: LoginRequest): void {
+    const message="wrong email or password,write them correctly if you already have an account or register if you have no account";
+    console.log('user => ', user)
     this.loginSer.postUser(user).subscribe(
       () => {
-        console.log('I POSTED THE USER TO THE SERVER :)');
-        this.router.navigateByUrl('home', { state: { logged: true } });
-      },
-      (error: HttpErrorResponse) =>
-        console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
-    );
+        console.log("I POSTED THE USER TO THE SERVER :)")
+        this.router.navigateByUrl('home', {state: {logged: true}});
+      }, (error: HttpErrorResponse) => 
+     // console.log("7AZ AWFR EL MARA EL GAYA!!\nError: " + error.message)
+      alert(message)
+      
+    )
   }
 
-  logIn(): void {
-    const email = (<HTMLInputElement>document.getElementById('your_email'))
-      .value;
-    const password = (<HTMLInputElement>document.getElementById('your_pass'))
-      .value;
-    console.log('Email: ' + email + ' Password: ' + password);
-    const user: LoginRequest = {
-      email: email,
-      password: password,
-    };
+  password: any
+  email: any
+  res: any;
+  logIn() {
+    this.email = (<HTMLInputElement>document.getElementById("your_email")).value;
+    this.password = (<HTMLInputElement>document.getElementById("your_pass")).value;
+    console.log("Email: " + this.email);
+    console.log("Password: " + this.password);
+    const user:LoginRequest = {
+      email:this.email,
+      password:this.password
+
+    }
     this.postingUser(user);
+   
+
+    
   }
+
+ 
 }
