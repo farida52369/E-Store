@@ -1,4 +1,4 @@
-package com.example.e_store.dto;
+package com.example.e_store.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,6 @@ import java.util.Collection;
 @Getter
 public class JwtUser implements UserDetails {
 
-    private final long id;
     private final String firstName;
     private final String lastName;
     private final String email;

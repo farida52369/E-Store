@@ -1,6 +1,5 @@
 package com.example.e_store.security;
 
-import com.example.e_store.dto.JwtUser;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,48 +1,38 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from './login.service';
+import { LoginRequest } from '../dto/data';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private loginSer: LoginService, private router: Router) {}
 
-  password: any
-  email: any
-  res: any;
-  logIn() {
-    this.email = (<HTMLInputElement>document.getElementById("your_email")).value;
-    this.password = (<HTMLInputElement>document.getElementById("your_pass")).value;
-    if (this.password === '' || this.email === '') {
-      return;
-    }
-    console.log("Email: " + this.email);
-    console.log("Password: " + this.password);
-    //call LoginReqandRes() to get the request from backend
-   // this.LoginReqandRes();
-    //comment the following line when connecting to backend
-    this.router.navigateByUrl('home', {state: {logged: true}});  
-  }
-
-  LoginReqandRes() {
-    this.http.get('http://localhost:8080/login', {
-      responseType: 'text',
-      params: {
-        email: this.email,
-        password: this.password,
+  postingUser(user: LoginRequest): void {
+    console.log('user => ', user);
+    this.loginSer.postUser(user).subscribe(
+      () => {
+        console.log('I POSTED THE USER TO THE SERVER :)');
+        this.router.navigateByUrl('home', { state: { logged: true } });
       },
-      observe: "response"
-    }).subscribe((response) => {
-        this.res = response.body
-         if (this.res === "true") {
-          this.router.navigateByUrl('home', {state: {logged: true}});
-        } else {
-          alert("Wrong e-mail or password!! Please try again.");
-        }
-      })
-
+      (error: HttpErrorResponse) =>
+        console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
+    );
   }
 
+  logIn(): void {
+    const email = (<HTMLInputElement>document.getElementById('your_email'))
+      .value;
+    const password = (<HTMLInputElement>document.getElementById('your_pass'))
+      .value;
+    console.log('Email: ' + email + ' Password: ' + password);
+    const user: LoginRequest = {
+      email: email,
+      password: password,
+    };
+    this.postingUser(user);
+  }
 }

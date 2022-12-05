@@ -9,10 +9,15 @@ export interface RegisterRequest {
 }
 
 export interface LoginRequest {
-    email: String,
-    password: String
+  email: String;
+  password: String;
 }
 
-export interface RefreshToken {
+export interface RefreshToken {}
 
+export interface AuthenticationResponse {
+  authenticationToken: String;
+  refreshToken: String;
+  expiresAt: String;
+  email: String;
 }

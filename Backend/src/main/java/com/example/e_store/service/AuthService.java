@@ -4,6 +4,8 @@ import com.example.e_store.dto.*;
 import com.example.e_store.model.User;
 import com.example.e_store.repository.UserRepository;
 import com.example.e_store.security.JwtProvider;
+import com.example.e_store.security.JwtUser;
+
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

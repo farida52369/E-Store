@@ -4,31 +4,38 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit{
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+export class HomeComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {}
 
   title = '';
-  status :any;
+  status: any;
   filter: string = '';
+  
   getFilter(val: string) {
     this.filter = val;
   }
 
   ngOnInit(): void {
-    
     this.status = history.state.logged;
-    if(this.status) {
+    if (this.status) {
       this.updateStatus();
     }
   }
-  updateStatus() {
-    
-    (<HTMLInputElement>document.getElementById('log-in')).style.display = 'none';
-    (<HTMLInputElement>document.getElementById('sign-up')).style.display = 'none';
-    (<HTMLInputElement>document.getElementById('profile')).style.display = 'block';
-    (<HTMLInputElement>document.getElementById('search')).style.marginLeft = '500px';
-  }
 
+  updateStatus(): void {
+    (<HTMLInputElement>document.getElementById('log-in')).style.display =
+      'none';
+    (<HTMLInputElement>document.getElementById('sign-up')).style.display =
+      'none';
+    (<HTMLInputElement>document.getElementById('profile')).style.display =
+      'block';
+    (<HTMLInputElement>document.getElementById('search')).style.marginLeft =
+      '500px';
+  }
 }
