@@ -1,91 +1,87 @@
 .main {
-    background: white;
-    padding: 25px ;
-    display: flex;
-    padding-left: 100px;
+  background: white;
+  padding: 25px;
+  display: flex;
+  padding-left: 100px;
 }
+
 img {
-  
-    height: 150px;
-    padding-left:  140px;
-    background-size: 200px;
-    border-radius: 50%; 
-   
+  height: 150px;
+  padding-left: 140px;
+  background-size: 200px;
+  border-radius: 50%;
 }
 
 .card {
-    
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fdeded;
-    background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
-    border-radius: .5rem;
-    box-shadow: 7px 5px 7px 2px rgba(75, 26, 60, 0.8);
-   
-    width: 400px;
-   
-    
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fdeded;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  box-shadow: 7px 5px 7px 2px rgba(75, 26, 60, 0.8);
+
+  width: 400px;
 }
+
 .card-body {
-   
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
 }
 
-
-button,a {
-    text-decoration: none;
-    border: none;
-    font-size: larger;
-    
-    
+button,
+a {
+  text-decoration: none;
+  border: none;
+  font-size: larger;
 }
+
 .style-button {
-    display: inline-block;
-    background: #f59dcd;
-    color: #fff;
-    border-bottom: none;
-    width: auto;
-    padding: 15px 39px;
-    cursor:pointer;
-    border-radius: 12px;
-    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+  display: inline-block;
+  background: #f59dcd;
+  color: #fff;
+  border-bottom: none;
+  width: auto;
+  padding: 15px 39px;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
 }
-.style-button:hover {
-    background: #dd75ddd3;
-}
-#box-edit {
-   
-    font-size: 15px;
-    position: absolute;
-    background-color: white;
-    padding: 10px;
-    width: 250px;
-    color: rgb(119, 111, 111);
-    min-height: 25%;
-    letter-spacing: 1px;
-    left: 100px;
-    border: 1px solid white;
-    border-radius: 0 20px 20px 20px;
-    word-wrap: break-word;
-    display: none;
-    box-shadow: 2px 2px 3px #999;
-}
-input {
-    width: 100%;
-    display: block;
-    border: none;
-    border-bottom: 1px solid #999;
-    padding: 6px 30px;
-    box-sizing: border-box;
-}
-input:focus {
-    outline: none;
-}
-/*..............*/
 
+.style-button:hover {
+  background: #dd75ddd3;
+}
+
+#box-edit {
+  font-size: 15px;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  width: 250px;
+  color: rgb(119, 111, 111);
+  min-height: 25%;
+  letter-spacing: 1px;
+  left: 100px;
+  border: 1px solid white;
+  border-radius: 0 20px 20px 20px;
+  word-wrap: break-word;
+  display: none;
+  box-shadow: 2px 2px 3px #999;
+}
+
+input {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #999;
+  padding: 6px 30px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+}

@@ -1,40 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <body>
     <div class="super">
-        <form ngNativeValidate>
+        <form ngNativeValidate id="register-form">
             <legend class="title">Register</legend>
             <label for="fname" class="l">First Name</label>
-            <input v-model="fname" type="text" id="fname" name="fname" required><br>
-
-            <label for="lname" class="l">Last Name</label>
-            <input v-model="lname" type="text" id="lname" name="lname" required><br>
-
-            <label for="address" class="l">Email</label>
-            <input v-model="address" type="email" id="address" name="address" placeholder=" user@system.com"
-                required><br>
-
-            <label class="l" for="password">Password</label>
-            <input v-model="password" type="password" id="password" placeholder="should be 8 characters or more"
-                minlength="8" required><br>
-
-            <label for="birthday" class="l">Birthday date</label>
-            <input type="date" id="birthday" name="trip-start" value="2000-01-01" min="1960-01-01" max="2007-12-31"
-                required><br>
-            <label for="phone" class="l">Phone</label>
-            <input v-model="phone" type="tel" id="phone" name="phone" placeholder="should be 11 number" required>
+            <input v-model="fname" type="text" id="fname" name="fname" required>
             <br>
-
-            <label for="gender" class="l">Gender</label> 
+            <label for="lname" class="l">Last Name</label>
+            <input v-model="lname" type="text" id="lname" name="lname" required>
+            <br>
+            <label for="address" class="l">Email</label>
+            <input v-model="address" type="email" class="email-icon" id="address" name="address"
+                placeholder=" user@system.com" required>
+            <br>
+            <label class="l" for="password">Password</label>
+            <input v-model="password" type="password" class="pass-icon" id="password"
+                placeholder="Should be 8 characters or more" minlength="8" required>
+            <br>
+            <label for="birthday" class="l">Date Of Birth</label>
+            <input type="date" id="birthday" name="trip-start" max="2007-12-31" required>
+            <br>
+            <label for="phone" class="l">Phone</label>
+            <input v-model="phone" type="tel" id="phone" name="phone" 
+                placeholder="+201096226465" required>
+            <br>
+            <label for="gender" class="l">Gender</label>
             <select v-model="gender" id="gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="no">prefer not say</option>
-            </select><br>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="NA">Prefer not to say</option>
+            </select>
+            <br>
+            <button class="form-submit cr" type="submit" (click)="submit()">Submit</button>
         </form>
     </div>
-    <button class="cr" (click)="validation()">Submit</button>
 </body>
-
-</html>

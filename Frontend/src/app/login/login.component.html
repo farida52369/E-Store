@@ -1,15 +1,27 @@
+<!--
+<body>
+    <div class="super">
+        <form ngNativeValidate class="login-form">
+            <legend class="title">Log In</legend>
+            <label for="your_email" class="l">Email</label>
+            <input v-model="your_email" type="email" class="email-icon" id="your_email" 
+                name="your_email" placeholder=" user@system.com" required>
+                <br>
+            <label class="l" for="password">Password</label>
+            <input v-model="password" type="password" class="pass-icon" id="password"
+                placeholder="Your password" required>
+            
+            <button class="form-submit cr" type="submit" (click)="logIn()">Sign In</button>
+        </form>
+        <div class="signin-image">
+            <img src="/assets/login.jpg">
+        </div>
+    </div>
+</body>
+-->
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Log in Form</title>
-</head>
-
-<body >
+<body>
     <div class="main">
-       
         <div class="container">
             <div class="signin-content">
                 <div class="signin-form">
@@ -23,11 +35,10 @@
                         <div class="form-group">
                             <label for="your_pass"></label>
                             <input type="password" class="pass-icon" name="your_pass" id="your_pass" minlength="8"
-                                placeholder="Enter Your Password" required /> 
+                                placeholder="Enter Your Password" required />
                         </div>
-                        <!-- <input type="submit" name="login" class="form-submit" value="Log In" /> -->
-                        <button class="form-submit" (click)="LogIn()"> Log In</button>
-                        <p>Do not have an account? <a href="register"> Register</a></p>
+                        <button class="form-submit" type="submit" (click)="logIn()"> Log In</button>
+                        <p>Do not have an account?<a href="api/auth/register"> Register</a></p>
                     </form>
                 </div>
                 <div class="signin-image">
@@ -37,5 +48,3 @@
         </div>
     </div>
 </body>
-
-</html>
