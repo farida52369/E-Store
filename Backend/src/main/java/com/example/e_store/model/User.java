@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +17,11 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @Entity
 public class User {
-    @Id @Email
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Email
+    @Column(unique = true)
     @NotEmpty(message = "Email is required")
     private String email;
     @NotBlank(message = "First Name is required")
