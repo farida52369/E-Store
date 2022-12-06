@@ -1,11 +1,13 @@
 package com.example.e_store.service;
 
-import com.example.e_store.dto.*;
+import com.example.e_store.dto.AuthenticationResponse;
+import com.example.e_store.dto.LoginRequest;
+import com.example.e_store.dto.RefreshTokenRequest;
+import com.example.e_store.dto.RegisterRequest;
 import com.example.e_store.model.User;
 import com.example.e_store.repository.UserRepository;
 import com.example.e_store.security.JwtProvider;
 import com.example.e_store.security.JwtUser;
-
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.ConstraintViolationException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Instant;
 
 @Service

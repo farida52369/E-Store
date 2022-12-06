@@ -13,6 +13,7 @@ import java.util.Collection;
 @Getter
 public class JwtUser implements UserDetails {
 
+    private final Long id;
     private final String firstName;
     private final String lastName;
     private final String email;
