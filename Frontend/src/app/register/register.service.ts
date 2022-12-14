@@ -10,11 +10,10 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  postUser(user: any): Observable<void> {
+  postUserr(user: any): Observable<String> {
     const headers = { 'content-type': 'application/json' };
-    const body = JSON.stringify(user);
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/auth/register`, body, {
-      'headers': headers
-    })
+    return this.http.post<string>(`${environment.apiBaseUrl}/api/auth/register`, user,
+      { headers, responseType: 'text' as 'json' });
   }
+
 }

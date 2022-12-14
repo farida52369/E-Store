@@ -11,9 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ProfileComponent, HomeComponent],
+  declarations: [RegisterComponent, LoginComponent, ProfileComponent, HomeComponent , AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
