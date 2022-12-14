@@ -1,0 +1,78 @@
+<body>
+  <div class="main">
+    <h1> Profile</h1>
+    <img src="/assets/user_icon.jpg">
+    <div class="col-md-8">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-10">
+              <button class="style-button" (click)="afterClick()" id="edit">Edit</button>
+              <form id="box-edit" ngNativeValidate>
+                <label for="new-fname"></label>
+                <input type="text" placeholder="Enter New First Name" id="new-fname" value="toka" required />
+                <br>
+                <label for="new-lname"></label>
+                <input type="text" placeholder="Enter New Last Name" id="new-lname" value="ashraf" required />
+                <br>
+                <label for="new-tel"></label>
+                <input type="tel" placeholder="Enter New Phone Number" value="01208784029" pattern="[0-9]{11}"
+                  id="new-tel" required />
+                <br>
+                <button class="style-button" (click)="EditProfile()">Ok</button>
+              </form>
+            </div>
+            <div class="col-sm-10">
+              <button class="style-button" (click)="BacktoHome()">Back To Home</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <h4 class="mb-0">Full Name</h4>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              Toka Ashraf
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h4 class="mb-0">Email</h4>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              atoka2001@gmail.com
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h4 class="mb-0">Phone Number</h4>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              01208784029
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h4 class="mb-0">Date Of Birth</h4>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              12-4-2001
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h4 class="mb-0">Gender</h4>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              Female
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

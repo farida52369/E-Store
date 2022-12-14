@@ -1,0 +1,114 @@
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.head {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.side-bar {
+  width: 25%;
+  padding: 10px;
+  font-size: 1.1em;
+  border: 2px solid black;
+}
+
+.side-bar p {
+  margin: 0.3em;
+  padding: 0.5em;
+  margin-top: 0;
+}
+
+.side-bar p:hover {
+  background-color: rgb(199, 196, 196);
+  border-radius: 3px;
+}
+
+.nav-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  padding-bottom: 7px;
+}
+
+li {
+  margin-left: auto;
+}
+
+li a {
+  color: white;
+  padding: 13px 19px;
+  text-decoration: none;
+  font-size: 1.5em;
+  float: right;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.label {
+  float: left;
+  color: white;
+  padding-left: 70px;
+  font-size: 3em;
+}
+
+.search {
+  padding: 2px 26px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 350px;
+  font-size: 20;
+  font-style: italic;
+  color: #111;
+  width: 500px;
+}
+
+.nav button {
+  background-color: inherit;
+  border: none;
+}
+
+.nav div {
+  height: 10px;
+  background-color: white;
+  border-radius: 25px;
+  transition: 0.3s;
+  margin: 3px 0;
+}
+
+.nav {
+  width: 30px;
+  margin-top: 7px;
+  margin-left: 18px;
+}
+
+.one {
+  width: 30px;
+}
+
+.two {
+  width: 20px;
+}
+
+.three {
+  width: 25px;
+}
+
+.nav:hover div {
+  width: 30px;
+}
+
+#profile {
+  display: none;
+}
