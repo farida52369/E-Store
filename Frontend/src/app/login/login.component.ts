@@ -19,7 +19,8 @@ export class LoginComponent {
         this.router.navigateByUrl('home', { state: { logged: true } });
       },
       (error: HttpErrorResponse) =>
-        console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
+       // console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
+       alert("wrong password or email if you have an account and if you do not have an account, so register ")
     );
   }
 
