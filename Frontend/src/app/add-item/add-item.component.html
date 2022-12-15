@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+
+    <!-- Title Page-->
+    <title>Add Product</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Add Product</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="name">Title of Product</div>
+                            <div class="value">
+                                <input class="input--style-6" type="text" name="full_name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Price</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="text" name="price" placeholder="    300 LE">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Number of items</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="text" name="number" placeholder="   5">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Catogery</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <select class="input--style-6" type="text" id="c" name="Catogery" placeholder=" choose Catogery of the Product">
+                                        <option>choose Catogery of the Product</option>
+                                        <option>Mobiles & Tablets</option>
+                                        <option>Computers</option>
+                                        <option>Electronics</option>
+                                        <option>Fashion</option>
+                                        <option>Health & Beauty</option>
+                                        <option>Supermarket</option>
+                                        <option>Kitchen</option>
+                                        <option>Toys & Games</option>
+                                        <option>Sports & Fitness</option>
+                                        <option>Books</option>
+                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Description</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea class="textarea--style-6" name="message" placeholder="Descriptio of the product"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Upload Photo </div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <label for="formFile" class="form-label" class="label--file" for="file" > </label>
+                                    <input class="input-file" type="file" name="file_cv" id="file" (change)="this.onFilechange($event)" class="form-control" type="file" id="formFile">
+                                   <button (click)="this.upload()" type="button" class="btn btn-primary mt-3">Upload</button>
+                                </div>
+                                <div class="label--desc">Upload Photo of the Product to appear to users in the stock</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn--radius-2 btn--blue-2" type="submit">ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+<!-- end document-->

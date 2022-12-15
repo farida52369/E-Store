@@ -12,9 +12,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, ProfileComponent, HomeComponent , AppComponent],
+  declarations: [RegisterComponent, LoginComponent, ProfileComponent, HomeComponent , AppComponent, AddItemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
