@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RefreshToken } from '../dto/data';
+import { HomeService } from './home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,9 +12,12 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private logoutSer:HomeService
   ) {}
 
+
+  
   title = '';
   status: any;
   filter: string = '';
@@ -37,5 +42,8 @@ export class HomeComponent implements OnInit {
       'block';
     (<HTMLInputElement>document.getElementById('search')).style.marginLeft =
       '500px';
+      (<HTMLInputElement>document.getElementById('logout')).style.display =
+      'block';
+
   }
 }

@@ -13,10 +13,11 @@
 }
 
 .side-bar {
-  width: 25%;
+  width: 20%;
   padding: 10px;
   font-size: 1.1em;
   border: 2px solid black;
+  background-color: white;
 }
 
 .side-bar p {
@@ -35,7 +36,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #ee8cc2;
   display: flex;
   padding-bottom: 7px;
 }
@@ -50,17 +51,29 @@ li a {
   text-decoration: none;
   font-size: 1.5em;
   float: right;
+  padding-top: 20px;
 }
 
 li a:hover {
-  background-color: #111;
+  background-color: rgb(150, 74, 127);
+
 }
 
-.label {
+.labele {
+  float: left;
+  color:rgb(150, 74, 127);
+  padding-left: 70px;
+  padding-top: 11px;
+  font-size: 3em;
+  font-style:oblique;
+}
+
+.label{
   float: left;
   color: white;
-  padding-left: 70px;
-  font-size: 3em;
+  padding-top: 21px;
+  font-size: 2em;
+  font-style:oblique;
 }
 
 .search {
@@ -68,7 +81,7 @@ li a:hover {
   margin-top: 10px;
   margin-bottom: 5px;
   margin-left: 350px;
-  font-size: 20;
+  font-size: x-large;
   font-style: italic;
   color: #111;
   width: 500px;
@@ -91,6 +104,7 @@ li a:hover {
   width: 30px;
   margin-top: 7px;
   margin-left: 18px;
+  padding-top: 10px;
 }
 
 .one {
@@ -112,3 +126,19 @@ li a:hover {
 #profile {
   display: none;
 }
+
+#logout {
+  display: none;
+
+}
+
+.img {
+  overflow: hidden;
+  max-width: 100% ;
+  height:100%;
+}
+
+img.home {
+   width: 1550px;
+   height: 550px;
+ }

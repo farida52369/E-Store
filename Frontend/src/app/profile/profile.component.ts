@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from './profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit{
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient
+     ,private profileSer:ProfileService) { }
   data = { name: '', email: '', phoneNumber: '', dateOfBirth: '', gender: '' };
 
 edit:any;
@@ -18,19 +20,21 @@ newLname:any;
 newTel:any;
 
 ngOnInit(): void {
-  this.http.get('http://localhost:8080/profile', {
-      responseType: 'text',
-      params: {
-        //// 
-      },
-      observe: "response"
-    })
-    .subscribe((response) => {
-      this.data = JSON.parse(response.body +"");
-    })
-    this.updateFields();
+  this.postingUserr();
   }
 
+  postingUserr(): void {
+    
+    this.profileSer.postUser1().subscribe(
+      () => {
+        console.log('I POSTED THE USER TO THE SERVER :)');
+        this.router.navigateByUrl('api/auth/profile', { state: { logged: true } });
+      },
+      (error: HttpErrorResponse) =>
+       console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
+      
+    );
+  }
   updateFields() {
     (<HTMLInputElement>document.getElementById('name')).innerText = this.data.name;
     (<HTMLInputElement>document.getElementById('email')).innerText = this.data.email;

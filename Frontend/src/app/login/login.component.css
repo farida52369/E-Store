@@ -18,9 +18,8 @@ body {
   background-color: rgb(255, 253, 253);
 
   margin: 0 auto;
-  box-shadow: 0px 15px 18px 0.17px rgba(66, 2, 60, 0.05);
-  border-style: dashed;
-  border-color: #ee8cc2;
+  box-shadow: 0px 15px 18px 0.17px rgba(27, 2, 25, 0.05);
+ 
 }
 
 .signin-content {
