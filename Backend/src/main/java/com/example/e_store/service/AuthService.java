@@ -8,7 +8,8 @@ import com.example.e_store.model.User;
 import com.example.e_store.repository.UserRepository;
 import com.example.e_store.security.JwtProvider;
 import com.example.e_store.security.JwtUser;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 
 @Service
-@AllArgsConstructor
+@Slf4j
+@RequiredArgsConstructor
 public class AuthService {
 
     private final UserRepository userRepository;
@@ -30,7 +32,7 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
 
-    public void register(RegisterRequest registerRequest) {
+    public AuthenticationResponse register(RegisterRequest registerRequest) {
         User user = new User();
         user.setFirstName(registerRequest.getFirstName());
         user.setLastName(registerRequest.getLastName());
@@ -41,6 +43,9 @@ public class AuthService {
         user.setDateOfBirth(registerRequest.getDateOfBirth());
 
         userRepository.save(user);
+
+        log.info("{} has registered to the DB", registerRequest.getEmail());
+        return login(new LoginRequest(registerRequest.getEmail(), registerRequest.getPassword()));
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) {

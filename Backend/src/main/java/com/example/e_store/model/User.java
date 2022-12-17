@@ -19,7 +19,7 @@ import javax.validation.constraints.NotEmpty;
 public class User {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long userId;
     @Email
     @Column(unique = true)
     @NotEmpty(message = "Email is required")
