@@ -29,7 +29,7 @@ public class MyUserDetailsService implements UserDetailsService {
         Optional<User> userOptional = userRepository.findByEmail(email);
         User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("No User Found with Email: " + email));
 
-        return new JwtUser(user.getId(), user.getFirstName(), user.getLastName(),
+        return new JwtUser(user.getUserId(), user.getFirstName(), user.getLastName(),
                 user.getEmail(), user.getPhoneNumber(), user.getPassword(),
                 user.getDateOfBirth(), user.getGender(), getAuthorities());
     }
