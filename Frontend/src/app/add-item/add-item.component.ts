@@ -8,62 +8,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent  {
-  uploadService: any;
-
-  constructor(
-    private httpClient: HttpClient,
-  ) { }
+  
+  constructor(private httpClient: HttpClient,) { }
   
   public uploadfile(file: File) {
     let formParams = new FormData();
     formParams.append('file', file)
-    return this.httpClient.post('http://localhost:4200/uploadFile', formParams)
   }
-
-
 
   file: any;
  
- 
   onFilechange(event: any) {
-    //console.log(event.target.files[0])
-    this.file = event.target.files[0]
+    this.file = event.target.files[0];
+    console.log(this.file);
+  }
+
+  addItem(){
+    const title=(<HTMLInputElement>document.getElementById('title')).value;
+    const price=(<HTMLInputElement>document.getElementById('price')).value;
+    const quantity=(<HTMLInputElement>document.getElementById('quantity')).value;
+    const category=(<HTMLInputElement>document.getElementById('c')).value;
+    const desc=(<HTMLInputElement>document.getElementById('desc')).value;
+    const photo=(<HTMLInputElement>document.getElementById('file')).value;
+    console.log("doneee");
+
   }
   
-  upload() {
-    if (this.file) {
-      this.uploadService.uploadfile(this.file).subscribe(() => {
-        alert("Uploaded")
-      })
-    } else {
-      alert("Please select a file first")
-    }
-  }
-
-
-
-/*fileToUpload: File | null=null;
-  httpClient: any;
-
-
-*choose(files: FileList){
-  this.fileToUpload=files.item(0);
-}*/
-
-
-/*postFile(fileToUpload: File): Observable<boolean> {
-  const endpoint = 'your-destination-url';
-  const formData: FormData = new FormData();
-  formData.append('fileKey', fileToUpload, fileToUpload.name);
-  return this.httpClient
-    .post(endpoint, formData, )
-    .map(() => { return true; })
-    .catch((e: any) => this.handleError(e));
-}
-  handleError(e: any) {
-    throw new Error('Method not implemented.');
-  }*/
-
 
 }
 

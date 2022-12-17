@@ -19,9 +19,21 @@ export class LoginComponent {
         this.router.navigateByUrl('home', { state: { logged: true } });
       },
       (error: HttpErrorResponse) =>
-       // console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
-       alert("wrong password or email if you have an account and if you do not have an account, so register ")
+                this.alert()
+      
     );
+  }
+
+
+  alert(){
+    (<HTMLInputElement>document.getElementById('alert')).style.display="block";
+    window.setTimeout(() => {
+      const box = (<HTMLInputElement>document.getElementById('alert'));
+      box.style.display = 'block';
+    }, 5 );
+  }
+  endAlert(){
+    (<HTMLInputElement>document.getElementById('alert')).style.display="none";
   }
 
   logIn(): void {

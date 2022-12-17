@@ -21,18 +21,18 @@
                     <h2 class="title">Add Product</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form   ngNativeValidate>
                         <div class="form-row">
                             <div class="name">Title of Product</div>
                             <div class="value">
-                                <input class="input--style-6" type="text" name="full_name">
+                                <input class="input--style-6" id="title" type="text" name="full_name" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="name">Price</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-6" type="text" name="price" placeholder="    300 LE">
+                                    <input class="input--style-6" id="price" type="number" name="price" min="0" placeholder="    300 $"  required>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             <div class="name">Number of items</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-6" type="text" name="number" placeholder="   5">
+                                    <input class="input--style-6" id="quantity" type="number" name="number" min="1" value="1" placeholder="   5" required >
                                 </div>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                             <div class="name">Catogery</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <select class="input--style-6" type="text" id="c" name="Catogery" placeholder=" choose Catogery of the Product">
-                                        <option>choose Catogery of the Product</option>
+                                    <select class="input--style-6" type="text" id="c" name="Catogery" placeholder=" choose Catogery of the Product"  required>
+                                
                                         <option>Mobiles & Tablets</option>
                                         <option>Computers</option>
                                         <option>Electronics</option>
@@ -69,7 +69,7 @@
                             <div class="name">Description</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea class="textarea--style-6" name="message" placeholder="Descriptio of the product"></textarea>
+                                    <textarea class="textarea--style-6" id="desc" name="message" placeholder="Description of the product" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -78,8 +78,8 @@
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <label for="formFile" class="form-label" class="label--file" for="file" > </label>
-                                    <input class="input-file" type="file" name="file_cv" id="file" (change)="this.onFilechange($event)" class="form-control" type="file" id="formFile">
-                                   <button (click)="this.upload()" type="button" class="btn btn-primary mt-3">Upload</button>
+                                    <input class="form-submit" type="file" name="file_cv" id="file" (change)="onFilechange($event)"
+                                     class="form-control" type="file" id="formFile">
                                 </div>
                                 <div class="label--desc">Upload Photo of the Product to appear to users in the stock</div>
                             </div>
@@ -87,7 +87,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn--radius-2 btn--blue-2" type="submit">ADD</button>
+                    <button class="form-submit" type="submit" (click)="addItem()">ADD</button>
                 </div>
             </div>
         </div>
