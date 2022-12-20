@@ -64,6 +64,7 @@ public class AuthController {
             consumes = {"application/json"}
     )
     public ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        log.info("Logging the user out of the system ...");
         refreshTokenService.deleteRefreshToken(refreshTokenRequest.getRefreshToken());
         return new ResponseEntity<>("Refresh Token deleted successfully", OK);
     }

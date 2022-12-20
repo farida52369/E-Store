@@ -8,16 +8,37 @@ export interface RegisterRequest {
   dateOfBirth: String;
 }
 
+export interface ProfileInfoResponse {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  dateOfBirth: string;
+  gender: string;
+}
+
 export interface LoginRequest {
   email: String;
   password: String;
 }
 
-export interface RefreshToken {}
+export interface RefreshToken {
+  refreshToken: string;
+  email: string;
+}
 
 export interface AuthenticationResponse {
   authenticationToken: String;
   refreshToken: String;
   expiresAt: String;
   email: String;
+}
+
+export interface ProductRequest {
+  productId: number;
+  title: string;
+  price: number;
+  category: string;
+  inStock: number;
+  description: string;
 }

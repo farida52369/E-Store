@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { CartComponent } from './cart/cart.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent,
@@ -26,6 +27,7 @@ import { CartComponent } from './cart/cart.component';
     HttpClientModule,
     MatSidenavModule,
     ReactiveFormsModule,
+    NgxWebstorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

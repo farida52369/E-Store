@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RefreshToken } from '../dto/data';
-import { HomeService } from './home.service';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,26 +9,16 @@ import { HomeService } from './home.service';
 export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    private logoutSer:HomeService
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
-
-  
-  title = '';
-  status: any;
-  filter: string = '';
-  
-  getFilter(val: string) {
-    this.filter = val;
-  }
-
   ngOnInit(): void {
-    this.status = history.state.logged;
-    if (this.status) {
-      this.updateStatus();
-    }
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if ((params['inHome'] !== undefined && params['inHome'] === 'true') || this.authService.isLoggedIn()) {
+        this.updateStatus();
+      }
+    });
   }
 
   updateStatus(): void {
@@ -42,8 +30,11 @@ export class HomeComponent implements OnInit {
       'block';
     (<HTMLInputElement>document.getElementById('search')).style.marginLeft =
       '500px';
-      (<HTMLInputElement>document.getElementById('logout')).style.display =
+    (<HTMLInputElement>document.getElementById('logout')).style.display =
       'block';
+  }
 
+  logOut() {
+    this.authService.logout();
   }
 }

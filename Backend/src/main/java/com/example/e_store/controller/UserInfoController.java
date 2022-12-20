@@ -6,6 +6,7 @@ import com.example.e_store.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,21 +23,19 @@ public class UserInfoController {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            consumes = {"application/json"},
-            value = "/profile"
+            value = "/profile/{email}"
     )
-    public ResponseEntity<ProfileInfoResponse> getUserInfo() {
-        log.info("Getting User Info");
-        return ResponseEntity.ok().body(userInfoService.getUserInfo());
+    public ResponseEntity<ProfileInfoResponse> getUserInfo(@PathVariable String email) {
+        log.info("Getting User Info {}" + email);
+        return ResponseEntity.ok().body(userInfoService.getUserInfo(email));
     }
 
     @RequestMapping(
             method = RequestMethod.GET,
-            consumes = {"application/json"},
-            value = "/owned/products"
+            value = "/owned/products/{email}"
     )
-    public ResponseEntity<List<ProductResponse>> getUserOwnerProducts() {
+    public ResponseEntity<List<ProductResponse>> getUserOwnerProducts(@PathVariable String email) {
         log.info("Getting User Owned Products");
-        return ResponseEntity.ok().body(userInfoService.getUserOwnerProducts());
+        return ResponseEntity.ok().body(userInfoService.getUserOwnerProducts(email));
     }
 }
