@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductRequest } from '../dto/data';
-import { AddItemService } from './add-item.service';
+import { ProductService } from '../services/product/product.service';
 
 @Component({
   selector: 'app-add-item',
@@ -10,7 +9,7 @@ import { AddItemService } from './add-item.service';
   styleUrls: ['./add-item.component.css'],
 })
 export class AddItemComponent {
-  constructor(private service: AddItemService, private router:Router) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   imageToBeUploaded!: File;
   image: any;
@@ -69,17 +68,18 @@ export class AddItemComponent {
         type: 'application/json',
       })
     );
-    console.log('form params => ' + formParams.get('product'));
-    console.log('form params => ' + formParams.get('imageFile'));
 
-    this.service.createProduct(formParams).subscribe(
-      (res) => {
-        console.log('YUUUUUUUUUUUUP');
-        this.router.navigate(['/home'], {
-          queryParams: { inHome: 'true' },
-        });
+    this.productService.createProduct(formParams).subscribe(
+      () => {
+        this.router
+          .navigateByUrl('user/add-item', { skipLocationChange: true })
+          .then(() =>
+            this.router.navigate(['home'], {
+              queryParams: { inHome: 'true' },
+            })
+          );
       },
-      (error) => {
+      () => {
         console.log('YARABBBBBBBBBBB');
       }
     );

@@ -42,3 +42,23 @@ export interface ProductRequest {
   inStock: number;
   description: string;
 }
+
+// Specific Product All Details
+export interface ProductResponse {
+  productId: number;
+  title: string;
+  price: number;
+  category: string;
+  inStock: number;
+  description: string;
+  image: any;
+  createdDate: string;
+}
+
+// Product Specific Details For Grabbing All Produts
+export interface ProductSpecificDetails {
+  productId: number;
+  title: string;
+  price: number;
+  image: any;
+}
