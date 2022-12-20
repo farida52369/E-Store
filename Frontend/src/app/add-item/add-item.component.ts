@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductRequest } from '../dto/data';
 import { AddItemService } from './add-item.service';
 
@@ -9,7 +10,7 @@ import { AddItemService } from './add-item.service';
   styleUrls: ['./add-item.component.css'],
 })
 export class AddItemComponent {
-  constructor(private service: AddItemService) {}
+  constructor(private service: AddItemService, private router:Router) {}
 
   imageToBeUploaded!: File;
   image: any;
@@ -74,6 +75,9 @@ export class AddItemComponent {
     this.service.createProduct(formParams).subscribe(
       (res) => {
         console.log('YUUUUUUUUUUUUP');
+        this.router.navigate(['/home'], {
+          queryParams: { inHome: 'true' },
+        });
       },
       (error) => {
         console.log('YARABBBBBBBBBBB');
