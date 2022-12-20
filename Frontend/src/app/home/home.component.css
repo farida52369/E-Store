@@ -123,14 +123,11 @@ li a:hover {
   width: 30px;
 }
 
-#profile {
+#profile, #logout, #add-product {
   display: none;
 }
 
-#logout {
-  display: none;
 
-}
 
 .img {
   overflow: hidden;
@@ -139,6 +136,15 @@ li a:hover {
 }
 
 img.home {
-   width: 1550px;
-   height: 550px;
- }
+  width: 1550px;
+  height: 550px;
+}
+
+#products{
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 20px;
+  row-gap: 20px;
+  justify-content: center;
+}

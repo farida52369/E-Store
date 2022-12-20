@@ -30,12 +30,14 @@
         <li class="labele">E</li>
         <li class="label">Shop</li>
         <input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
+        <li id="add-product"><a href="user/add-item">Add Product</a></li>
         <li><a href="user/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
         <li  id="log-in"><a href="login"><i class="fa fa-sign-in"></i>Log In</a></li>
         <li id="sign-up"><a href="register"><i class="fa fa-user-plus"></i>Sign Up</a></li>
         <li id="profile"><a href="user/profile"><i class="fa fa-user"></i>Profile</a></li>
         <li   id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()">Log Out</i></a></li>
       </ul>
+      <div id="products"></div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </body>
