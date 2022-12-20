@@ -1,8 +1,5 @@
-
 <body>
-   
     <div class="main">
-        
         <div class="container">
             <div class="signin-content">
                 <div class="signin-form">
@@ -18,8 +15,7 @@
                             <input type="password" class="pass-icon" name="your_pass" id="your_pass" minlength="8"
                                 placeholder="Enter Your Password" required />
                         </div>
-                        <button class="form-submit" type="submit" (click)="logIn()"> Log In</button>
-
+                        <button class="form-submit" type="submit" (click)="submit()"> Log In</button>
                         <p>Do not have an account?<a href="api/auth/register"> Register</a></p>
                     </form>
                 </div>
@@ -30,8 +26,7 @@
         </div>
         <div id="alert" class="alert simple-alert">
             <h3>wrong password or email if you have an account and if you do not have an account, so register</h3>
-            <a class="close"  (click)="endAlert()">&times;</a>
-          </div>
-        
+            <a class="close" (click)="endAlert()">&times;</a>
+        </div>
     </div>
 </body>

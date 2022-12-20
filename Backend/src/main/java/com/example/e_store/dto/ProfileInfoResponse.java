@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class ProfileInfoResponse {
     private String firstName;
     private String lastName;
+    private String email;
     private String phoneNumber;
     private String dateOfBirth;
     private String gender;

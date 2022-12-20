@@ -19,11 +19,11 @@
                 <input type="tel" placeholder="Enter New Phone Number" value="01208784029" pattern="[0-9]{11}"
                   id="new-tel" required />
                 <br>
-                <button class="style-button" (click)="EditProfile()">Ok</button>
+                <button class="style-button" (click)="editProfile()">Ok</button>
               </form>
             </div>
             <div class="col-sm-10">
-              <button class="style-button" (click)="BacktoHome()">Back To Home</button>
+              <button class="style-button" (click)="backToHome()">Back To Home</button>
             </div>
           </div>
           <div class="row">
@@ -31,7 +31,7 @@
               <h4 class="mb-0">Full Name</h4>
             </div>
             <div class="col-sm-9 text-secondary">
-              Toka Ashraf
+              {{ data.firstName + " " + data.lastName }}
             </div>
           </div>
           <hr>
@@ -40,7 +40,7 @@
               <h4 class="mb-0">Email</h4>
             </div>
             <div class="col-sm-9 text-secondary">
-              toka@gmail.com
+              {{ data.email }}
             </div>
           </div>
           <hr>
@@ -49,7 +49,7 @@
               <h4 class="mb-0">Phone Number</h4>
             </div>
             <div class="col-sm-9 text-secondary">
-              01222222222
+              {{ data.phoneNumber }}
             </div>
           </div>
           <hr>
@@ -58,7 +58,7 @@
               <h4 class="mb-0">Date Of Birth</h4>
             </div>
             <div class="col-sm-9 text-secondary">
-              12-4-2001
+              {{ data.dateOfBirth }}
             </div>
           </div>
           <hr>
@@ -67,7 +67,7 @@
               <h4 class="mb-0">Gender</h4>
             </div>
             <div class="col-sm-9 text-secondary">
-              Female
+              {{ data.gender }}
             </div>
           </div>
           <hr>
