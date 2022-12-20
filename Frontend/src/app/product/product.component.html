@@ -1,0 +1,83 @@
+<body>
+	<mat-sidenav-container class="sidebar-container">
+		<mat-sidenav #sidenav class="side-bar">
+		  <h3 class="head">Trending</h3>
+		  <p class="element">Best Sellers</p>
+		  <p class="element">New Releases</p>
+		  <p class="element">Top Rated</p>
+		  <hr>
+		  <h3 class="head">Categories</h3>
+		  <p class="element">Mobiles & Tablets</p>
+		  <p class="element">Computers</p>
+		  <p class="element">Electronics</p>
+		  <p class="element">Fashion</p>
+		  <p class="element">Health & Beauty</p>
+		  <p class="element">Supermarket</p>
+		  <p class="element">Kitchen</p>
+		  <p class="element">Toys & Games</p>
+		  <p class="element">Sports & Fitness</p>
+		  <p class="element">Books</p>
+		</mat-sidenav>
+		<mat-sidenav-content class="side-bar-content">
+		  <ul class="nav-bar" id="nav">
+			<li class="nav">
+			  <button mat-button (click)="sidenav.toggle()">
+				<div class="one"></div>
+				<div class="two"></div>
+				<div class="three"></div>
+			  </button>
+			</li>
+			<li class="labele">E</li>
+			<li class="label">Shop</li>
+			<input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
+			<li><a href="user/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+			<li  id="log-in"><a href="login"><i class="fa fa-sign-in"></i>Log In</a></li>
+			<li id="sign-up"><a href="register"><i class="fa fa-user-plus"></i>Sign Up</a></li>
+			<li id="profile"><a href="user/profile"><i class="fa fa-user"></i>Profile</a></li>
+			<li   id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()">Log Out</i></a></li>
+		  </ul>
+		     <head>
+	  
+			   <meta name="viewport" content="width=device-width, initial-scale=1">
+			   <title>Product Details</title>
+		    </head>	
+		  <div class="container">
+			<div class="card">
+			  <div class="container-fliud">
+				<div class="wrapper row">
+				  <div class="preview col-md-6">
+					<div class="preview-pic tab-content">
+					  <div class="tab-pane active" id="pic-1"><img src="\assets\kids.jpeg" /></div>
+					</div>
+				  </div>
+				  <div class="details col-md-6">
+					<h3 class="product-title">Product name</h3>
+								<div class="rating">
+									<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+									<div class="stars">
+									   <span class="fa fa-star checked"></span>
+									   <span class="fa fa-star checked"></span>
+									   <span class="fa fa-star checked"></span>
+									   <span class="fa fa-star"></span>
+									   <span class="fa fa-star"></span>
+									</div>
+									<span class="review-no">41 reviews</span>
+								</div>
+								<h4 class="price">price : <span>$180</span></h4>
+								<h4 class="quantity">Quantity : <span> 5</span></h4>
+								 <h4 class="category">Category : <span>kids Cloths</span></h4>
+								<h4 class="seller">seller: <span>Rowan</span></h4>
+								<h4 class="product-description">Description : <span>nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn2222222222222222<br>222222222222222222222222222222222222222222<br>222222222222222222222222222222222222222222<br></span></h4>
+								<div class="action">
+								   <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+								  <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+								</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+	  </mat-sidenav-content>
+	</mat-sidenav-container>
+	
+  </body>
