@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductRequest } from '../dto/data';
+import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { ProductService } from '../services/product/product.service';
   styleUrls: ['./add-item.component.css'],
 })
 export class AddItemComponent {
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   imageToBeUploaded!: File;
   image: any;
@@ -46,12 +51,12 @@ export class AddItemComponent {
     const desc = (<HTMLInputElement>document.getElementById('desc')).value;
 
     const product: ProductRequest = {
-      productId: 1,
       title: title,
       price: price,
       category: category,
       inStock: quantity,
       description: desc,
+      owner: this.authService.getUserEmail(),
     };
 
     const formParams = new FormData();
