@@ -1,6 +1,7 @@
 package com.example.e_store.controller;
 
 import com.example.e_store.dto.ProductRequest;
+import com.example.e_store.dto.ProductSpecificDetails;
 import com.example.e_store.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,4 +34,12 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/all"
+    )
+    public ResponseEntity<ProductSpecificDetails[]> getAllProducts() {
+        log.info("Getting All Products .. ");
+        return ResponseEntity.ok().body(productService.getAllProducts());
+    }
 }

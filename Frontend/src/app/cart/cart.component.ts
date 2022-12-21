@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
         "name": "Maybelline Instant Age Rewind Eraser Dark Circles Treatment Multi-Use Concealer, 120, 1 Count",
         "price": 8.80,
         "img": "https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/611iMz35GNL._SX425_.jpg",
-        "desc": "Erase the look of dark circles, correct the appearance of redness and brighten the look of dull skin with Instant Age Rewind Eraser multi-use concealer",
+        "desc": "Erase the look of dark circles, correct the appearance of redness and brighten the look of dull skin with Instant Age Rewind Eraser multi-use concealer MAX OUT THOSE LASHES: Designed to max out every lash, Lash Blast Volume Mascara creates 10 times more volume instantly MAX OUT THOSE LASHES: Designed to max out every lash, Lash Blast Volume Mascara creates 10 times more volume instantly",
         "quantity": 2,
         "category": "fashion",
         "total_price": 17.6
