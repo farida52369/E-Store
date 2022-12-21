@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class ProductSpecificDetails {
     private Long productId;
     private String title;
+    private String description;
     private Double price;
     private byte[] image;
 }

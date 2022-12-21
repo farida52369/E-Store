@@ -1,5 +1,5 @@
 <body>
-   
+
   <mat-sidenav-container class="sidebar-container">
     <mat-sidenav #sidenav class="side-bar">
       <h3 class="head">Trending</h3>
@@ -20,7 +20,7 @@
       <p class="element">Books</p>
     </mat-sidenav>
     <mat-sidenav-content class="side-bar-content">
-     
+
       <ul class="nav-bar" id="nav">
         <li class="nav">
           <button mat-button (click)="sidenav.toggle()">
@@ -39,28 +39,25 @@
         <li *ngIf="loggin" id="profile"><a href="user/profile"><i class="fa fa-user"></i>Profile</a></li>
         <li *ngIf="loggin" id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()">Log Out</i></a></li>
       </ul>
-   
+
       <!-- <div id="products"></div> -->
-      <div class="container"  *ngFor="let item of details;let indexOfelement=index;">
-        <section id="cart" >
-          <article class="product" >
-            <header>             
-                <img src="data:image/jpeg;base64,{{item.image}}" alt="">               
+      <div class="container" *ngFor="let item of details;let indexOfelement=index;">
+        <section id="cart">
+          <article class="product">
+            <header>
+              <img src="data:image/jpeg;base64,{{item.image}}" alt="product image">
             </header>
             <div class="content">
-              <h1>{{item.title}}</h1><p>MAX OUT THOSE LASHES: Designed to max out every lash, Lash Blast Volume Mascara creates 10 times more volume instantly</p>
-             
-            </div>    
+              <h1>{{item.title}}</h1>
+              <p>{{ item.description }}</p>
+            </div>
             <footer class="content">
-              <h2 class="full-price">{{item.price}}$</h2>
-              <h2 class="price">Price</h2>
-              <button class="btn" >Add to Cart</button>
+              <h2 class="full-price">{{item.price}} $</h2>
+              <button class="btn">Add to Cart</button>
             </footer>
           </article>
         </section>
       </div>
-
-   
-  </mat-sidenav-content>
+    </mat-sidenav-content>
   </mat-sidenav-container>
 </body>

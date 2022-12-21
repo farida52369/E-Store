@@ -35,12 +35,12 @@ export interface AuthenticationResponse {
 }
 
 export interface ProductRequest {
-  productId: number;
   title: string;
   price: number;
   category: string;
   inStock: number;
   description: string;
+  owner: string;
 }
 
 // Specific Product All Details
@@ -59,6 +59,7 @@ export interface ProductResponse {
 export interface ProductSpecificDetails {
   productId: number;
   title: string;
+  description: string;
   price: number;
   image: any;
 }

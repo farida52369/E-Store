@@ -12,17 +12,16 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private productService: ProductService,
-   
+    private productService: ProductService
   ) {}
- 
+
   //  details:ProductSpecificDetails; = {
   //   productId: number;
   //   title: string;
   //   price: number;
   //   image: any;
   // };
-  details:any;
+  details: Array<ProductSpecificDetails> | undefined;
 
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProducts().subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
-        this.details=res;
+      this.details = res;
     });
   }
 
