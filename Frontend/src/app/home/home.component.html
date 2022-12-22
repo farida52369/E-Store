@@ -1,4 +1,5 @@
 <body>
+
   <mat-sidenav-container class="sidebar-container">
     <mat-sidenav #sidenav class="side-bar">
       <h3 class="head">Trending</h3>
@@ -19,6 +20,7 @@
       <p class="element">Books</p>
     </mat-sidenav>
     <mat-sidenav-content class="side-bar-content">
+
       <ul class="nav-bar" id="nav">
         <li class="nav">
           <button mat-button (click)="sidenav.toggle()">
@@ -30,12 +32,32 @@
         <li class="labele">E</li>
         <li class="label">Shop</li>
         <input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
-        <li><a href="#cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
-        <li (click)="updateStatus()" id="log-in"><a href="api/auth/login"><i class="fa fa-sign-in"></i>Log In</a></li>
-        <li id="sign-up"><a href="api/auth/register"><i class="fa fa-user-plus"></i>Sign Up</a></li>
-        <li id="profile"><a href="profile"><i class="fa fa-user"></i>Profile</a></li>
-        <li   id="logout"><a href="home"><i class="fa fa-sign-out"></i>Log Out</a></li>
+        <li *ngIf="loggin" id="add-product"><a href="user/add-item">Add Product</a></li>
+        <li *ngIf="loggin"><a href="user/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+        <li *ngIf="!loggin" id="log-in"><a href="login"><i class="fa fa-sign-in"></i>Log In</a></li>
+        <li *ngIf="!loggin" id="sign-up"><a href="register"><i class="fa fa-user-plus"></i>Sign Up</a></li>
+        <li *ngIf="loggin" id="profile"><a href="user/profile"><i class="fa fa-user"></i>Profile</a></li>
+        <li *ngIf="loggin" id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()">Log Out</i></a></li>
       </ul>
+
+      <!-- <div id="products"></div> -->
+      <div class="container" *ngFor="let item of details;let indexOfelement=index;">
+        <section id="cart">
+          <article class="product">
+            <header>
+              <img src="data:image/jpeg;base64,{{item.image}}" alt="product image">
+            </header>
+            <div class="content">
+              <h1>{{item.title}}</h1>
+              <p>{{ item.description }}</p>
+            </div>
+            <footer class="content">
+              <h2 class="full-price">{{item.price}} $</h2>
+              <button class="btn">Add to Cart</button>
+            </footer>
+          </article>
+        </section>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </body>

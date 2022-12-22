@@ -12,9 +12,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { CartComponent } from './cart/cart.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, ProfileComponent, HomeComponent , AppComponent],
+  declarations: [RegisterComponent, LoginComponent,
+     ProfileComponent, HomeComponent , AppComponent, AddItemComponent, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     MatSidenavModule,
     ReactiveFormsModule,
+    NgxWebstorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

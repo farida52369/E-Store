@@ -1,39 +1,55 @@
 import { Component } from '@angular/core';
-import { LoginService } from './login.service';
 import { LoginRequest } from '../dto/data';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private loginSer: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  postingUser(user: LoginRequest): void {
-    console.log('user => ', user);
-    this.loginSer.postUser(user).subscribe(
-      () => {
-        console.log('I POSTED THE USER TO THE SERVER :)');
-        this.router.navigateByUrl('home', { state: { logged: true } });
+  isError: boolean | undefined;
+
+  private logIn(user: LoginRequest): void {
+    this.authService.login(user).subscribe(
+      (res) => {
+        this.router.navigate(['/home'], {
+          queryParams: { inHome: 'true' },
+        });
+        this.isError = false;
+        console.log('I LOGGED THE USER TO THE SERVER :)');
       },
-      (error: HttpErrorResponse) =>
-       // console.log('7AZ AWFR EL MARA EL GAYA!!\nError: ' + error.message)
-       alert("wrong password or email if you have an account and if you do not have an account, so register ")
+      (error: HttpErrorResponse) => {
+        this.alert();
+        this.isError = true;
+      }
     );
   }
 
-  logIn(): void {
+  alert() {
+    (<HTMLInputElement>document.getElementById('alert')).style.display =
+      'block';
+    window.setTimeout(() => {
+      const box = <HTMLInputElement>document.getElementById('alert');
+      box.style.display = 'block';
+    }, 5);
+  }
+  endAlert() {
+    (<HTMLInputElement>document.getElementById('alert')).style.display = 'none';
+  }
+
+  submit(): void {
     const email = (<HTMLInputElement>document.getElementById('your_email'))
       .value;
     const password = (<HTMLInputElement>document.getElementById('your_pass'))
       .value;
-    console.log('Email: ' + email + ' Password: ' + password);
     const user: LoginRequest = {
       email: email,
       password: password,
     };
-    this.postingUser(user);
+    this.logIn(user);
   }
 }

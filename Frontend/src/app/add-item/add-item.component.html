@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <!-- Title Page-->
+    <title>Add Product</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Add Product</h2>
+                </div>
+                <div class="card-body">
+                    <form ngNativeValidate>
+                        <div class="form-row">
+                            <div class="name">Title of Product</div>
+                            <div class="value">
+                                <input class="input--style-6" id="title" type="text" name="full_name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Price</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" id="price" type="number" name="price" min="0"
+                                        placeholder="    300 $" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Number of items</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" id="quantity" type="number" name="number" min="1"
+                                        value="1" placeholder="   5" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Catogery</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <select class="input--style-6" type="text" id="c" name="Catogery"
+                                        placeholder=" choose Catogery of the Product" required>
+
+                                        <option>Mobiles & Tablets</option>
+                                        <option>Computers</option>
+                                        <option>Electronics</option>
+                                        <option>Fashion</option>
+                                        <option>Health & Beauty</option>
+                                        <option>Supermarket</option>
+                                        <option>Kitchen</option>
+                                        <option>Toys & Games</option>
+                                        <option>Sports & Fitness</option>
+                                        <option>Books</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Description</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea class="textarea--style-6" id="desc" name="message"
+                                        placeholder="Description of the product" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Upload Photo </div>
+                            <div *ngIf="image" class="div-image-to-upload">
+                                <img [src]="image" alt="photo uploaded" class="image-uploaded">
+                            </div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <label for="formFile" class="form-label" class="label--file" for="file"> </label>
+                                    <input class="form-submit" type="file" name="file_cv" id="imageFile"
+                                        (change)="onFileChange($event)" accept="image/png, image/gif, image/jpeg"
+                                        class="form-control" type="file" id="formFile">
+                                </div>
+                                <div class="label--desc">Upload Photo of the Product to appear to users in the stock
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="form-submit" type="submit" (click)="addItem()">ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+<!-- end document-->

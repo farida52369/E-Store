@@ -1,25 +1,3 @@
-<!--
-<body>
-    <div class="super">
-        <form ngNativeValidate class="login-form">
-            <legend class="title">Log In</legend>
-            <label for="your_email" class="l">Email</label>
-            <input v-model="your_email" type="email" class="email-icon" id="your_email" 
-                name="your_email" placeholder=" user@system.com" required>
-                <br>
-            <label class="l" for="password">Password</label>
-            <input v-model="password" type="password" class="pass-icon" id="password"
-                placeholder="Your password" required>
-            
-            <button class="form-submit cr" type="submit" (click)="logIn()">Sign In</button>
-        </form>
-        <div class="signin-image">
-            <img src="/assets/login.jpg">
-        </div>
-    </div>
-</body>
--->
-
 <body>
     <div class="main">
         <div class="container">
@@ -37,14 +15,18 @@
                             <input type="password" class="pass-icon" name="your_pass" id="your_pass" minlength="8"
                                 placeholder="Enter Your Password" required />
                         </div>
-                        <button class="form-submit" type="submit" (click)="logIn()"> Log In</button>
-                        <p>Do not have an account?<a href="api/auth/register"> Register</a></p>
+                        <button class="form-submit" type="submit" (click)="submit()"> Log In</button>
+                        <p>Do not have an account?<a href="register"> Register</a></p>
                     </form>
                 </div>
                 <div class="signin-image">
                     <figure> <img src="/assets/login.jpg"></figure>
                 </div>
             </div>
+        </div>
+        <div id="alert" class="alert simple-alert">
+            <h3>wrong password or email if you have an account and if you do not have an account, so register</h3>
+            <a class="close" (click)="endAlert()">&times;</a>
         </div>
     </div>
 </body>
