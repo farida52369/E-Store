@@ -33,23 +33,28 @@ export class RegisterComponent {
     const email = (<HTMLInputElement>document.getElementById('address')).value;
     const password = (<HTMLInputElement>document.getElementById('password'))
       .value;
+    const Conpassword = (<HTMLInputElement>document.getElementById('con_password'))
+      .value;
     const phoneNumber = (<HTMLInputElement>document.getElementById('phone'))
       .value;
     const dateOfBirth = (<HTMLInputElement>document.getElementById('birthday'))
       .value;
     const gender = (<HTMLInputElement>document.getElementById('gender')).value;
+    const type = (<HTMLInputElement>document.getElementById('type')).value;
 
     const user: RegisterRequest = {
       firstName: firstName,
       lastName: lastName,
       password: password,
+      Conpassword: Conpassword,
       email: email,
       gender: gender,
       phoneNumber: phoneNumber,
       dateOfBirth: dateOfBirth,
+      type: type,
     };
     console.log(password.length);
-    if (password.length >= 8) {
+    if (password.length >= 8 && Conpassword.length>=8 && Conpassword==password) {
       this.postingUser(user);
     }
   }

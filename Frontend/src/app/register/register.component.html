@@ -16,6 +16,10 @@
             <input v-model="password" type="password" class="pass-icon" id="password"
                 placeholder="Should be 8 characters or more" minlength="8" required>
             <br>
+            <label class="l" for="con_password">Confirm Pass</label>
+            <input v-model="password" type="password" class="pass-icon" id="con_password"
+                placeholder="Should be same as password" minlength="8" required>
+            <br>
             <label for="birthday" class="l">Date Of Birth</label>
             <input type="date" id="birthday" name="trip-start" max="2007-12-31" required>
             <br>
@@ -25,10 +29,24 @@
             <br>
             <label for="gender" class="l">Gender</label>
             <select v-model="gender" id="gender" required>
+                <option value="NA" selected disabled hidden>Select your gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="NA">Prefer not to say</option>
             </select>
+            <br>
+
+
+            <label for="type" class="l">Type</label>
+            <select v-model="Type" id="type" required>
+                <option value="NA" selected disabled hidden>Select your type</option>
+                <option value="Manager">Manager</option>
+                <option value="Customer">Customer</option>
+                
+            </select>
+
+
+
             <br>
             <button class="form-submit cr"  (click)="submit()">Submit</button>
         </form>

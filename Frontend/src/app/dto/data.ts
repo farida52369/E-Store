@@ -2,10 +2,12 @@ export interface RegisterRequest {
   firstName: String;
   lastName: String;
   password: String;
+  Conpassword:string;
   email: String;
   gender: String;
   phoneNumber: String;
   dateOfBirth: String;
+  type: string;
 }
 
 export interface ProfileInfoResponse {
