@@ -2,11 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
-import {ProductResponse} from '../dto/data';
 import { CartService } from '../cart/cart.service';
-import { Observable } from 'rxjs';
-import {Cart} from '../dto/data';
-import { LocalStorageService } from 'ngx-webstorage';
 import { SearchService } from '../services/search/search.service';
 
 @Component({
@@ -15,7 +11,8 @@ import { SearchService } from '../services/search/search.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  details: Array<ProductSpecificDetails> | undefined;
+  details: any;
+  productToCart: any;
   @ViewChild('noProductFound') noProductEle: ElementRef | undefined;
   loggin!: boolean;
   isManager!: Boolean;
@@ -25,11 +22,9 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private productService: ProductService,
     private searchService: SearchService,
-    private cartService : CartService)
-    {}
-    
-  details: any;//Array<ProductSpecificDetails> | undefined;
-    
+    private cartService: CartService
+  ) {}
+
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
@@ -68,22 +63,19 @@ export class HomeComponent implements OnInit {
       this.details = res;
     });
   }
-  
- 
-  productTocart:any ; 
-  
-  addToCart(productIndex: number){
-    
-    this.productTocart=this.details[productIndex];
-    this.productTocart.quantity=1;
-    this.productTocart.total_price=this.productTocart.quantity * this.productTocart.price;
-    
-    this.cartService.storageCart(this.productTocart);
-    
-   }
-   
-    private setNoProductToNull() {
-    if (this.noProductEle) this.noProductEle.nativeElement.style.display = 'none';
+
+  addToCart(productIndex: number) {
+    this.productToCart = this.details[productIndex];
+    this.productToCart.quantity = 1;
+    this.productToCart.total_price =
+      this.productToCart.quantity * this.productToCart.price;
+
+    this.cartService.storageCart(this.productToCart);
+  }
+
+  private setNoProductToNull() {
+    if (this.noProductEle)
+      this.noProductEle.nativeElement.style.display = 'none';
   }
 
   private setNoProductDetails() {
@@ -94,7 +86,7 @@ export class HomeComponent implements OnInit {
       this.noProductEle.nativeElement.style.marginLeft = '32%';
     }
   }
-  
+
   // buildCard(product: ProductSpecificDetails) {
   //   let e = document.createElement('div');
   //   // div -> id style
