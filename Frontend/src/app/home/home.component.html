@@ -31,7 +31,8 @@
         </li>
         <li class="labele">E</li>
         <li class="label">Shop</li>
-        <input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
+        <input class="search" type="search" placeholder="Search" aria-label="Search" id="search" #search
+          (change)="getProductsByWord(search.value)">
         <li *ngIf="isManager" id="add-product"><a href="user/add-item"><i class="fa fa-plus"></i> Add Product</a></li>
         <li *ngIf="loggin"><a href="user/cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
         <li *ngIf="!loggin" id="log-in"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
@@ -58,6 +59,10 @@
           </article>
         </section>
       </div>
+      <span id="no-products-found" #noProductFound>
+        <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span> .</p>
+        <p>Try checking your spelling or use more general terms</p>
+      </span>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </body>

@@ -31,6 +31,7 @@ public class ProductService {
     public void save(ProductRequest productRequest, MultipartFile image) {
         Optional<User> owner = userRepository.findByEmail(productRequest.getOwner());
         if (!owner.isPresent()) return;
+
         try {
             Product product = new Product();
             product.setTitle(productRequest.getTitle());
@@ -43,6 +44,7 @@ public class ProductService {
             product.setCreatedDate(Instant.now());
 
             productRepository.save(product);
+            log.info("Manager {} Added Product #{} To The DB", owner.get().getEmail(), productRequest.getCategory());
         } catch (IOException e) {
             log.error("Error when adding product: {}", e.getMessage());
         }
