@@ -4,16 +4,16 @@
   </div>
 </header>
 <div class="container">
-  <section id="cart" *ngFor="let item of cart.products;let indexOfelement=index;">
+  <section id="cart" *ngFor="let item of product;let indexOfelement=index;">
     <article class="product">
       <header>
         <a class="remove">
-          <img src="{{item.img}}" alt="">
+          <img src="data:image/jpeg;base64,{{item.image}}" alt="">
           <h3 (click)="removeProduct(indexOfelement)">Remove product</h3>
         </a>
       </header>
       <div class="content">
-        <h1>{{item.name}}</h1><p>{{item.desc}}</p>
+        <h1>{{item.title}}</h1><p>{{item.description}}</p>
       </div>
 
       <footer class="content">
@@ -36,7 +36,7 @@
       <a class="delete-all" (click)="deleteAll()"> delete all items </a>
       <h2 class="subtotal">Subtotal: <span>{{subtotal}}</span>$</h2>
       <h3 class="tax">Taxes (5%): <span>{{tax}}</span>$</h3>
-      <h3 class="shipping">Shipping: <span>{{cart.shipping}}</span>$</h3>
+      <h3 class="shipping">Shipping: <span>{{shipping}}</span>$</h3>
     </div>
 
     <div class="right">

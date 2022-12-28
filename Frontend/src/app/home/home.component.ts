@@ -2,7 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
+import {ProductResponse} from '../dto/data';
+import { CartService } from '../cart/cart.service';
+import { Observable } from 'rxjs';
+import {Cart} from '../dto/data';
+import { LocalStorageService } from 'ngx-webstorage';
 import { SearchService } from '../services/search/search.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,9 +24,12 @@ export class HomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private productService: ProductService,
-    private searchService: SearchService
-  ) {}
-
+    private searchService: SearchService,
+    private cartService : CartService)
+    {}
+    
+  details: any;//Array<ProductSpecificDetails> | undefined;
+    
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
@@ -59,8 +68,21 @@ export class HomeComponent implements OnInit {
       this.details = res;
     });
   }
-
-  private setNoProductToNull() {
+  
+ 
+  productTocart:any ; 
+  
+  addToCart(productIndex: number){
+    
+    this.productTocart=this.details[productIndex];
+    this.productTocart.quantity=1;
+    this.productTocart.total_price=this.productTocart.quantity * this.productTocart.price;
+    
+    this.cartService.storageCart(this.productTocart);
+    
+   }
+   
+    private setNoProductToNull() {
     if (this.noProductEle) this.noProductEle.nativeElement.style.display = 'none';
   }
 
@@ -72,7 +94,7 @@ export class HomeComponent implements OnInit {
       this.noProductEle.nativeElement.style.marginLeft = '32%';
     }
   }
-
+  
   // buildCard(product: ProductSpecificDetails) {
   //   let e = document.createElement('div');
   //   // div -> id style
@@ -123,6 +145,7 @@ export class HomeComponent implements OnInit {
   // }
 
   logOut() {
+    this.cartService.clearCart();
     this.authService.logout();
   }
 }
