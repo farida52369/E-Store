@@ -9,9 +9,11 @@ import com.example.e_store.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -67,5 +69,13 @@ public class AuthController {
         log.info("Logging the user out of the system ...");
         refreshTokenService.deleteRefreshToken(refreshTokenRequest.getRefreshToken());
         return new ResponseEntity<>("Refresh Token deleted successfully", OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/system/user/{email}"
+    )
+    public ResponseEntity<Boolean> isManager(@Valid @PathVariable String email) {
+        return new ResponseEntity<>(authService.isManager(email), OK);
     }
 }

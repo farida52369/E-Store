@@ -94,7 +94,7 @@ export class AuthService {
       );
   }
 
-  logout() {
+  logout(): void {
     this.http
       .post(
         `${environment.apiBaseUrl}/api/auth/logout`,
@@ -114,11 +114,17 @@ export class AuthService {
     this.clearLocalStorage();
   }
 
-  getUserEmail() {
+  isManager(): Observable<Boolean> {
+    return this.http.get<Boolean>(
+      `${environment.apiBaseUrl}/api/auth/system/user/${this.getUserEmail()}`
+    );
+  }
+
+  getUserEmail(): string {
     return this.localStorage.retrieve('c_email');
   }
 
-  getRefreshToken() {
+  getRefreshToken(): string {
     return this.localStorage.retrieve('refresh_token');
   }
 

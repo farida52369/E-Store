@@ -28,7 +28,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ownerId", referencedColumnName = "userId")
     @ToString.Exclude
-    private User owner;
+    private User manager;
     @NotNull(message = "Quantity in stock for products can't be null")
     private Integer inStock;
     @Lob

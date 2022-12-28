@@ -43,7 +43,7 @@ public class UserInfoService {
     public List<ProductResponse> getUserOwnerProducts(String email) {
         Optional<User> owner = userRepository.findByEmail(email);
         if (!owner.isPresent()) return null;
-        List<Product> products = productRepository.findAllByOwner(owner.get());
+        List<Product> products = productRepository.findAllByManager(owner.get());
         List<ProductResponse> productResponse = new ArrayList<>();
         for (Product product : products) {
             ProductResponse response = ProductResponse.builder().

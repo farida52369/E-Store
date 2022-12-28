@@ -1,39 +1,76 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
+import { SearchService } from '../services/search/search.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  details: Array<ProductSpecificDetails> | undefined;
+  @ViewChild('noProductFound') noProductEle: ElementRef | undefined;
   loggin!: boolean;
+  isManager!: Boolean;
+  searchBy!: string;
 
   constructor(
     private authService: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private searchService: SearchService
   ) {}
-
-  //  details:ProductSpecificDetails; = {
-  //   productId: number;
-  //   title: string;
-  //   price: number;
-  //   image: any;
-  // };
-  details: Array<ProductSpecificDetails> | undefined;
 
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
+    if (this.loggin) this.isManagerSubscribe();
   }
 
-  showProducts() {
+  private isManagerSubscribe() {
+    this.authService.isManager().subscribe((res) => {
+      this.isManager = res;
+      console.log('Is Manager => ' + this.isManager);
+    });
+  }
+
+  getProductsByWord(word: any) {
+    if (word) {
+      this.searchBy = word;
+      this.searchService.getProductsByWord(word).subscribe((res) => {
+        const productsDiv = document.getElementById('products');
+        if (productsDiv) productsDiv.innerHTML = '';
+        if (res.length === 0) {
+          this.details = [];
+          this.setNoProductDetails();
+        } else {
+          this.details = res;
+          this.setNoProductToNull();
+        }
+      });
+    } else this.showProducts();
+  }
+
+  private showProducts() {
+    this.setNoProductToNull();
     this.productService.getAllProducts().subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
       this.details = res;
     });
+  }
+
+  private setNoProductToNull() {
+    if (this.noProductEle) this.noProductEle.nativeElement.style.display = 'none';
+  }
+
+  private setNoProductDetails() {
+    console.log('Marry Christmas :)');
+    if (this.noProductEle) {
+      this.noProductEle.nativeElement.style.display = 'block';
+      this.noProductEle.nativeElement.style.fontSize = '20px';
+      this.noProductEle.nativeElement.style.marginLeft = '32%';
+    }
   }
 
   // buildCard(product: ProductSpecificDetails) {
