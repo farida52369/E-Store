@@ -36,7 +36,7 @@ public class ProductService {
             product.setTitle(productRequest.getTitle());
             product.setPrice(productRequest.getPrice());
             product.setCategory(productRequest.getCategory());
-            product.setOwner(owner.get());
+            product.setManager(owner.get());
             product.setInStock(productRequest.getInStock());
             product.setDescription(productRequest.getDescription());
             product.setImage(image.getBytes());

@@ -24,6 +24,7 @@ class AuthServiceTest {
     @Autowired
     private AuthService authService;
 
+    /*
     @Test
     public void testUserRegisterWhenNoConstraintsViolated() {
         userRepository.deleteAll();
@@ -169,4 +170,5 @@ class AuthServiceTest {
         LoginRequest loginRequest_1 = new LoginRequest("fareeda1@gmail.com", "123456789");
         Assertions.assertNotNull(authService.login(loginRequest_1));
     }
+    */
 }

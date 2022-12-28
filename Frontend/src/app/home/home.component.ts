@@ -9,6 +9,7 @@ import { ProductService } from '../services/product/product.service';
 })
 export class HomeComponent implements OnInit {
   loggin!: boolean;
+  isManager!: Boolean;
 
   constructor(
     private authService: AuthService,
@@ -26,9 +27,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
+    if (this.loggin) this.isManagerSubscribe();
   }
 
-  showProducts() {
+  private isManagerSubscribe() {
+    this.authService.isManager().subscribe((res) => {
+      this.isManager = res;
+      console.log('Is Manager => ' + this.isManager);
+    });
+  }
+
+  private showProducts() {
     this.productService.getAllProducts().subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';

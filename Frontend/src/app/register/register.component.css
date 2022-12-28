@@ -1,5 +1,5 @@
 body {
-  background-image: url("/assets/shop2.png");
+  background-image: url("/assets/shop.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 50% 85%;
@@ -101,4 +101,22 @@ select {
   color: rgb(3, 3, 3);
   outline: none;
   cursor: pointer;
+}
+
+#password-matching {
+  display: none;
+}
+
+input[type="radio"]:checked:after {
+  width: 11px;
+  height: 11px;
+  border-radius: 11px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ee8cc2;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
 }

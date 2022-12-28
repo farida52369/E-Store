@@ -1,13 +1,12 @@
 export interface RegisterRequest {
-  firstName: String;
-  lastName: String;
-  password: String;
-  Conpassword:string;
-  email: String;
-  gender: String;
-  phoneNumber: String;
-  dateOfBirth: String;
-  type: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+  gender: string;
+  phoneNumber: string;
+  dateOfBirth: string;
+  isManager: boolean;
 }
 
 export interface ProfileInfoResponse {
