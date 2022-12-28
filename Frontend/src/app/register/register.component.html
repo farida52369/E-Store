@@ -36,15 +36,17 @@
             </select>
             <br>
 
+            <form id="type"  >
+              <p class="l">Type</p>
+              <input type="radio" id="Manager" value="Manager" name="choo" >
+              <label for="Manager">Manager</label> &nbsp;
+              <input type="radio" id="Customer"  value="Customer" name="choo" checked>
+              <label for="Customer" >Customer</label>
+        
+            </form>
 
-            <label for="type" class="l">Type</label>
-            <select v-model="Type" id="type" required>
-                <option value="NA" selected disabled hidden>Select your type</option>
-                <option value="Manager">Manager</option>
-                <option value="Customer">Customer</option>
-                
-            </select>
 
+           
 
 
             <br>

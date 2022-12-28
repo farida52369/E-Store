@@ -29,6 +29,35 @@ input[type="password"]:focus {
   background-color: white;
 }
 
+/*input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+ 
+  background-color: #d1d3d1;
+  content: '';
+ 
+  visibility: visible;
+  border: 2px solid white;
+}
+*/
+input[type='radio']:checked:after {
+  width: 11px;
+  height: 11px;
+  border-radius: 11px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ee8cc2;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+
 select {
   margin-bottom: 1em;
   padding: 0.25em;

@@ -27,6 +27,8 @@ export class RegisterComponent {
   }
 
   submit(): void {
+    let  valid : any;
+
     const firstName = (<HTMLInputElement>document.getElementById('fname'))
       .value;
     const lastName = (<HTMLInputElement>document.getElementById('lname')).value;
@@ -54,8 +56,14 @@ export class RegisterComponent {
       type: type,
     };
     console.log(password.length);
+
+   /* if(Conpassword!=password){
+      valid.setCustomValidility("confirm password should be same as password, please check it and submit")
+    }*/
     if (password.length >= 8 && Conpassword.length>=8 && Conpassword==password) {
       this.postingUser(user);
+    }else{
+     alert("confirm password should be same as password, please check it and submit");
     }
   }
 }
