@@ -63,3 +63,15 @@ export interface ProductSpecificDetails {
   price: number;
   image: any;
 }
+
+export interface Cart {
+    productId: number,
+    title: string ,
+    price: number,
+    category: string,
+    inStock: number,
+    description: string,
+    image: any,
+    quantity: number,
+    total_price:number
+}

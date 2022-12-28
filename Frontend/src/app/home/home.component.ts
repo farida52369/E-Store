@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
+import {ProductResponse} from '../dto/data';
+import { CartService } from '../cart/cart.service';
+import { Observable } from 'rxjs';
+import {Cart} from '../dto/data';
+import { LocalStorageService } from 'ngx-webstorage';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,16 +17,13 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService : CartService
+  
   ) {}
 
-  //  details:ProductSpecificDetails; = {
-  //   productId: number;
-  //   title: string;
-  //   price: number;
-  //   image: any;
-  // };
-  details: Array<ProductSpecificDetails> | undefined;
+  
+  details: any;//Array<ProductSpecificDetails> | undefined;
 
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
@@ -35,7 +37,19 @@ export class HomeComponent implements OnInit {
       this.details = res;
     });
   }
+  
+ 
+  productTocart:any ; 
 
+   addToCart(productIndex: number){
+    
+    this.productTocart=this.details[productIndex];
+    this.productTocart.quantity=1;
+    this.productTocart.total_price=this.productTocart.quantity * this.productTocart.price;
+    
+    this.cartService.storageCart(this.productTocart);
+    
+   }
   // buildCard(product: ProductSpecificDetails) {
   //   let e = document.createElement('div');
   //   // div -> id style
@@ -86,6 +100,7 @@ export class HomeComponent implements OnInit {
   // }
 
   logOut() {
+    this.cartService.clearCart();
     this.authService.logout();
   }
 }

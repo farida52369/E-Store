@@ -33,11 +33,11 @@
         <li class="label">Shop</li>
         <input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
         <li *ngIf="loggin" id="add-product"><a href="user/add-item">Add Product</a></li>
-        <li *ngIf="loggin"><a href="user/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+        <li *ngIf="loggin"><a href="user/cart" title="Your Cart"><i class="fa fa-shopping-cart"></i></a></li>
         <li *ngIf="!loggin" id="log-in"><a href="login"><i class="fa fa-sign-in"></i>Log In</a></li>
         <li *ngIf="!loggin" id="sign-up"><a href="register"><i class="fa fa-user-plus"></i>Sign Up</a></li>
-        <li *ngIf="loggin" id="profile"><a href="user/profile"><i class="fa fa-user"></i>Profile</a></li>
-        <li *ngIf="loggin" id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()">Log Out</i></a></li>
+        <li *ngIf="loggin" id="profile"><a href="user/profile" title="Profile"><i class="fa fa-user"></i></a></li>
+        <li *ngIf="loggin" id="logout"><a href="home" title="Log out"><i class="fa fa-sign-out" (click)="logOut()"></i></a></li>
       </ul>
 
       <!-- <div id="products"></div> -->
@@ -53,7 +53,7 @@
             </div>
             <footer class="content">
               <h2 class="full-price">{{item.price}} $</h2>
-              <button class="btn">Add to Cart</button>
+              <button class="btn"  (click)="addToCart(indexOfelement)">Add to Cart</button>
             </footer>
           </article>
         </section>

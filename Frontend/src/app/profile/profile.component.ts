@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
   newFname: any;
   newLname: any;
   newTel: any;
+  newPass:any;
 
   ngOnInit(): void {
     this.getUserPersonalInfo();
@@ -48,19 +49,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  updateFields() {
-    (<HTMLInputElement>document.getElementById('name')).innerText =
-      this.data.firstName + ' ' + this.data.lastName;
-    (<HTMLInputElement>document.getElementById('email')).innerText =
-      this.authService.getUserEmail();
-    (<HTMLInputElement>document.getElementById('phone-number')).innerText =
-      this.data.phoneNumber;
-    (<HTMLInputElement>document.getElementById('date-of-birth')).innerText =
-      this.data.dateOfBirth;
-    (<HTMLInputElement>document.getElementById('gender')).innerText =
-      this.data.gender;
-  }
-
+ 
   afterClick() {
     this.edit = <HTMLInputElement>document.getElementById('box-edit');
     if (this.edit.style.display === 'block') {
@@ -76,9 +65,9 @@ export class ProfileComponent implements OnInit {
       document.getElementById('new-fname')
     )).value;
     this.newLname = (<HTMLInputElement>(
-      document.getElementById('new-lname')
-    )).value;
+      document.getElementById('new-lname'))).value;
     this.newTel = (<HTMLInputElement>document.getElementById('new-tel')).value;
+    this.newPass=(<HTMLInputElement>document.getElementById('new-pass')).value;
     if (
       this.newFname === '' ||
       this.newLname === '' ||
@@ -88,9 +77,11 @@ export class ProfileComponent implements OnInit {
     ) {
       return;
     }
+
     console.log(this.newFname);
     console.log(this.newLname);
     console.log(this.newTel);
+    console.log(this.newPass);
   }
 
   backToHome() {
