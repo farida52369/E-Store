@@ -12,6 +12,8 @@ import { AuthService } from '../services/auth/auth.service';
 export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
+  systemUser: string = 'Customer';
+
   // POSTING A SHAPE TO THE BACKEND
   postingUser(user: RegisterRequest): void {
     this.authService.register(user).subscribe(
@@ -26,6 +28,15 @@ export class RegisterComponent {
     );
   }
 
+  workingOnConfirmingPassword() {
+    let ele = document.getElementById('password-matching');
+    if (ele) ele.style.display = 'none';
+  }
+
+  getSystemUser(event: any) {
+    this.systemUser = event.target.value;
+  }
+
   submit(): void {
     const firstName = (<HTMLInputElement>document.getElementById('fname'))
       .value;
@@ -33,6 +44,9 @@ export class RegisterComponent {
     const email = (<HTMLInputElement>document.getElementById('address')).value;
     const password = (<HTMLInputElement>document.getElementById('password'))
       .value;
+    const conPassword = (<HTMLInputElement>(
+      document.getElementById('con_password')
+    )).value;
     const phoneNumber = (<HTMLInputElement>document.getElementById('phone'))
       .value;
     const dateOfBirth = (<HTMLInputElement>document.getElementById('birthday'))
@@ -47,10 +61,18 @@ export class RegisterComponent {
       gender: gender,
       phoneNumber: phoneNumber,
       dateOfBirth: dateOfBirth,
+      isManager: this.systemUser === 'Manager' ? true : false,
     };
-    console.log(password.length);
-    if (password.length >= 8) {
+
+    if (password.length >= 8 && conPassword === password) {
       this.postingUser(user);
+    } else if (password.length >= 8 && conPassword !== password) {
+      let ele = document.getElementById('password-matching');
+      if (ele) {
+        ele.style.display = 'block';
+        ele.style.color = 'red';
+        ele.style.paddingLeft = '180px';
+      }
     }
   }
 }

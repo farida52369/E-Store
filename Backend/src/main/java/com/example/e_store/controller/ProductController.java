@@ -27,7 +27,6 @@ public class ProductController {
     public ResponseEntity<?> createProduct(
             @RequestPart("product") ProductRequest productRequest,
             @RequestPart("imageFile") MultipartFile image) {
-        log.info("Adding New Product To the DB ...");
         productService.save(productRequest, image);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -41,6 +41,7 @@ public class AuthService {
         user.setGender(registerRequest.getGender());
         user.setPhoneNumber(registerRequest.getPhoneNumber());
         user.setDateOfBirth(registerRequest.getDateOfBirth());
+        user.setIsManager(registerRequest.getIsManager());
 
         userRepository.save(user);
 
@@ -71,6 +72,10 @@ public class AuthService {
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
                 .email(refreshTokenRequest.getEmail())
                 .build();
+    }
+
+    public boolean isManager(String email) {
+        return userRepository.findByEmail(email).get().getIsManager();
     }
 
     @Transactional(readOnly = true)

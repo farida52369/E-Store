@@ -18,6 +18,7 @@ class UserInfoServiceTest {
     @Autowired
     UserInfoService userInfoService;
 
+    /*
     @Test
     void testGettingUserPersonalInfo() {
         RegisterRequest registerRequest = new RegisterRequest(
@@ -38,4 +39,5 @@ class UserInfoServiceTest {
         Assertions.assertEquals("+201095224876", profileInfoResponse.getPhoneNumber());
         Assertions.assertEquals("Female", profileInfoResponse.getGender());
     }
+    */
 }
