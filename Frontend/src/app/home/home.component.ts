@@ -25,8 +25,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.loggin = this.authService.isLoggedIn();
-    this.loggin = true;
+    this.loggin = this.authService.isLoggedIn();
     this.showProducts();
     if (this.loggin) this.isManagerSubscribe();
   }
@@ -94,6 +93,14 @@ export class HomeComponent implements OnInit {
     this.setNoProductToNull();
     // Adjust it on the services file -- Add the specific route on the server side
     this.productService.getProductsByCategory(category).subscribe((res) => {
+      const productsDiv = document.getElementById('products');
+      if (productsDiv) productsDiv.innerHTML = '';
+      this.details = res;
+    });
+  }
+
+  sortBy(sort: string) {
+    this.productService.getProductsSorted(sort).subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
       this.details = res;

@@ -32,4 +32,16 @@ export class ProductService {
       `${environment.apiBaseUrl}/api/product/all`
     );
   }
+
+  public getProductsByCategory(_category: string) {
+    return this.http.get<ProductSpecificDetails[]>(
+      `${environment.apiBaseUrl}/api/product`
+    );
+  }
+
+  public getProductsSorted(sort: string) {
+    return this.http.get<ProductSpecificDetails[]>(
+      `${environment.apiBaseUrl}/api/product`
+    );
+  }
 }
