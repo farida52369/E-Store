@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 import { CartService } from '../cart/cart.service';
@@ -26,7 +25,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggin = this.authService.isLoggedIn();
+    // this.loggin = this.authService.isLoggedIn();
+    this.loggin = true;
     this.showProducts();
     if (this.loggin) this.isManagerSubscribe();
   }
@@ -34,10 +34,10 @@ export class HomeComponent implements OnInit {
   private isManagerSubscribe() {
     this.authService.isManager().subscribe((res) => {
       this.isManager = res;
-      console.log('Is Manager => ' + this.isManager);
     });
   }
 
+  // Search
   getProductsByWord(word: any) {
     if (word) {
       this.searchBy = word;
@@ -52,9 +52,13 @@ export class HomeComponent implements OnInit {
           this.setNoProductToNull();
         }
       });
-    } else this.showProducts();
+    }
+    else {
+      this.showProducts();
+    }      
   }
 
+  // Requesting the products from the backend
   private showProducts() {
     this.setNoProductToNull();
     this.productService.getAllProducts().subscribe((res) => {
@@ -64,22 +68,21 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Adding a product to cart
   addToCart(productIndex: number) {
     this.productToCart = this.details[productIndex];
     this.productToCart.quantity = 1;
-    this.productToCart.total_price =
-      this.productToCart.quantity * this.productToCart.price;
-
+    this.productToCart.total_price = this.productToCart.quantity * this.productToCart.price;
     this.cartService.storageCart(this.productToCart);
   }
 
+  // No returned products from the backend
   private setNoProductToNull() {
     if (this.noProductEle)
       this.noProductEle.nativeElement.style.display = 'none';
   }
 
   private setNoProductDetails() {
-    console.log('Marry Christmas :)');
     if (this.noProductEle) {
       this.noProductEle.nativeElement.style.display = 'block';
       this.noProductEle.nativeElement.style.fontSize = '20px';
@@ -87,54 +90,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // buildCard(product: ProductSpecificDetails) {
-  //   let e = document.createElement('div');
-  //   // div -> id style
-  //   //     img -> style src
-  //   //     h1 ->
-  //   //     p -> style
-  //   e.setAttribute(
-  //     'style',
-  //     'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); min-width: 300px;margin: auto; text-align: center; max-width: 500px;'
-  //   );
-  //   e.setAttribute('id', product.productId + '');
-  //   e.appendChild(this.buildImage(product.image));
-  //   e.appendChild(this.buildHeader(product.title));
-  //   e.appendChild(this.buildPrice(product.price));
-  //   e.appendChild(this.buildButton());
-  //   document.getElementById('products')?.appendChild(e);
-  //   return e;
-  // }
-
-  // buildImage(img: any) {
-  //   let i = document.createElement('img');
-  //   i.setAttribute('src', 'data:image/jpeg;base64,' + img);
-  //   i.setAttribute('style', '  width: 100%;height: 200px;');
-  //   return i;
-  // }
-
-  // buildHeader(title: any) {
-  //   let h = document.createElement('h1');
-  //   h.innerText = title;
-  //   return h;
-  // }
-
-  // buildPrice(price: any) {
-  //   let p = document.createElement('p');
-  //   p.setAttribute('style', 'color: grey;font-size: 22px;');
-  //   p.innerText = `$${price}`;
-  //   return p;
-  // }
-
-  // buildButton() {
-  //   let b = document.createElement('button');
-  //   b.setAttribute(
-  //     'style',
-  //     'border: none;outline: 0;padding: 12px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 18px;'
-  //   );
-  //   b.innerText = 'Add to Cart';
-  //   return b;
-  // }
+  getCategory(category: string) {
+    this.setNoProductToNull();
+    // Adjust it on the services file -- Add the specific route on the server side
+    this.productService.getProductsByCategory(category).subscribe((res) => {
+      const productsDiv = document.getElementById('products');
+      if (productsDiv) productsDiv.innerHTML = '';
+      this.details = res;
+    });
+  }
 
   logOut() {
     this.cartService.clearCart();
