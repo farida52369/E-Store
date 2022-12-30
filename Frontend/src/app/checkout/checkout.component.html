@@ -1,12 +1,12 @@
 <body>
-  <div class="row">
+  <div class="row"  *ngIf="!checked">
     <div class="header">
       <h1>Checkout </h1>
     </div>
     <div class="col-75">
       <div class="container">
-        <form action="/action_page.php">
-          <div class="row">
+        <form  ngNativeValidate  >
+          <div class="row"  >
             <div class="col-50">
               <h3>Billing Address</h3>
               <label for="fname"><i class="fa fa-user"></i> Full Name</label>
@@ -39,6 +39,7 @@
                 <i class="fa fa-cc-mastercard" style="color:red;"></i>
                 <i class="fa fa-cc-discover" style="color:orange;"></i>
               </div>
+             
               <label for="cname">Name on Card</label>
               <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
               <label for="ccnum">Credit card number</label>
@@ -55,14 +56,25 @@
                   <input type="text" id="cvv" name="cvv" placeholder="352" required>
                 </div>
               </div>
+           
             </div>
           </div>
+          
           <label>
             <input type="checkbox" checked="checked" name="sameadr" required> Shipping address same as billing
           </label>
           <input type="submit" value="Continue To Checkout" class="btn" (click)="checkout()">
+          <input type="submit" value="Continue Shopping" class="btn" (click)="backHome()">
         </form>
+        
       </div>
     </div>
   </div>
+  <span *ngIf="checked" id="Checkedout" >
+    <img src="../../assets/smile.jpg" />
+    <h1>Thank you for Using Our Service.....</h1>
+    <br>
+    <input type="submit" value="Continue Shopping" class="btn-after" (click)="backHome()">
+    
+  </span>
 </body>

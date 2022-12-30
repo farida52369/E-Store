@@ -89,3 +89,36 @@ a {
 hr {
   border: 1px solid black;
 }
+/*
+#Checkedout{
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  display: none;
+}
+*/
+#Checkedout img{
+  width: 10%;
+  height: 10%;
+  display: block;
+  margin: 10% auto 20px auto;
+}
+h1 {
+  text-align: center;
+ 
+}
+.btn-after {
+  background-color: #f8a2d1;
+  color: white;
+  padding: 12px;
+  margin-left: 930px;
+  border: none;
+  width: 10%;
+  cursor: pointer;
+  font-size: 22px;
+}
+.btn-after:hover {
+  background-color: #e03997;
+}
+
+
