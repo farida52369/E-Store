@@ -128,55 +128,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // buildCard(product: ProductSpecificDetails) {
-  //   let e = document.createElement('div');
-  //   // div -> id style
-  //   //     img -> style src
-  //   //     h1 ->
-  //   //     p -> style
-  //   e.setAttribute(
-  //     'style',
-  //     'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); min-width: 300px;margin: auto; text-align: center; max-width: 500px;'
-  //   );
-  //   e.setAttribute('id', product.productId + '');
-  //   e.appendChild(this.buildImage(product.image));
-  //   e.appendChild(this.buildHeader(product.title));
-  //   e.appendChild(this.buildPrice(product.price));
-  //   e.appendChild(this.buildButton());
-  //   document.getElementById('products')?.appendChild(e);
-  //   return e;
-  // }
-
-  // buildImage(img: any) {
-  //   let i = document.createElement('img');
-  //   i.setAttribute('src', 'data:image/jpeg;base64,' + img);
-  //   i.setAttribute('style', '  width: 100%;height: 200px;');
-  //   return i;
-  // }
-
-  // buildHeader(title: any) {
-  //   let h = document.createElement('h1');
-  //   h.innerText = title;
-  //   return h;
-  // }
-
-  // buildPrice(price: any) {
-  //   let p = document.createElement('p');
-  //   p.setAttribute('style', 'color: grey;font-size: 22px;');
-  //   p.innerText = `$${price}`;
-  //   return p;
-  // }
-
-  // buildButton() {
-  //   let b = document.createElement('button');
-  //   b.setAttribute(
-  //     'style',
-  //     'border: none;outline: 0;padding: 12px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 18px;'
-  //   );
-  //   b.innerText = 'Add to Cart';
-  //   return b;
-  // }
-
+ 
   logOut() {
     this.cartService.clearCart();
     this.authService.logout();
