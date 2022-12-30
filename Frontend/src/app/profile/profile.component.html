@@ -1,79 +1,71 @@
 <body>
   <div class="main">
-   
+
     <img src="/assets/user_icon.jpg">
-    <div class="col-md-8">
-      <div class="card mb-3">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-10">
-              <button class="style-button" (click)="afterClick()" id="edit">Edit</button>
-              <form id="box-edit" ngNativeValidate>
-                <label for="new-fname"></label>
-                <input type="text" placeholder="Enter New First Name" id="new-fname" value={{data.firstName}} required />
-                <br>
-                <label for="new-lname"></label>
-                <input type="text" placeholder="Enter New Last Name" id="new-lname" value={{data.lastName}} required />
-                <br>
-                <label for="new-tel"></label>
-                <input type="tel" placeholder="Enter New Phone Number" value={{data.phoneNumber}} pattern="[0-9]{11}"
-                  id="new-tel" required />
-                <br>
-                <label for="new-pass"></label>
-                <input type="password" placeholder="Enter New password" value="**********" id="new-pass" minlength="8" required />
-                <button class="style-button" (click)="editProfile()">Ok</button>
-              </form>
-            </div>
-            <div class="col-sm-10">
-              <button class="style-button" (click)="backToHome()">Back To Home</button>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Full Name</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              {{ data.firstName + " " + data.lastName }}
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Email</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              {{ data.email }}
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Phone Number</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              {{ data.phoneNumber }}
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Date Of Birth</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              {{ data.dateOfBirth }}
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Gender</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              {{ data.gender }}
-            </div>
-          </div>
-          <hr>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-10">
+          <button class="style-button" (click)="afterClick()" id="edit">Edit</button>
+          <form id="box-edit" ngNativeValidate>
+            <input type="text" placeholder="Enter New First Name" id="new-fname" value={{data.firstName}} required />
+            <br>
+            <input type="text" placeholder="Enter New Last Name" id="new-lname" value={{data.lastName}} required />
+            <br>
+            <input type="tel" placeholder="Enter New Phone Number" value={{data.phoneNumber}} pattern="[0-9]{11}"
+              id="new-tel" required />
+            <br>
+            <input type="password" placeholder="Enter New password" value="**********" id="new-pass" minlength="8"
+              required />
+            <button class="style-button" (click)="editProfile()">Ok</button>
+          </form>
+        </div>
+        <div class="col-sm-10">
+          <button class="style-button" (click)="backToHome()">Back To Home</button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Full Name</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          {{ data.firstName + " " + data.lastName }}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Email</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          {{ data.email }}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Phone Number</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          {{ data.phoneNumber }}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Date Of Birth</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          {{ data.dateOfBirth }}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Gender</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          {{ data.gender }}
         </div>
       </div>
     </div>

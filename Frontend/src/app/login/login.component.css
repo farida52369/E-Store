@@ -13,13 +13,11 @@ body {
   height: auto;
   max-width: 100%;
 }
-.container{
+.container {
   width: 900px;
   background-color: rgb(255, 253, 253);
   margin: 0 auto;
-  box-shadow:0 0 15px 5px #ccc;
-
- 
+  box-shadow: 0 0 15px 5px #ccc;
 }
 
 .signin-content {
@@ -156,33 +154,33 @@ li {
   list-style-type: none;
 }
 /*----------------------------------------            */
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
-h3{
-    font-family:Quicksand;
+h3 {
+  font-family: Quicksand;
 }
-.alert{
-  width:50%;
-  margin:20px auto;
-  padding:30px;
-  position:relative;
-  border-radius:5px;
-  box-shadow:0 0 9px 3px #ccc;
+.alert {
+  width: 50%;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 9px 3px #ccc;
 }
-.close{
-  position:absolute;
-  width:30px;
-  height:30px;
-  opacity:0.5;
-  border-width:1px;
-  border-style:solid;
-  border-radius:50%;
-  right:15px;
-  top:25px;
-  text-align:center;
-  font-size:1.6em;
-  cursor:pointer;
+.close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  right: 15px;
+  top: 25px;
+  text-align: center;
+  font-size: 1.6em;
+  cursor: pointer;
 }
-#alert{
+#alert {
   display: none;
 }

@@ -45,30 +45,27 @@
       <div class="container" *ngFor="let item of details | paginate: { id: 'foo',
       itemsPerPage: 3,
       currentPage: page
-      
-       }
-        let indexOfelement=index;" >
-        <section id="cart"  >
-          <article class="product">
+      } 
+      let indexOfelement=index;">
+        <section id="cart">
+          <article class="product" (click)="viewProduct(item.productId)">
             <header>
-              <img src="data:image/jpeg;base64,{{item.image}}" alt="product image" (click)="viewProduct(item.productId)">
+              <img src="data:image/jpeg;base64,{{item.image}}" alt="product image">
             </header>
-            <div class="content" (click)="viewProduct(item.productId)">
+            <div class="content">
               <h1>{{item.title}}</h1>
               <p>{{ item.description }}</p>
-             
             </div>
-            <footer class="content"> 
+            <footer class="content">
               <h2 class="full-price">{{item.price}} $</h2>
-              <button class="btn"  (click)="addToCart(indexOfelement)">Add to Cart</button>
-             
+              <button class="btn" (click)="addToCart(indexOfelement)">Add to Cart</button>
             </footer>
           </article>
         </section>
       </div>
-      <pagination-controls (pageChange)="handlePageChange($event)" (pageBoundsCorrection)="handlePageChange($event)"  previousLabel="Prev"
-      nextLabel="Next" ></pagination-controls>
-      <span id="to-cart" ><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
+      <pagination-controls (pageChange)="handlePageChange($event)" (pageBoundsCorrection)="handlePageChange($event)"
+        previousLabel="Prev" nextLabel="Next"></pagination-controls>
+      <span id="to-cart"><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
       <span id="no-products-found" #noProductFound>
         <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span> .</p>
         <p>Try checking your spelling or use more general terms</p>
