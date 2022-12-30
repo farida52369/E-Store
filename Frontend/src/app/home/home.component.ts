@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 import { CartService } from '../cart/cart.service';
 import { SearchService } from '../services/search/search.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private productService: ProductService,
     private searchService: SearchService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +64,17 @@ export class HomeComponent implements OnInit {
       this.details = res;
     });
   }
+  viewInfo:any;
+  viewProduct(id : any){
+    this.productService.getProduct(id).subscribe((res) => {
+    
+    this.viewInfo = JSON.parse(JSON.stringify(res));
+    console.log(this.viewInfo + "ahhhh m elwaga3");
+    });
+   
+    this.productService.StorageAllInFoProduct(this.viewInfo);
+    
+}
 
   addToCart(productIndex: number) {
     this.productToCart = this.details[productIndex];
@@ -71,6 +83,12 @@ export class HomeComponent implements OnInit {
       this.productToCart.quantity * this.productToCart.price;
 
     this.cartService.storageCart(this.productToCart);
+    let ele = document.getElementById('to-cart');
+    if (ele) {
+      ele.style.display = 'block';
+      ele.style.color = 'red';
+      ele.style.paddingLeft = '50%';
+    }
   }
 
   private setNoProductToNull() {

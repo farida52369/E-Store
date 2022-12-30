@@ -1,83 +1,93 @@
+<html>
 <body>
-	<mat-sidenav-container class="sidebar-container">
-		<mat-sidenav #sidenav class="side-bar">
-		  <h3 class="head">Trending</h3>
-		  <p class="element">Best Sellers</p>
-		  <p class="element">New Releases</p>
-		  <p class="element">Top Rated</p>
-		  <hr>
-		  <h3 class="head">Categories</h3>
-		  <p class="element">Mobiles & Tablets</p>
-		  <p class="element">Computers</p>
-		  <p class="element">Electronics</p>
-		  <p class="element">Fashion</p>
-		  <p class="element">Health & Beauty</p>
-		  <p class="element">Supermarket</p>
-		  <p class="element">Kitchen</p>
-		  <p class="element">Toys & Games</p>
-		  <p class="element">Sports & Fitness</p>
-		  <p class="element">Books</p>
-		</mat-sidenav>
-		<mat-sidenav-content class="side-bar-content">
-		  <ul class="nav-bar" id="nav">
-			<li class="nav">
-			  <button mat-button (click)="sidenav.toggle()">
-				<div class="one"></div>
-				<div class="two"></div>
-				<div class="three"></div>
-			  </button>
-			</li>
-			<li class="labele">E</li>
-			<li class="label">Shop</li>
-			<input class="search" type="search" placeholder="Search" aria-label="Search" id="search">
-			<li><a href="user/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
-			<li  id="log-in"><a href="login"><i class="fa fa-sign-in"></i>Log In</a></li>
-			<li id="sign-up"><a href="register"><i class="fa fa-user-plus"></i>Sign Up</a></li>
-			<li id="profile"><a href="user/profile"><i class="fa fa-user"></i>Profile</a></li>
-			<li   id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()">Log Out</i></a></li>
-		  </ul>
-		     <head>
-	  
-			   <meta name="viewport" content="width=device-width, initial-scale=1">
-			   <title>Product Details</title>
-		    </head>	
-		  <div class="container">
-			<div class="card">
-			  <div class="container-fliud">
-				<div class="wrapper row">
-				  <div class="preview col-md-6">
-					<div class="preview-pic tab-content">
-					  <div class="tab-pane active" id="pic-1"><img src="\assets\kids.jpeg" /></div>
-					</div>
-				  </div>
-				  <div class="details col-md-6">
-					<h3 class="product-title">Product name</h3>
-								<div class="rating">
-									<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
-									<div class="stars">
-									   <span class="fa fa-star checked"></span>
-									   <span class="fa fa-star checked"></span>
-									   <span class="fa fa-star checked"></span>
-									   <span class="fa fa-star"></span>
-									   <span class="fa fa-star"></span>
-									</div>
-									<span class="review-no">41 reviews</span>
-								</div>
-								<h4 class="price">price : <span>$180</span></h4>
-								<h4 class="quantity">Quantity : <span> 5</span></h4>
-								 <h4 class="category">Category : <span>kids Cloths</span></h4>
-								<h4 class="seller">seller: <span>Rowan</span></h4>
-								<h4 class="product-description">Description : <span>nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn2222222222222222<br>222222222222222222222222222222222222222222<br>222222222222222222222222222222222222222222<br></span></h4>
-								<div class="action">
-								   <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-								  <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-								</div>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </div>
-	  </mat-sidenav-content>
-	</mat-sidenav-container>
-	
-  </body>
+
+		
+			
+    <head>
+    
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>Product Details</title>
+   </head>	
+ <div class="container">
+   <div class="card">
+     <div class="container-fliud">
+       <div class="wrapper row">
+         <div class="preview col-md-6">
+           <div class="preview-pic tab-content">
+             <div class="tab-pane active" id="pic-1"><img src="data:image/jpeg;base64,{{product.image}}" /></div>
+           </div>
+           <br>
+         </div>
+         <div class="preview col-md-4">
+                       <div class="rating">
+                           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+                           <!-- <div class="stars">
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star"></span>
+                           </div>
+                           <span class="review-no">41 reviews</span> -->
+                          <br>
+                          <br>
+                           <span class="seller" >seller:                
+                            <span id="seller">Rowan</span></span>
+                            <br>
+                       </div>
+                       
+                       <span class="product-title" >
+                        <span (click)="editTitle()" class="fa fa-edit" style="font-size:28px;">Product Name : </span>                 
+                         <span *ngIf="noEdit_title" id="title" >{{product.title}}</span>
+                         <input *ngIf="!noEdit_title" id="title_after_edit" value={{product.title}} />
+                             <button  *ngIf="!noEdit_title" (click)="exitEditTitle()" >Ok   </button>
+                        </span>
+
+                       <span class="price" >
+                       <span (click)="editPrice()" class="fa fa-edit" style="font-size:28px;">price : </span>                 
+                        <span *ngIf="noEdit_price" id="price" >{{product.price}}</span>
+                        <input *ngIf="!noEdit_price" id="price_after_edit" value={{product.price}} />
+                            <button  *ngIf="!noEdit_price" (click)="exitEditPrice()" >Ok   </button>
+                       </span>
+                     
+                       <span class="quantity" >
+                        <span (click)="editInStock()" class="fa fa-edit" style="font-size:28px;">Quantity : </span>   
+                         <span *ngIf="noEdit_inStock" id="inStock"> {{product.inStock}}</span>
+                         <input *ngIf="!noEdit_inStock" id="inStock_after_edit" value={{product.inStock}} />
+                         <button  *ngIf="!noEdit_inStock" (click)="exitEditInStock()" >Ok   </button>
+                       </span>
+
+                        <span class="category"  >
+                          <span (click)="editCategory()" class="fa fa-edit" style="font-size:28px;">Category : </span> 
+                          <span  *ngIf="noEdit_cat"  id="cat">{{product.category}}</span>
+                          <input *ngIf="!noEdit_cat" id="cat_after_edit" value={{product.category}} />
+                         <button  *ngIf="!noEdit_cat" (click)="exitEditCategory()" >Ok   </button>
+                        </span>
+
+        
+                       <span class="product-description">
+                        <span (click)="editDescription()" class="fa fa-edit" style="font-size:28px;">Description :  </span>
+                        <span  *ngIf="noEdit_desc"  id="desc">{{product.description}}</span>
+                        <input *ngIf="!noEdit_desc" id="desc_after_edit" value={{product.description}} />
+                         <button  *ngIf="!noEdit_desc" type="button" (click)="exitEditDescription()" >Ok   </button>
+                      </span>
+                       <div class="action">
+                        
+                          <button class="add-to-cart btn btn-default"  type="button" (click)="addToCart()">add to cart</button>
+                          
+                         <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+
+                         <button class="add-to-cart btn btn-default" type="button" (click)="backHome()">Continue Shopping</button>
+                         <span id="to-cart" ><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
+                        
+                       </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+</body>
+</html>
