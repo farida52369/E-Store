@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 import { CartService } from '../cart/cart.service';
 import { SearchService } from '../services/search/search.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,24 +17,42 @@ export class HomeComponent implements OnInit {
   loggin!: boolean;
   isManager!: Boolean;
   searchBy!: string;
-  page: any = 1;
 
   constructor(
     private authService: AuthService,
     private productService: ProductService,
     private searchService: SearchService,
-    private cartService: CartService
-  ) {}
+    private cartService: CartService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
     if (this.loggin) this.isManagerSubscribe();
   }
-
+  page: any = 1;
   handlePageChange(e: any) {
     this.page = e;
     console.log(this.page);
+  }
+
+  getCategory(category: string) {
+    this.setNoProductToNull();
+    // Adjust it on the services file -- Add the specific route on the server side
+    this.productService.getProductsByCategory(category).subscribe((res) => {
+      const productsDiv = document.getElementById('products');
+      if (productsDiv) productsDiv.innerHTML = '';
+      this.details = res;
+    });
+  }
+
+  sortBy(sort: string) {
+    this.productService.getProductsSorted(sort).subscribe((res) => {
+      const productsDiv = document.getElementById('products');
+      if (productsDiv) productsDiv.innerHTML = '';
+      this.details = res;
+    });
   }
 
   private isManagerSubscribe() {
@@ -70,11 +90,13 @@ export class HomeComponent implements OnInit {
   viewInfo: any;
   viewProduct(id: any) {
     this.productService.getProduct(id).subscribe((res) => {
+
       this.viewInfo = JSON.parse(JSON.stringify(res));
-      console.log(this.viewInfo + 'ahhhh m elwaga3');
+      console.log(this.viewInfo + "ahhhh m elwaga3");
     });
 
     this.productService.StorageAllInFoProduct(this.viewInfo);
+
   }
 
   addToCart(productIndex: number) {

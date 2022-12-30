@@ -107,7 +107,7 @@ addToCart(){
   let ele = document.getElementById('to-cart');
       if (ele) {
         ele.style.display = 'block';
-        ele.style.color = 'red';
+        ele.style.color = 'black';
         ele.style.paddingLeft = '10px';
       }
 }

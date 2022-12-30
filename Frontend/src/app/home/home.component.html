@@ -1,75 +1,72 @@
 <body>
-
   <mat-sidenav-container class="sidebar-container">
     <mat-sidenav #sidenav class="side-bar">
       <h3 class="head">Trending</h3>
-      <p class="element">Best Sellers</p>
-      <p class="element">New Releases</p>
-      <p class="element">Top Rated</p>
+      <p>Best Sellers</p>
+      <p>New Releases</p>
+      <p>Top Rated</p>
       <hr>
       <h3 class="head">Categories</h3>
-      <p class="element">Mobiles & Tablets</p>
-      <p class="element">Computers</p>
-      <p class="element">Electronics</p>
-      <p class="element">Fashion</p>
-      <p class="element">Health & Beauty</p>
-      <p class="element">Supermarket</p>
-      <p class="element">Kitchen</p>
-      <p class="element">Toys & Games</p>
-      <p class="element">Sports & Fitness</p>
-      <p class="element">Books</p>
+      <p (click)="getCategory('mobiles-tablets')">Mobiles & Tablets</p>
+      <p (click)="getCategory('computers')">Computers</p>
+      <p (click)="getCategory('electronics')">Electronics</p>
+      <p (click)="getCategory('fashion')">Fashion</p>
+      <p (click)="getCategory('health-beauty')">Health & Beauty</p>
+      <p (click)="getCategory('supermarket')">Supermarket</p>
+      <p (click)="getCategory('kitchen')">Kitchen</p>
+      <p (click)="getCategory('toys-games')">Toys & Games</p>
+      <p (click)="getCategory('sports-fitness')">Sports & Fitness</p>
+      <p (click)="getCategory('books')">Books</p>
     </mat-sidenav>
     <mat-sidenav-content class="side-bar-content">
-
-      <ul class="nav-bar" id="nav">
-        <li class="nav">
-          <button mat-button (click)="sidenav.toggle()">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-          </button>
-        </li>
-        <li class="labele">E</li>
-        <li class="label">Shop</li>
-        <input class="search" type="search" placeholder="Search" aria-label="Search" id="search" #search
-          (change)="getProductsByWord(search.value)">
-        <li *ngIf="isManager" id="add-product"><a href="user/add-item"><i class="fa fa-plus"></i> Add Product</a></li>
-        <li *ngIf="loggin"><a href="user/cart" title="Your Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-        <li *ngIf="!loggin" id="log-in"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
-        <li *ngIf="!loggin" id="sign-up"><a href="register"><i class="fa fa-user-plus"></i> Sign Up</a></li>
-        <li *ngIf="loggin" id="profile"><a href="user/profile"><i class="fa fa-user"></i> Profile</a></li>
-        <li *ngIf="loggin" id="logout"><a href="home"><i class="fa fa-sign-out" (click)="logOut()"> Log Out</i></a></li>
-      </ul>
-
-      <!-- <div id="products"></div> -->
-      <div class="container" *ngFor="let item of details | paginate: { id: 'foo',
-      itemsPerPage: 3,
-      currentPage: page
-      } 
-      let indexOfelement=index;">
-        <section id="cart">
-          <article class="product" (click)="viewProduct(item.productId)">
-            <header>
-              <img src="data:image/jpeg;base64,{{item.image}}" alt="product image">
-            </header>
-            <div class="content">
-              <h1>{{item.title}}</h1>
-              <p>{{ item.description }}</p>
-            </div>
-            <footer class="content">
-              <h2 class="full-price">{{item.price}} $</h2>
-              <button class="btn" (click)="addToCart(indexOfelement)">Add to Cart</button>
-            </footer>
-          </article>
-        </section>
+    <ul class="nav-bar">
+      <li class="nav">
+        <button mat-button (click)="sidenav.toggle()">
+          <div class="one"></div>
+          <div class="two"></div>
+          <div class="three"></div>
+        </button>
+      </li>
+      <li class="labele">E</li>
+      <li class="label">Shop</li>
+      <input class="search" type="search" placeholder="Search" aria-label="Search" id="search" #search
+        (change)="getProductsByWord(search.value)">
+      <li class="dropdown"><a>Sort By</a>
+        <div class="dropdown-content">
+          <a (click)="sortBy('price')">Price</a>
+          <a (click)="sortBy('quantity')">Quantity</a>
+        </div>
+      </li>
+      <li *ngIf="!loggin"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
+      <li *ngIf="!loggin"><a href="register"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+      <li *ngIf="loggin" class="dropdown"><a><i class="fa fa-user"></i> Profile</a>
+        <div class="dropdown-content">
+          <a href="user/profile">Profile</a>
+          <a href="#">Purchased Products</a>
+          <a href="#">Owned Products</a>
+          <a *ngIf="isManager" href="user/add-item">Add Product</a>
+          <a href="#">Log Out</a>
+        </div>
+      </li>
+      <li *ngIf="loggin"><a href="user/cart" title="Your Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+    </ul>
+    <div class="products">
+      <div class="product" *ngFor="let item of details;let indexOfelement=index;">
+        <div (click)="viewProduct(item.productId)">
+        <img src="data:image/jpeg;base64,{{item.image}}" alt="product image" >
+        <h3>{{item.title}}</h3>
+        <p>{{ item.description }}</p>
+        <h4>{{item.price}} $</h4>
       </div>
-      <pagination-controls (pageChange)="handlePageChange($event)" (pageBoundsCorrection)="handlePageChange($event)"
-        previousLabel="Prev" nextLabel="Next"></pagination-controls>
-      <span id="to-cart"><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
-      <span id="no-products-found" #noProductFound>
-        <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span> .</p>
-        <p>Try checking your spelling or use more general terms</p>
-      </span>
+        <button class="btn" (click)="addToCart(indexOfelement)">Add to Cart</button>
+      </div>
+    </div>
+    <span id="to-cart" ><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
+    <span id="no-products-found" #noProductFound>
+      <img src="../../assets/face-frown-open-regular.svg"/>
+      <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span> .</p>
+      <p>Try checking your spelling or use more general terms</p>
+    </span>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </body>
