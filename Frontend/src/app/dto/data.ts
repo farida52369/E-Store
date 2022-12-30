@@ -1,11 +1,12 @@
 export interface RegisterRequest {
-  firstName: String;
-  lastName: String;
-  password: String;
-  email: String;
-  gender: String;
-  phoneNumber: String;
-  dateOfBirth: String;
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+  gender: string;
+  phoneNumber: string;
+  dateOfBirth: string;
+  isManager: boolean;
 }
 
 export interface ProfileInfoResponse {
@@ -62,4 +63,16 @@ export interface ProductSpecificDetails {
   description: string;
   price: number;
   image: any;
+}
+
+export interface Cart {
+    productId: number,
+    title: string ,
+    price: number,
+    category: string,
+    inStock: number,
+    description: string,
+    image: any,
+    quantity: number,
+    total_price:number
 }

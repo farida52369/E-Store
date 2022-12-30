@@ -153,6 +153,7 @@ li a:hover {
 .container {
   margin-left: 31%;
   width: 980px;
+
 }
 
 .product {
@@ -253,4 +254,12 @@ li a:hover {
 .btn:hover {
   color: #fff;
   background: #a12a92;
+}
+
+#no-products-found {
+  display: none;
+}
+/* -----------------*/
+#to-cart {
+  display: none;
 }
