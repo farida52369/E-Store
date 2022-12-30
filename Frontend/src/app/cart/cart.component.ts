@@ -84,4 +84,8 @@ export class CartComponent implements OnInit {
     this.router.navigateByUrl('home', { state: { logged: true } });
   }
 
+  check(){
+    this.router.navigateByUrl('checkout', { state: { logged: true } });
+  }
+
 }
