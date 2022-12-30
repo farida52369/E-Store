@@ -110,4 +110,8 @@ tax:any;
     this.router.navigateByUrl('home', { state: { logged: true } });
   }
 
+  check(){
+    this.router.navigateByUrl('checkout', { state: { logged: true } });
+  }
+
 }

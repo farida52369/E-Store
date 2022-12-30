@@ -15,10 +15,11 @@ import { RegisterComponent } from './register/register.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { CartComponent } from './cart/cart.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent,
-     ProfileComponent, HomeComponent , AppComponent, AddItemComponent, CartComponent],
+     ProfileComponent, HomeComponent , AppComponent, AddItemComponent, CartComponent, CheckoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
