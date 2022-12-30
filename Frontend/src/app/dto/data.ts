@@ -62,17 +62,29 @@ export interface ProductSpecificDetails {
   title: string;
   description: string;
   price: number;
+  inStock: number;
   image: any;
 }
 
 export interface Cart {
-    productId: number,
-    title: string ,
-    price: number,
-    category: string,
-    inStock: number,
-    description: string,
-    image: any,
-    quantity: number,
-    total_price:number
+  productId: number;
+  title: string;
+  price: number;
+  category: string;
+  inStock: number;
+  description: string;
+  image: any;
+  quantity: number;
+  totalPrice: number;
+}
+
+// Checkout
+export interface CheckoutRequest {
+  customer: string;
+  products: Array<CheckoutProductInfo>;
+}
+
+export interface CheckoutProductInfo {
+  productId: number;
+  quantity: number;
 }

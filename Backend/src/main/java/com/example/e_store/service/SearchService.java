@@ -32,6 +32,7 @@ public class SearchService {
                         description(product.getDescription()).
                         price(product.getPrice()).
                         image(product.getImage()).
+                        inStock(product.getInStock()).
                         build();
                 res.add(productSpecificDetails);
             }

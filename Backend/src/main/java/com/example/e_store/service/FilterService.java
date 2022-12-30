@@ -29,6 +29,7 @@ public class FilterService {
                         description(product.getDescription()).
                         price(product.getPrice()).
                         image(product.getImage()).
+                        inStock(product.getInStock()).
                         build();
                 res.add(productSpecificDetails);
             }

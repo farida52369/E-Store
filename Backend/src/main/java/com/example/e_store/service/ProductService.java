@@ -61,6 +61,7 @@ public class ProductService {
                     description(tempProduct.getDescription()).
                     price(tempProduct.getPrice()).
                     image(tempProduct.getImage()).
+                    inStock(tempProduct.getInStock()).
                     build();
         }
         return res;

@@ -95,12 +95,12 @@ toCart:Cart={
   description: '',
   image: undefined,
   quantity: 0,
-  total_price: 0
+  totalPrice: 0
 }
 addToCart(){
   this.toCart=this.product;
   this.toCart.quantity = 1;
-  this.toCart.total_price =
+  this.toCart.totalPrice =
   this.toCart.quantity * this.toCart.price;
 
   this.cartService.storageCart(this.toCart);

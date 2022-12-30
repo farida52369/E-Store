@@ -22,6 +22,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CheckoutService {
 
@@ -40,7 +41,9 @@ public class CheckoutService {
             Checkout checkout = new Checkout();
             checkout.setCompositeKey(new CompositeKey(user.get(), product, d));
             checkout.setQuantity(productInfo.getQuantity());
-            checkoutRepository.save(checkout);
+            checkoutRepository.save(checkout); // Set Checkout Repository
+            product.setInStock(product.getInStock() - productInfo.getQuantity());
+            productRepository.save(product); // Set Product Repository
         }
     }
 }

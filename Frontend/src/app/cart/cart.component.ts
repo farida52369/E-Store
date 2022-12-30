@@ -1,91 +1,99 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { Router } from '@angular/router';
-import {Cart} from '../dto/data';
-
+import { Cart } from '../dto/data';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   ngOnInit(): void {
-     this.setCartProducts();
+    this.setCartProducts();
     this.updateTotals();
-
   }
-  constructor(private cartService: CartService, private router: Router) { }
-  shipping:number= 5.00; 
-  product:Array<Cart> =[];
-  subtotal:any=0;
-  total:any=0;
-  tax:any;
+  constructor(private cartService: CartService, private router: Router) {}
+  shipping: number = 5.0;
+  product: Array<Cart> = [];
+  subtotal: any = 0;
+  total: any = 0;
+  tax: any;
 
-   setCartProducts(){
-    this.product=JSON.parse(this.cartService.getCart());
-   }
+  setCartProducts() {
+    this.product = JSON.parse(this.cartService.getCart());
+  }
 
-  removeProduct(id:any){
+  removeProduct(id: any) {
     this.cartService.removeProduct(this.product[id]);
-    this.product.splice(id,1);
+    this.product.splice(id, 1);
     this.updateTotals();
   }
-  
-  deleteAll(){
-    for(var i=0;i< this.product.length ; i += 1){
+
+  deleteAll() {
+    for (var i = 0; i < this.product.length; i += 1) {
       this.product.splice(i);
     }
     this.cartService.clearCart();
     this.updateTotals();
   }
 
-  addProduct(id:any) {
-      this.product[id].quantity++;
-      var quan=this.product[id].quantity;
-      this.cartService.storageCart(this.product[id]);
-      this.updateProductSubtotal(id, quan); 
-  }
-
-  subtractProduct(id:any) {
-    var quan=this.product[id].quantity;
-    if(quan == 1){
-      quan=1;
-    }else{
-      this.product[id].quantity--;
-      quan=this.product[id].quantity;
-    } 
+  addProduct(id: any) {
+    console.log(
+      'Cart quantity: ' +
+        this.product[id].quantity +
+        '\nIn Stock: ' +
+        this.product[id].inStock
+    );
+    console.log('Product: ' + this.product[id])
+    // if (this.product[id].inStock <= this.product[id].quantity) return;
+    this.product[id].quantity++;
+    var quan = this.product[id].quantity;
     this.cartService.storageCart(this.product[id]);
     this.updateProductSubtotal(id, quan);
-    
+  }
+
+  subtractProduct(id: any) {
+    var quan = this.product[id].quantity;
+    if (quan == 1) {
+      quan = 1;
+    } else {
+      this.product[id].quantity--;
+      quan = this.product[id].quantity;
+    }
+    this.cartService.storageCart(this.product[id]);
+    this.updateProductSubtotal(id, quan);
   }
 
   updateProductSubtotal(id: any, quantity: any) {
-      var subtotalPrice=this.product[id].price * quantity;
-      this.product[id].total_price=Number(subtotalPrice.toFixed(2));
-      this.updateTotals();
+    var subtotalPrice = this.product[id].price * quantity;
+    this.product[id].totalPrice = Number(subtotalPrice.toFixed(2));
+    this.updateTotals();
   }
 
-  updateTotals(){
-    this.total=0.00;
-    var subt=0;
+  updateTotals() {
+    this.total = 0.0;
+    var subt = 0;
     for (var i = 0; i < this.product.length; i += 1) {
-       subt += this.product[i].total_price;
+      subt += this.product[i].totalPrice;
     }
-    this.subtotal=subt.toFixed(2);
-    this.tax=(this.subtotal * 0.05).toFixed(2);
+    this.subtotal = subt.toFixed(2);
+    this.tax = (this.subtotal * 0.05).toFixed(2);
     console.log(this.subtotal);
-    if(this.subtotal > 0.00){
-      this.total = (Number(this.subtotal) + Number(this.tax) + Number(this.shipping)).toFixed(2);
+    if (this.subtotal > 0.0) {
+      this.total = (
+        Number(this.subtotal) +
+        Number(this.tax) +
+        Number(this.shipping)
+      ).toFixed(2);
     }
   }
 
-  backHome(){
+  backHome() {
     this.router.navigateByUrl('home', { state: { logged: true } });
   }
 
-  check(){
+  check() {
     this.router.navigateByUrl('checkout', { state: { logged: true } });
   }
-
 }

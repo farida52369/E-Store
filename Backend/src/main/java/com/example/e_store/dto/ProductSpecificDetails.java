@@ -14,5 +14,6 @@ public class ProductSpecificDetails {
     private String title;
     private String description;
     private Double price;
+    private Integer inStock;
     private byte[] image;
 }
