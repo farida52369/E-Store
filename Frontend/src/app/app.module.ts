@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,9 +17,11 @@ import { CartComponent } from './cart/cart.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { ProductComponent } from './product/product.component';
 import { LayoutModule } from '@angular/cdk/layout';
+// import { JwPaginationComponent } from 'jw-angular-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [RegisterComponent, LoginComponent,
-     ProfileComponent, HomeComponent , AppComponent, AddItemComponent, CartComponent, ProductComponent],
+    ProfileComponent, HomeComponent, AppComponent, AddItemComponent, CartComponent, ProductComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,9 +31,14 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatSidenavModule,
     LayoutModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+
     NgxWebstorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
-export class AppModule {}
+export class AppModule { }

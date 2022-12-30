@@ -32,43 +32,45 @@
                            <span class="review-no">41 reviews</span> -->
                           <br>
                           <br>
-                           <span class="seller" >seller:                
-                            <span id="seller">Rowan</span></span>
+                           <span class="seller" ><b>seller:</b>              
+                            <span id="seller"><b>Rowan</b> </span>
+                          </span>
+                            <br>
                             <br>
                        </div>
                        
                        <span class="product-title" >
-                        <span (click)="editTitle()" class="fa fa-edit" style="font-size:28px;">Product Name : </span>                 
-                         <span *ngIf="noEdit_title" id="title" >{{product.title}}</span>
+                        <span *ngIf="confirmEdit" (click)="editTitle()" class="fa fa-edit" style="font-size:28px;"> </span>                 
+                         <span *ngIf="noEdit_title" id="title" ><span class="color">Product Name :</span>   {{product.title}}</span>
                          <input *ngIf="!noEdit_title" id="title_after_edit" value={{product.title}} />
                              <button  *ngIf="!noEdit_title" (click)="exitEditTitle()" >Ok   </button>
                         </span>
 
                        <span class="price" >
-                       <span (click)="editPrice()" class="fa fa-edit" style="font-size:28px;">price : </span>                 
-                        <span *ngIf="noEdit_price" id="price" >{{product.price}}</span>
+                       <span *ngIf="confirmEdit" (click)="editPrice()" class="fa fa-edit" style="font-size:28px;"></span>                 
+                        <span *ngIf="noEdit_price" id="price" ><span class="color">price :</span>  {{product.price}}</span>
                         <input *ngIf="!noEdit_price" id="price_after_edit" value={{product.price}} />
                             <button  *ngIf="!noEdit_price" (click)="exitEditPrice()" >Ok   </button>
                        </span>
                      
                        <span class="quantity" >
-                        <span (click)="editInStock()" class="fa fa-edit" style="font-size:28px;">Quantity : </span>   
-                         <span *ngIf="noEdit_inStock" id="inStock"> {{product.inStock}}</span>
+                        <span *ngIf="confirmEdit" (click)="editInStock()" class="fa fa-edit" style="font-size:28px;"> </span>   
+                         <span *ngIf="noEdit_inStock" id="inStock"><span class="color">Quantity :</span> {{product.inStock}}</span>
                          <input *ngIf="!noEdit_inStock" id="inStock_after_edit" value={{product.inStock}} />
                          <button  *ngIf="!noEdit_inStock" (click)="exitEditInStock()" >Ok   </button>
                        </span>
 
                         <span class="category"  >
-                          <span (click)="editCategory()" class="fa fa-edit" style="font-size:28px;">Category : </span> 
-                          <span  *ngIf="noEdit_cat"  id="cat">{{product.category}}</span>
+                          <span *ngIf="confirmEdit" (click)="editCategory()" class="fa fa-edit" style="font-size:28px;"> </span> 
+                          <span  *ngIf="noEdit_cat"  id="cat"><span class="color">Category :</span> {{product.category}}</span>
                           <input *ngIf="!noEdit_cat" id="cat_after_edit" value={{product.category}} />
                          <button  *ngIf="!noEdit_cat" (click)="exitEditCategory()" >Ok   </button>
                         </span>
 
         
                        <span class="product-description">
-                        <span (click)="editDescription()" class="fa fa-edit" style="font-size:28px;">Description :  </span>
-                        <span  *ngIf="noEdit_desc"  id="desc">{{product.description}}</span>
+                        <span *ngIf="confirmEdit" (click)="editDescription()" class="fa fa-edit" style="font-size:28px;"> </span>
+                        <span  *ngIf="noEdit_desc"  id="desc" ><span class="color">Description : </span> {{product.description}}</span>
                         <input *ngIf="!noEdit_desc" id="desc_after_edit" value={{product.description}} />
                          <button  *ngIf="!noEdit_desc" type="button" (click)="exitEditDescription()" >Ok   </button>
                       </span>
@@ -76,7 +78,7 @@
                         
                           <button class="add-to-cart btn btn-default"  type="button" (click)="addToCart()">add to cart</button>
                           
-                         <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                         <!-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> -->
 
                          <button class="add-to-cart btn btn-default" type="button" (click)="backHome()">Continue Shopping</button>
                          <span id="to-cart" ><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>

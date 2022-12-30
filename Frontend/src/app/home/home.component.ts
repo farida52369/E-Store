@@ -23,13 +23,18 @@ export class HomeComponent implements OnInit {
     private productService: ProductService,
     private searchService: SearchService,
     private cartService: CartService,
-    private router:Router
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
     if (this.loggin) this.isManagerSubscribe();
+  }
+  page: any = 1;
+  handlePageChange(e: any) {
+    this.page = e;
+    console.log(this.page);
   }
 
   private isManagerSubscribe() {
@@ -64,17 +69,17 @@ export class HomeComponent implements OnInit {
       this.details = res;
     });
   }
-  viewInfo:any;
-  viewProduct(id : any){
+  viewInfo: any;
+  viewProduct(id: any) {
     this.productService.getProduct(id).subscribe((res) => {
-    
-    this.viewInfo = JSON.parse(JSON.stringify(res));
-    console.log(this.viewInfo + "ahhhh m elwaga3");
+
+      this.viewInfo = JSON.parse(JSON.stringify(res));
+      console.log(this.viewInfo + "ahhhh m elwaga3");
     });
-   
+
     this.productService.StorageAllInFoProduct(this.viewInfo);
-    
-}
+
+  }
 
   addToCart(productIndex: number) {
     this.productToCart = this.details[productIndex];

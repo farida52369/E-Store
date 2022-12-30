@@ -42,7 +42,12 @@
       </ul>
 
       <!-- <div id="products"></div> -->
-      <div class="container" *ngFor="let item of details;let indexOfelement=index;" >
+      <div class="container" *ngFor="let item of details | paginate: { id: 'foo',
+      itemsPerPage: 3,
+      currentPage: page
+      
+       }
+        let indexOfelement=index;" >
         <section id="cart"  >
           <article class="product">
             <header>
@@ -61,6 +66,8 @@
           </article>
         </section>
       </div>
+      <pagination-controls (pageChange)="handlePageChange($event)" (pageBoundsCorrection)="handlePageChange($event)"  previousLabel="Prev"
+      nextLabel="Next" ></pagination-controls>
       <span id="to-cart" ><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
       <span id="no-products-found" #noProductFound>
         <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span> .</p>

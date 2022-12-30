@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../cart/cart.service';
 import { ProductService } from '../services/product/product.service';
 import { Cart } from '../dto/data';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -11,12 +12,14 @@ import { Cart } from '../dto/data';
 export class ProductComponent {
   ngOnInit(): void {
     this.product=this.viewInfo();
+    this.confirmEdit=this.compareCurrentWithSeller();
  }
  constructor(
    private productService: ProductService,
    private router :Router,
    private cartService: CartService,
-   private readonly _elementRef: ElementRef
+   private readonly _elementRef: ElementRef,
+   private authService: AuthService,
  ){
     
  }
@@ -25,6 +28,15 @@ export class ProductComponent {
 
  viewInfo(){
   return this.productService.getAllInfo();     
+ }
+ confirmEdit:boolean=false;
+ compareCurrentWithSeller(){
+  if(this.product.seller === this.authService.getUserEmail()){
+    return true;
+  }else{
+    return false;
+  }
+   
  }
 
  noEdit_price:boolean=true;

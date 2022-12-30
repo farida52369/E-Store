@@ -245,17 +245,17 @@ li a:hover {
 .price,
 .quantity,
 .category,
-.seller,
+
 .product-description {
     
-    font-weight: bold;
+    
     font-size: large;
 }
 
 .checked,
 .price span,
 .category span,
-.seller span,
+
 .quantity span {
     color: rgba(14, 13, 13, 0.8);
     
@@ -284,20 +284,21 @@ li a:hover {
 .add-to-cart,
 .like {
     background: #f59dcd;
-    padding: 1.2em 1.5em;
+    padding: 1em 1.1em;
     border: none;
     text-transform: UPPERCASE;
     font-weight: bold;
     margin-top: 35px;
     color: #fff;
-    -webkit-transition: background .3s ease;
+    -webkit-transition: background .1s ease;
     transition: background .3s ease;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
 }
 
 .add-to-cart:hover,
 .like:hover {
     background: rgba(214, 15, 171, 0.8);
-    ;
+    
     color: #fff;
 }
 
@@ -346,4 +347,18 @@ li a:hover {
 #to-cart {
     display: none;
   }
+.color{
+    background-color: rgb(255, 246, 246);
+    
+}
+#seller span,
+.seller span {
+    font:bold;
+    font-size: large;
+    color: rgba(14, 13, 13, 0.8);
+}
+.b {
+    font-size: 44;
+}
+
   
