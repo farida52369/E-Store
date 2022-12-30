@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProducts().subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
-      console.log('All Products => ' + res[0].inStock)
+      // console.log('All Products => ' + res[0].inStock)
       this.details = res;
     });
   }
@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
   addToCart(productIndex: number) {
     this.productToCart = this.details[productIndex];
     this.productToCart.quantity = 1;
-    this.productToCart.total_price =
+    this.productToCart.totalPrice =
       this.productToCart.quantity * this.productToCart.price;
 
     this.cartService.storageCart(this.productToCart);

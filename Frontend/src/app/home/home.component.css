@@ -135,7 +135,7 @@ li a:hover {
 .dropdown-content {
   position: absolute;
   background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.2);
   font-size: 12px;
   z-index: 1;
   display: none;
@@ -171,12 +171,10 @@ li a:hover {
 }
 
 .btn {
-  background: #eb98aa;
-  border: 1px solid #999;
-  border-style: none none solid none;
+  background-color: #f27dbe;
   cursor: pointer;
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
   padding: 12px 0;
   text-align: center;
@@ -185,7 +183,7 @@ li a:hover {
 
 .btn:hover {
   color: #fff;
-  background: #a12a92;
+  background-color: #e03997;
 }
 
 .product{

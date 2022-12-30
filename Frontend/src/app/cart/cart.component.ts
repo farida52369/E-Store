@@ -9,17 +9,19 @@ import { Cart } from '../dto/data';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  ngOnInit(): void {
-    this.setCartProducts();
-    this.updateTotals();
-  }
-  constructor(private cartService: CartService, private router: Router) {}
   shipping: number = 5.0;
   product: Array<Cart> = [];
   subtotal: any = 0;
   total: any = 0;
   tax: any;
 
+  ngOnInit(): void {
+    this.setCartProducts();
+    this.updateTotals();
+  }
+  
+  constructor(private cartService: CartService, private router: Router) {}
+  
   setCartProducts() {
     this.product = JSON.parse(this.cartService.getCart());
   }
@@ -31,7 +33,7 @@ export class CartComponent implements OnInit {
   }
 
   deleteAll() {
-    for (var i = 0; i < this.product.length; i += 1) {
+    for (let i = 0; i < this.product.length; i += 1) {
       this.product.splice(i);
     }
     this.cartService.clearCart();
@@ -45,16 +47,16 @@ export class CartComponent implements OnInit {
         '\nIn Stock: ' +
         this.product[id].inStock
     );
-    console.log('Product: ' + this.product[id])
-    // if (this.product[id].inStock <= this.product[id].quantity) return;
+    // console.log('Product: ' + this.product[id])
+    if (this.product[id].inStock <= this.product[id].quantity) return;
     this.product[id].quantity++;
-    var quan = this.product[id].quantity;
+    const quan = this.product[id].quantity;
     this.cartService.storageCart(this.product[id]);
     this.updateProductSubtotal(id, quan);
   }
 
   subtractProduct(id: any) {
-    var quan = this.product[id].quantity;
+    let quan = this.product[id].quantity;
     if (quan == 1) {
       quan = 1;
     } else {
@@ -73,8 +75,8 @@ export class CartComponent implements OnInit {
 
   updateTotals() {
     this.total = 0.0;
-    var subt = 0;
-    for (var i = 0; i < this.product.length; i += 1) {
+    let subt = 0;
+    for (let i = 0; i < this.product.length; i += 1) {
       subt += this.product[i].totalPrice;
     }
     this.subtotal = subt.toFixed(2);
