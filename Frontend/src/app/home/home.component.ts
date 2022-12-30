@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ProductSpecificDetails } from '../dto/data';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 import { CartService } from '../cart/cart.service';
 import { SearchService } from '../services/search/search.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,6 +15,7 @@ export class HomeComponent implements OnInit {
   loggin!: boolean;
   isManager!: Boolean;
   searchBy!: string;
+  page: any = 1;
 
   constructor(
     private authService: AuthService,
@@ -29,6 +28,11 @@ export class HomeComponent implements OnInit {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
     if (this.loggin) this.isManagerSubscribe();
+  }
+
+  handlePageChange(e: any) {
+    this.page = e;
+    console.log(this.page);
   }
 
   private isManagerSubscribe() {
@@ -63,6 +67,15 @@ export class HomeComponent implements OnInit {
       this.details = res;
     });
   }
+  viewInfo: any;
+  viewProduct(id: any) {
+    this.productService.getProduct(id).subscribe((res) => {
+      this.viewInfo = JSON.parse(JSON.stringify(res));
+      console.log(this.viewInfo + 'ahhhh m elwaga3');
+    });
+
+    this.productService.StorageAllInFoProduct(this.viewInfo);
+  }
 
   addToCart(productIndex: number) {
     this.productToCart = this.details[productIndex];
@@ -71,6 +84,12 @@ export class HomeComponent implements OnInit {
       this.productToCart.quantity * this.productToCart.price;
 
     this.cartService.storageCart(this.productToCart);
+    let ele = document.getElementById('to-cart');
+    if (ele) {
+      ele.style.display = 'block';
+      ele.style.color = 'red';
+      ele.style.paddingLeft = '50%';
+    }
   }
 
   private setNoProductToNull() {

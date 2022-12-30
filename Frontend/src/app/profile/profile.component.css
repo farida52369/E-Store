@@ -1,17 +1,16 @@
 .main {
   background: white;
-  padding-left: 19%;
-  display: flex;
- 
-  
-  
+  padding-left: 25%;
+  /* display: flex; */
+  padding-top: 5%;
 }
 
 img {
   height: 150px;
-  padding-left: 140px;
+  padding-left: 14%;
   background-size: 200px;
   border-radius: 50%;
+  padding-bottom: 1%;
 }
 
 .card {
@@ -20,26 +19,25 @@ img {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
+  
+}
+
+.card-body {
+  padding: 1rem;
+  color: black;
+  background: white;
+  width: 40%;
   background-color: #fdeded;
   background-clip: border-box;
   border: 0 solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5rem;
-  box-shadow: 7px 5px 7px 2px rgba(75, 26, 60, 0.8);
-
-  width: 400px;
-}
-
-.card-body {
-  flex: 1 1 auto;
-  min-height: 1px;
-  padding: 1rem;
+  box-shadow: 1px 1px 6px 1px rgba(75, 26, 60, 0.8);
 }
 
 button,
 a {
   text-decoration: none;
   border: none;
-  font-size: larger;
 }
 
 .style-button {
@@ -48,10 +46,12 @@ a {
   color: #fff;
   border-bottom: none;
   width: auto;
-  padding: 15px 39px;
+  padding: 8px 22px;
+  margin: 8px;
+  font-size: 22px;
   cursor: pointer;
   border-radius: 12px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
+  box-shadow: 1px 1px 4px 2px rgb(0 0 0 / 80%);
 }
 
 .style-button:hover {
@@ -59,20 +59,19 @@ a {
 }
 
 #box-edit {
-  font-size: 15px;
   position: absolute;
   background-color: white;
   padding: 10px;
-  width: 250px;
+  width: 13.5%;
   color: rgb(119, 111, 111);
-  min-height: 25%;
   letter-spacing: 1px;
-  left: 100px;
+  left: 11%;
   border: 1px solid white;
   border-radius: 0 20px 20px 20px;
   word-wrap: break-word;
   display: none;
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 2px 2px 3px 2px #999;
+  top: 28%;
 }
 
 input {
