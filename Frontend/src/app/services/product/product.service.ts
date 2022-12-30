@@ -47,4 +47,16 @@ export class ProductService {
     console.log(this.localStorage.retrieve('allInfo') + "ahhhhhhhhhhhhhhh");
     return this.localStorage.retrieve('allInfo');
   }
+
+  public getProductsByCategory(_category: string) {
+    return this.http.get<ProductSpecificDetails[]>(
+      `${environment.apiBaseUrl}/api/product`
+    );
+  }
+
+  public getProductsSorted(sort: string) {
+    return this.http.get<ProductSpecificDetails[]>(
+      `${environment.apiBaseUrl}/api/product`
+    );
+  }
 }

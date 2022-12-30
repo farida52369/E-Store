@@ -21,6 +21,7 @@ import { ProductComponent } from './product/product.component';
 import { LayoutModule } from '@angular/cdk/layout';
 // import { JwPaginationComponent } from 'jw-angular-pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
+// import {MatPaginatorModule} from '@angular/material/Paginator';
 @NgModule({
   declarations: [
     RegisterComponent, 
@@ -43,6 +44,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LayoutModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    // MatPaginatorModule,
     NgxWebstorageModule.forRoot()
   ],
   providers: [],
