@@ -13,12 +13,12 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompositeKey implements Serializable {
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId", referencedColumnName = "userId")
     private User customer;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productId", referencedColumnName = "productId")
     private Product product;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "dateOfPurchase")
     private String dateOfPurchase;
 }

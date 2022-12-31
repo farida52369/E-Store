@@ -51,8 +51,8 @@
               aria-hidden="true"></i></a>
           <div class="dropdown-content">
             <a href="user/profile">Profile</a>
-            <a href="#">Purchased Products</a>
-            <a href="#">Owned Products</a>
+            <a (click)="getCustomerPurchasedProducts()">Purchased Products</a>
+            <a *ngIf="isManager" (click)="getManagerOwnerProducts()">Owned Products</a>
             <a *ngIf="isManager" href="user/add-item">Add Product</a>
             <a href="#" (click)="logOut()">Log Out</a>
           </div>

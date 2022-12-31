@@ -1,6 +1,7 @@
 package com.example.e_store.controller;
 
 import com.example.e_store.dto.ProductResponse;
+import com.example.e_store.dto.ProductSpecificDetails;
 import com.example.e_store.dto.ProfileInfoResponse;
 import com.example.e_store.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +35,17 @@ public class UserInfoController {
             method = RequestMethod.GET,
             value = "/owned/products/{email}"
     )
-    public ResponseEntity<List<ProductResponse>> getUserOwnerProducts(@PathVariable String email) {
+    public ResponseEntity<List<ProductSpecificDetails>> getUserOwnerProducts(@PathVariable String email) {
         log.info("Getting User Owned Products");
         return ResponseEntity.ok().body(userInfoService.getUserOwnerProducts(email));
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/purchased/products/{email}"
+    )
+    public ResponseEntity<List<ProductSpecificDetails>> getUserPurchasedProducts(@PathVariable String email) {
+        log.info("Getting User Purchased Products");
+        return ResponseEntity.ok().body(userInfoService.getUserPurchasedProducts(email));
     }
 }

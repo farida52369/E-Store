@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 import { CartService } from '../cart/cart.service';
 import { SearchService } from '../services/search/search.service';
+import { UserService } from '../services/user/user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private productService: ProductService,
     private searchService: SearchService,
-    private cartService: CartService
+    private cartService: CartService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   sortBy(sort: string) {
-    this.searchBy = `Sorting By: ${sort}`
+    this.searchBy = `Sorting By: ${sort}`;
     this.setNoProductToNull();
     this.productService.getProductsSorted(sort).subscribe((res) => {
       const productsDiv = document.getElementById('products');
@@ -146,6 +148,38 @@ export class HomeComponent implements OnInit {
       this.noProductEle.nativeElement.style.display = 'block';
       this.noProductEle.nativeElement.style.fontSize = '22px';
     }
+  }
+
+  getManagerOwnerProducts() {
+    this.userService
+      .getManagerOwnedProducts(this.authService.getUserEmail())
+      .subscribe((res) => {
+        const productsDiv = document.getElementById('products');
+        if (productsDiv) productsDiv.innerHTML = '';
+        if (res.length === 0) {
+          this.details = [];
+          this.setNoProductDetails();
+        } else {
+          this.details = res;
+          this.setNoProductToNull();
+        }
+      });
+  }
+
+  getCustomerPurchasedProducts() {
+    this.userService
+      .getCustomerPurchasedProducts(this.authService.getUserEmail())
+      .subscribe((res) => {
+        const productsDiv = document.getElementById('products');
+        if (productsDiv) productsDiv.innerHTML = '';
+        if (res.length === 0) {
+          this.details = [];
+          this.setNoProductDetails();
+        } else {
+          this.details = res;
+          this.setNoProductToNull();
+        }
+      });
   }
 
   logOut() {

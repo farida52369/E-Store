@@ -25,7 +25,7 @@ public class Product {
     private Double price;
     @NotBlank(message = "Category for products can't be blank")
     private String category;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "managerId", referencedColumnName = "userId")
     private User manager;
     @NotNull(message = "Quantity in stock for products can't be null")

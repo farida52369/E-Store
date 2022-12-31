@@ -9,6 +9,7 @@ import com.example.e_store.model.User;
 import com.example.e_store.repository.CheckoutRepository;
 import com.example.e_store.repository.ProductRepository;
 import com.example.e_store.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,11 @@ import java.util.Optional;
 @Slf4j
 @Service
 @Transactional
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CheckoutService {
-
-    private final CheckoutRepository checkoutRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final CheckoutRepository checkoutRepository;
 
     public void saveOrder(CheckoutRequest checkoutRequest) {
         Optional<User> user = userRepository.findByEmail(checkoutRequest.getCustomer());

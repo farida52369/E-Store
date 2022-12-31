@@ -47,7 +47,7 @@ public class ProductController {
             value = "/{id}"
     )
     public ResponseEntity<ProductResponse> getSpecificProduct(@PathVariable Long id) {
-        log.info("Getting All Products .. ");
+        log.info("Getting Specific Product .. ");
         return ResponseEntity.ok().body(productService.getSpecificProduct(id));
     }
 }
