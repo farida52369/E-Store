@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductResponse, ProductSpecificDetails } from 'src/app/dto/data';
+import {
+  ProductAllInfo,
+  ProductEdit,
+  ProductResponse,
+  ProductSpecificDetails,
+} from 'src/app/dto/data';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
@@ -9,8 +14,11 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class ProductService {
- 
-  constructor(private http: HttpClient, private localStorage: LocalStorageService, private router:Router) {}
+  constructor(
+    private http: HttpClient,
+    private localStorage: LocalStorageService,
+    private router: Router
+  ) {}
 
   public createProduct(product: FormData) {
     return this.http.post<void>(
@@ -29,23 +37,31 @@ export class ProductService {
     );
   }
 
-
   public getAllProducts(): Observable<ProductSpecificDetails[]> {
     return this.http.get<ProductSpecificDetails[]>(
       `${environment.apiBaseUrl}/api/product/all`
     );
   }
 
-  StorageAllInFoProduct(info : any){
-     this.localStorage.store('allInfo' , info);
-     if(this.getAllInfo() != undefined){
-      this.router.navigateByUrl('/product'); 
-     }
-    
+  // Products All Info __ Local Storage
+  storageAllInfoForProduct(info: ProductAllInfo) {
+    this.localStorage.store('product-all-Info', info);
+    if (this.getAllInfo()) {
+      this.router.navigateByUrl('/product');
+    }
   }
-  getAllInfo(){
-    console.log(this.localStorage.retrieve('allInfo') + "ahhhhhhhhhhhhhhh");
-    return this.localStorage.retrieve('allInfo');
+
+  getAllInfo() {
+    console.log(
+      this.localStorage.retrieve('product-all-Info') + 'ahhhhhhhhhhhhhhh'
+    );
+    return this.localStorage.retrieve('product-all-Info');
+  }
+
+  public productAllInfo(productId: number, email: string) {
+    return this.http.get<ProductAllInfo>(
+      `${environment.apiBaseUrl}/api/product/${productId}/owner/${email}`
+    );
   }
 
   public getProductsByCategory(category: string) {
@@ -58,5 +74,16 @@ export class ProductService {
     return this.http.get<ProductSpecificDetails[]>(
       `${environment.apiBaseUrl}/api/sort/${sort}`
     );
+  }
+
+  public editProduct(product: ProductEdit) {
+    return this.http.post<void>(
+      `${environment.apiBaseUrl}/api/product/edit`,
+      product,
+      {
+        observe: 'events',
+        reportProgress: true,
+      }
+    ); 
   }
 }

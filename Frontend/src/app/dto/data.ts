@@ -56,6 +56,20 @@ export interface ProductResponse {
   createdDate: string;
 }
 
+// Product All Info
+export interface ProductAllInfo {
+  productId: number;
+  title: string;
+  price: number;
+  category: string;
+  inStock: number;
+  description: string;
+  image: any;
+  owner: string;
+  createdDate: string;
+  isOwner: boolean;
+}
+
 // Product Specific Details For Grabbing All Produts
 export interface ProductSpecificDetails {
   productId: number;
@@ -87,4 +101,14 @@ export interface CheckoutRequest {
 export interface CheckoutProductInfo {
   productId: number;
   quantity: number;
+}
+
+// Edit Product
+export interface ProductEdit {
+  productId: number;
+  title: string;
+  price: number;
+  category: string;
+  inStock: number;
+  description: string;
 }

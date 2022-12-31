@@ -18,9 +18,8 @@ const routes: Routes = [
   {path: 'user/cart' , component:CartComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'checkout', component: CheckoutComponent },
-  { path: '', redirectTo: '/checkout', pathMatch: 'full'},
-  {path : 'product' , component: ProductComponent}
-
+  {path : 'product' , component: ProductComponent},
+  { path: '', redirectTo: '/checkout', pathMatch: 'full'}
 ];
 
 @NgModule({

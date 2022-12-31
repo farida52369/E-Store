@@ -4,6 +4,7 @@ import { ProductService } from '../services/product/product.service';
 import { CartService } from '../cart/cart.service';
 import { SearchService } from '../services/search/search.service';
 import { UserService } from '../services/user/user.service';
+import { ProductAllInfo } from '../dto/data';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,7 +18,6 @@ export class HomeComponent implements OnInit {
   isManager!: Boolean;
   searchBy!: string;
   page: any = 1;
-  viewInfo: any;
 
   constructor(
     private authService: AuthService,
@@ -114,12 +114,14 @@ export class HomeComponent implements OnInit {
   }
 
   viewProduct(id: any) {
-    this.productService.getProduct(id).subscribe((res) => {
-      this.viewInfo = JSON.parse(JSON.stringify(res));
-      console.log(this.viewInfo + 'ahhhh m elwaga3');
-    });
-
-    this.productService.StorageAllInFoProduct(this.viewInfo);
+    let productAllInfoToView: ProductAllInfo;
+    this.productService
+      .productAllInfo(id, this.authService.getUserEmail())
+      .subscribe((res) => {
+        productAllInfoToView = res;
+        console.log(productAllInfoToView);
+        this.productService.storageAllInfoForProduct(productAllInfoToView);
+      });
   }
 
   addToCart(productIndex: number) {
