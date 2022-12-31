@@ -70,11 +70,13 @@ label {
 .btn {
   background-color: #f27dbe;
   color: white;
-  padding: 12px;
-  margin-left: 750px;
+  padding: 10px 5px 10px 5px;
+  margin-left: 79%;
+  margin-bottom: 10px;
   border: none;
-  width: 25%;
+  width: 19%;
   cursor: pointer;
+  border-radius: 15px;
   font-size: 22px;
 }
 
@@ -89,36 +91,33 @@ a {
 hr {
   border: 1px solid black;
 }
-/*
-#Checkedout{
-  margin: auto;
-  text-align: center;
-  justify-content: center;
-  display: none;
-}
-*/
-#Checkedout img{
+
+
+#checkedout img {
   width: 10%;
   height: 10%;
   display: block;
   margin: 10% auto 20px auto;
 }
+
 h1 {
   text-align: center;
- 
 }
+
 .btn-after {
-  background-color: #f8a2d1;
+  background-color: #f27dbe;
   color: white;
-  padding: 12px;
-  margin-left: 930px;
+  padding: 14px;
   border: none;
-  width: 10%;
+  width: auto;
   cursor: pointer;
   font-size: 22px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 22px;
 }
+
 .btn-after:hover {
   background-color: #e03997;
 }
-
-

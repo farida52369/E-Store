@@ -56,25 +56,21 @@
                   <input type="text" id="cvv" name="cvv" placeholder="352" required>
                 </div>
               </div>
-           
             </div>
           </div>
-          
           <label>
             <input type="checkbox" checked="checked" name="sameadr" required> Shipping address same as billing
           </label>
           <input type="submit" value="Continue To Checkout" class="btn" (click)="checkout()">
           <input type="submit" value="Continue Shopping" class="btn" (click)="backHome()">
         </form>
-        
       </div>
     </div>
   </div>
-  <span *ngIf="checked" id="Checkedout" >
+  <span *ngIf="checked" id="checkedout" >
     <img src="../../assets/smile.jpg" />
-    <h1>Thank you for Using Our Service.....</h1>
+    <h1>Thank you for Using Our Service ...</h1>
     <br>
     <input type="submit" value="Continue Shopping" class="btn-after" (click)="backHome()">
-    
   </span>
 </body>
