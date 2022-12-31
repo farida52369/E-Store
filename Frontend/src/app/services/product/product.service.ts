@@ -48,15 +48,15 @@ export class ProductService {
     return this.localStorage.retrieve('allInfo');
   }
 
-  public getProductsByCategory(_category: string) {
+  public getProductsByCategory(category: string) {
     return this.http.get<ProductSpecificDetails[]>(
-      `${environment.apiBaseUrl}/api/product`
+      `${environment.apiBaseUrl}/api/filter/${category}`
     );
   }
 
   public getProductsSorted(sort: string) {
     return this.http.get<ProductSpecificDetails[]>(
-      `${environment.apiBaseUrl}/api/product`
+      `${environment.apiBaseUrl}/api/sort/${sort}`
     );
   }
 }

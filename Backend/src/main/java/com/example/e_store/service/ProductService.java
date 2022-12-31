@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,19 +51,19 @@ public class ProductService {
         }
     }
 
-    public ProductSpecificDetails[] getAllProducts() {
+    public List<ProductSpecificDetails> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        ProductSpecificDetails[] res = new ProductSpecificDetails[products.size()];
-        for (int i = 0; i < products.size(); i++) {
-            Product tempProduct = products.get(i);
-            res[i] = ProductSpecificDetails.builder().
-                    productId(tempProduct.getProductId()).
-                    title(tempProduct.getTitle()).
-                    description(tempProduct.getDescription()).
-                    price(tempProduct.getPrice()).
-                    image(tempProduct.getImage()).
-                    inStock(tempProduct.getInStock()).
-                    build();
+        List<ProductSpecificDetails> res = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getInStock() <= 0) continue;
+            res.add(ProductSpecificDetails.builder().
+                    productId(product.getProductId()).
+                    title(product.getTitle()).
+                    description(product.getDescription()).
+                    price(product.getPrice()).
+                    image(product.getImage()).
+                    inStock(product.getInStock()).
+                    build());
         }
         return res;
     }

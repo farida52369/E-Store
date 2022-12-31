@@ -7,16 +7,16 @@
       <p>Top Rated</p>
       <hr>
       <h3 class="head">Categories</h3>
-      <p (click)="getCategory('mobiles-tablets')">Mobiles & Tablets</p>
-      <p (click)="getCategory('computers')">Computers</p>
-      <p (click)="getCategory('electronics')">Electronics</p>
-      <p (click)="getCategory('fashion')">Fashion</p>
-      <p (click)="getCategory('health-beauty')">Health & Beauty</p>
-      <p (click)="getCategory('supermarket')">Supermarket</p>
-      <p (click)="getCategory('kitchen')">Kitchen</p>
-      <p (click)="getCategory('toys-games')">Toys & Games</p>
-      <p (click)="getCategory('sports-fitness')">Sports & Fitness</p>
-      <p (click)="getCategory('books')">Books</p>
+      <p (click)="getCategory('Mobiles & Tablets')">Mobiles & Tablets</p>
+      <p (click)="getCategory('Computers')">Computers</p>
+      <p (click)="getCategory('Electronics')">Electronics</p>
+      <p (click)="getCategory('Fashion')">Fashion</p>
+      <p (click)="getCategory('Health & Beauty')">Health & Beauty</p>
+      <p (click)="getCategory('Supermarket')">Supermarket</p>
+      <p (click)="getCategory('Kitchen')">Kitchen</p>
+      <p (click)="getCategory('Toys & Games')">Toys & Games</p>
+      <p (click)="getCategory('Sports & Fitness')">Sports & Fitness</p>
+      <p (click)="getCategory('Books')">Books</p>
     </mat-sidenav>
     <mat-sidenav-content class="side-bar-content">
       <ul class="nav-bar">
@@ -27,19 +27,28 @@
             <div class="three"></div>
           </button>
         </li>
-        <li class="labele">E</li>
-        <li class="label">Shop</li>
+        <li class="logo">
+          <div class="div-img-logo">
+            <img class="img-logo" src="../../assets/icon_site.png" alt="E-Shop">
+          </div>
+          <div class="text-logo">
+            <span class="labele">E</span>
+            <span class="label">Shop</span>
+          </div>
+        </li>
         <input class="search" type="search" placeholder="Search" aria-label="Search" id="search" #search
           (change)="getProductsByWord(search.value)">
-        <li class="dropdown"><a>Sort By</a>
+        <li class="dropdown"><a>Sort By <i class="fa fa-angle-down" aria-hidden="true"></i></a>
           <div class="dropdown-content">
             <a (click)="sortBy('price')">Price</a>
-            <a (click)="sortBy('quantity')">Quantity</a>
+            <a (click)="sortBy('in-stock')">Quantity</a>
           </div>
         </li>
         <li *ngIf="!loggin"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
         <li *ngIf="!loggin"><a href="register"><i class="fa fa-user-plus"></i> Sign Up</a></li>
-        <li *ngIf="loggin" class="dropdown"><a><i class="fa fa-user"></i> Profile</a>
+        <li *ngIf="loggin"><a href="user/cart" title="Your Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+        <li *ngIf="loggin" class="dropdown"><a><i class="fa fa-user"></i> Profile <i class="fa fa-angle-down"
+              aria-hidden="true"></i></a>
           <div class="dropdown-content">
             <a href="user/profile">Profile</a>
             <a href="#">Purchased Products</a>
@@ -48,26 +57,31 @@
             <a href="#" (click)="logOut()">Log Out</a>
           </div>
         </li>
-        <li *ngIf="loggin"><a href="user/cart" title="Your Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
       </ul>
       <div class="products">
-       
-          <div class="product" *ngFor="let item of details;let indexOfelement=index;"  >
-            <div (click)="viewProduct(item.productId)">
-              <img src="data:image/jpeg;base64,{{item.image}}" alt="product image">
-              <h3>{{item.title}}</h3>
-              <p>{{ item.description }}</p>
-              <h4>{{item.price}} $</h4>
-            </div>
-            <button class="btn" (click)="addToCart(indexOfelement)">Add to Cart</button>
+
+        <div class="product" *ngFor="let item of details;let indexOfelement=index;">
+          <div (click)="viewProduct(item.productId)">
+            <img src="data:image/jpeg;base64,{{item.image}}" alt="product image">
+            <h3>{{item.title}}</h3>
+            <p>{{ item.description }}</p>
+            <h4>{{item.price}} $</h4>
           </div>
-      
+          <button class="btn" (click)="addToCart(indexOfelement)">Add to Cart</button>
+        </div>
+
       </div>
-      <span id="to-cart"><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully </span>
+      <span id="to-cart"><i class="fa fa-exclamation" style="font-style: italic;"></i> Added to cart successfully
+      </span>
       <span id="no-products-found" #noProductFound>
         <img src="../../assets/face-frown-open-regular.svg" />
-        <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span> .</p>
-        <p>Try checking your spelling or use more general terms</p>
+        <div *ngIf="searchBy">
+          <p>No results for <span style="font-weight: bold;">{{ searchBy }}</span>.</p>
+          <p>Try checking your spelling or use more general terms</p>
+        </div>
+        <div *ngIf="!searchBy">
+          <p>No Products In Our App, Sorry :)</p>
+        </div>
       </span>
     </mat-sidenav-content>
   </mat-sidenav-container>

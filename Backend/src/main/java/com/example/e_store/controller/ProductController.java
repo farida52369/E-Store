@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -35,7 +37,7 @@ public class ProductController {
             method = RequestMethod.GET,
             value = "/all"
     )
-    public ResponseEntity<ProductSpecificDetails[]> getAllProducts() {
+    public ResponseEntity<List<ProductSpecificDetails>> getAllProducts() {
         log.info("Getting All Products .. ");
         return ResponseEntity.ok().body(productService.getAllProducts());
     }

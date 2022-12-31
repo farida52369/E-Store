@@ -16,8 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -38,12 +36,14 @@ public class CheckoutService {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date(System.currentTimeMillis());
             String d = formatter.format(date);
+            // Setting Checkout Repository
             Checkout checkout = new Checkout();
             checkout.setCompositeKey(new CompositeKey(user.get(), product, d));
             checkout.setQuantity(productInfo.getQuantity());
-            checkoutRepository.save(checkout); // Set Checkout Repository
+            checkoutRepository.save(checkout);
+            // Setting Product Repository
             product.setInStock(product.getInStock() - productInfo.getQuantity());
-            productRepository.save(product); // Set Product Repository
+            productRepository.save(product);
         }
     }
 }

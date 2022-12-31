@@ -37,20 +37,36 @@ export class HomeComponent implements OnInit {
   }
 
   getCategory(category: string) {
-    this.setNoProductToNull();
+    this.searchBy = `Category: ${category}`;
     // Adjust it on the services file -- Add the specific route on the server side
     this.productService.getProductsByCategory(category).subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
-      this.details = res;
+      if (res.length === 0) {
+        this.details = [];
+        this.setNoProductDetails();
+      } else {
+        this.details = res;
+        this.setNoProductToNull();
+      }
+      // this.details = res;
     });
   }
 
   sortBy(sort: string) {
+    this.searchBy = `Sorting By: ${sort}`
+    this.setNoProductToNull();
     this.productService.getProductsSorted(sort).subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
-      this.details = res;
+      if (res.length === 0) {
+        this.details = [];
+        this.setNoProductDetails();
+      } else {
+        this.details = res;
+        this.setNoProductToNull();
+      }
+      // this.details = res;
     });
   }
 
@@ -63,7 +79,7 @@ export class HomeComponent implements OnInit {
 
   getProductsByWord(word: any) {
     if (word) {
-      this.searchBy = word;
+      this.searchBy = `Word: ${word}`;
       this.searchService.getProductsByWord(word).subscribe((res) => {
         const productsDiv = document.getElementById('products');
         if (productsDiv) productsDiv.innerHTML = '';
@@ -83,8 +99,15 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProducts().subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
-      // console.log('All Products => ' + res[0].inStock)
-      this.details = res;
+      console.log('All Products => ' + res);
+      if (res.length === 0) {
+        this.details = [];
+        this.setNoProductDetails();
+      } else {
+        this.details = res;
+        this.setNoProductToNull();
+      }
+      // this.details = res;
     });
   }
 
@@ -121,8 +144,7 @@ export class HomeComponent implements OnInit {
     console.log('Marry Christmas :)');
     if (this.noProductEle) {
       this.noProductEle.nativeElement.style.display = 'block';
-      this.noProductEle.nativeElement.style.fontSize = '20px';
-      this.noProductEle.nativeElement.style.marginLeft = '32%';
+      this.noProductEle.nativeElement.style.fontSize = '22px';
     }
   }
 
