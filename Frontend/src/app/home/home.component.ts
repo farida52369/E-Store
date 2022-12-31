@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   isManager!: Boolean;
   searchBy!: string;
   page: any = 1;
+  ownedProducts: boolean = false;
+  purchasedProducts: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   getCategory(category: string) {
+    this.setting()
     this.searchBy = `Category: ${category}`;
     // Adjust it on the services file -- Add the specific route on the server side
     this.productService.getProductsByCategory(category).subscribe((res) => {
@@ -56,6 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   sortBy(sort: string) {
+    this.setting()
     this.searchBy = `Sorting By: ${sort}`;
     this.setNoProductToNull();
     this.productService.getProductsSorted(sort).subscribe((res) => {
@@ -80,6 +84,7 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsByWord(word: any) {
+    this.setting()
     if (word) {
       this.searchBy = `Word: ${word}`;
       this.searchService.getProductsByWord(word).subscribe((res) => {
@@ -97,6 +102,7 @@ export class HomeComponent implements OnInit {
   }
 
   private showProducts() {
+    this.setting()
     this.setNoProductToNull();
     this.productService.getAllProducts().subscribe((res) => {
       const productsDiv = document.getElementById('products');
@@ -114,6 +120,7 @@ export class HomeComponent implements OnInit {
   }
 
   viewProduct(id: any) {
+    this.setting();
     let productAllInfoToView: ProductAllInfo;
     this.productService
       .productAllInfo(id, this.authService.getUserEmail())
@@ -125,6 +132,7 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(productIndex: number) {
+    this.setting()
     this.productToCart = this.details[productIndex];
     this.productToCart.quantity = 1;
     this.productToCart.totalPrice =
@@ -153,6 +161,8 @@ export class HomeComponent implements OnInit {
   }
 
   getManagerOwnerProducts() {
+    this.setting()
+    this.ownedProducts = true;
     this.userService
       .getManagerOwnedProducts(this.authService.getUserEmail())
       .subscribe((res) => {
@@ -169,6 +179,8 @@ export class HomeComponent implements OnInit {
   }
 
   getCustomerPurchasedProducts() {
+    this.setting()
+    this.purchasedProducts = true;
     this.userService
       .getCustomerPurchasedProducts(this.authService.getUserEmail())
       .subscribe((res) => {
@@ -182,6 +194,11 @@ export class HomeComponent implements OnInit {
           this.setNoProductToNull();
         }
       });
+  }
+
+  setting() {
+    this.ownedProducts = false
+    this.purchasedProducts = false
   }
 
   logOut() {

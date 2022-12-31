@@ -80,7 +80,9 @@
           <p>Try checking your spelling or use more general terms</p>
         </div>
         <div *ngIf="!searchBy">
-          <p>No Products In Our App, Sorry :)</p>
+          <p *ngIf="ownedProducts">You haven't added any products as a Manager!</p>
+          <p *ngIf="purchasedProducts">You didn't use our service, Yet!</p>
+          <p *ngIf="!ownedProducts && !purchasedProducts">No Products In Our App, Sorry :)</p>
         </div>
       </span>
     </mat-sidenav-content>
