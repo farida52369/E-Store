@@ -1,91 +1,208 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductSpecificDetails } from '../dto/data';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
+import { CartService } from '../cart/cart.service';
+import { SearchService } from '../services/search/search.service';
+import { UserService } from '../services/user/user.service';
+import { ProductAllInfo } from '../dto/data';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  details: any;
+  productToCart: any;
+  @ViewChild('noProductFound') noProductEle: ElementRef | undefined;
   loggin!: boolean;
+  isManager!: Boolean;
+  searchBy!: string;
+  page: any = 1;
+  ownedProducts: boolean = false;
+  purchasedProducts: boolean = false;
 
   constructor(
     private authService: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private searchService: SearchService,
+    private cartService: CartService,
+    private userService: UserService
   ) {}
-
-  //  details:ProductSpecificDetails; = {
-  //   productId: number;
-  //   title: string;
-  //   price: number;
-  //   image: any;
-  // };
-  details: Array<ProductSpecificDetails> | undefined;
 
   ngOnInit(): void {
     this.loggin = this.authService.isLoggedIn();
     this.showProducts();
+    if (this.loggin) this.isManagerSubscribe();
   }
 
-  showProducts() {
-    this.productService.getAllProducts().subscribe((res) => {
+  handlePageChange(e: any) {
+    this.page = e;
+    console.log(this.page);
+  }
+
+  getCategory(category: string) {
+    this.setting()
+    this.searchBy = `Category: ${category}`;
+    // Adjust it on the services file -- Add the specific route on the server side
+    this.productService.getProductsByCategory(category).subscribe((res) => {
       const productsDiv = document.getElementById('products');
       if (productsDiv) productsDiv.innerHTML = '';
-      this.details = res;
+      if (res.length === 0) {
+        this.details = [];
+        this.setNoProductDetails();
+      } else {
+        this.details = res;
+        this.setNoProductToNull();
+      }
+      // this.details = res;
     });
   }
 
-  // buildCard(product: ProductSpecificDetails) {
-  //   let e = document.createElement('div');
-  //   // div -> id style
-  //   //     img -> style src
-  //   //     h1 ->
-  //   //     p -> style
-  //   e.setAttribute(
-  //     'style',
-  //     'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); min-width: 300px;margin: auto; text-align: center; max-width: 500px;'
-  //   );
-  //   e.setAttribute('id', product.productId + '');
-  //   e.appendChild(this.buildImage(product.image));
-  //   e.appendChild(this.buildHeader(product.title));
-  //   e.appendChild(this.buildPrice(product.price));
-  //   e.appendChild(this.buildButton());
-  //   document.getElementById('products')?.appendChild(e);
-  //   return e;
-  // }
+  sortBy(sort: string) {
+    this.setting()
+    this.searchBy = `Sorting By: ${sort}`;
+    this.setNoProductToNull();
+    this.productService.getProductsSorted(sort).subscribe((res) => {
+      const productsDiv = document.getElementById('products');
+      if (productsDiv) productsDiv.innerHTML = '';
+      if (res.length === 0) {
+        this.details = [];
+        this.setNoProductDetails();
+      } else {
+        this.details = res;
+        this.setNoProductToNull();
+      }
+      // this.details = res;
+    });
+  }
 
-  // buildImage(img: any) {
-  //   let i = document.createElement('img');
-  //   i.setAttribute('src', 'data:image/jpeg;base64,' + img);
-  //   i.setAttribute('style', '  width: 100%;height: 200px;');
-  //   return i;
-  // }
+  private isManagerSubscribe() {
+    this.authService.isManager().subscribe((res) => {
+      this.isManager = res;
+      console.log('Is Manager => ' + this.isManager);
+    });
+  }
 
-  // buildHeader(title: any) {
-  //   let h = document.createElement('h1');
-  //   h.innerText = title;
-  //   return h;
-  // }
+  getProductsByWord(word: any) {
+    this.setting()
+    if (word) {
+      this.searchBy = `Word: ${word}`;
+      this.searchService.getProductsByWord(word).subscribe((res) => {
+        const productsDiv = document.getElementById('products');
+        if (productsDiv) productsDiv.innerHTML = '';
+        if (res.length === 0) {
+          this.details = [];
+          this.setNoProductDetails();
+        } else {
+          this.details = res;
+          this.setNoProductToNull();
+        }
+      });
+    } else this.showProducts();
+  }
 
-  // buildPrice(price: any) {
-  //   let p = document.createElement('p');
-  //   p.setAttribute('style', 'color: grey;font-size: 22px;');
-  //   p.innerText = `$${price}`;
-  //   return p;
-  // }
+  private showProducts() {
+    this.setting()
+    this.setNoProductToNull();
+    this.productService.getAllProducts().subscribe((res) => {
+      const productsDiv = document.getElementById('products');
+      if (productsDiv) productsDiv.innerHTML = '';
+      console.log('All Products => ' + res);
+      if (res.length === 0) {
+        this.details = [];
+        this.setNoProductDetails();
+      } else {
+        this.details = res;
+        this.setNoProductToNull();
+      }
+      // this.details = res;
+    });
+  }
 
-  // buildButton() {
-  //   let b = document.createElement('button');
-  //   b.setAttribute(
-  //     'style',
-  //     'border: none;outline: 0;padding: 12px;color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 18px;'
-  //   );
-  //   b.innerText = 'Add to Cart';
-  //   return b;
-  // }
+  viewProduct(id: any) {
+    this.setting();
+    let productAllInfoToView: ProductAllInfo;
+    this.productService
+      .productAllInfo(id, this.authService.getUserEmail())
+      .subscribe((res) => {
+        productAllInfoToView = res;
+        console.log(productAllInfoToView);
+        this.productService.storageAllInfoForProduct(productAllInfoToView);
+      });
+  }
+
+  addToCart(productIndex: number) {
+    this.setting()
+    this.productToCart = this.details[productIndex];
+    this.productToCart.quantity = 1;
+    this.productToCart.totalPrice =
+      this.productToCart.quantity * this.productToCart.price;
+
+    this.cartService.storageCart(this.productToCart);
+    let ele = document.getElementById('to-cart');
+    if (ele) {
+      ele.style.display = 'block';
+      ele.style.color = 'red';
+      ele.style.paddingLeft = '50%';
+    }
+  }
+
+  private setNoProductToNull() {
+    if (this.noProductEle)
+      this.noProductEle.nativeElement.style.display = 'none';
+  }
+
+  private setNoProductDetails() {
+    console.log('Marry Christmas :)');
+    if (this.noProductEle) {
+      this.noProductEle.nativeElement.style.display = 'block';
+      this.noProductEle.nativeElement.style.fontSize = '22px';
+    }
+  }
+
+  getManagerOwnerProducts() {
+    this.setting()
+    this.ownedProducts = true;
+    this.userService
+      .getManagerOwnedProducts(this.authService.getUserEmail())
+      .subscribe((res) => {
+        const productsDiv = document.getElementById('products');
+        if (productsDiv) productsDiv.innerHTML = '';
+        if (res.length === 0) {
+          this.details = [];
+          this.setNoProductDetails();
+        } else {
+          this.details = res;
+          this.setNoProductToNull();
+        }
+      });
+  }
+
+  getCustomerPurchasedProducts() {
+    this.setting()
+    this.purchasedProducts = true;
+    this.userService
+      .getCustomerPurchasedProducts(this.authService.getUserEmail())
+      .subscribe((res) => {
+        const productsDiv = document.getElementById('products');
+        if (productsDiv) productsDiv.innerHTML = '';
+        if (res.length === 0) {
+          this.details = [];
+          this.setNoProductDetails();
+        } else {
+          this.details = res;
+          this.setNoProductToNull();
+        }
+      });
+  }
+
+  setting() {
+    this.ownedProducts = false
+    this.purchasedProducts = false
+  }
 
   logOut() {
+    this.cartService.clearCart();
     this.authService.logout();
   }
 }

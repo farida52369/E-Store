@@ -1,15 +1,17 @@
 package com.example.e_store.service;
 
-import com.example.e_store.dto.ProductResponse;
+import com.example.e_store.dto.ProductSpecificDetails;
 import com.example.e_store.dto.ProfileInfoResponse;
 import com.example.e_store.model.Product;
 import com.example.e_store.model.User;
+import com.example.e_store.repository.CheckoutRepository;
 import com.example.e_store.repository.ProductRepository;
 import com.example.e_store.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +19,13 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@Transactional
 @RequiredArgsConstructor
 public class UserInfoService {
 
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final CheckoutRepository checkoutRepository;
 
     private User getCurrentUser(String email) {
         return userRepository.findByEmail(email).
@@ -40,21 +44,40 @@ public class UserInfoService {
                 build();
     }
 
-    public List<ProductResponse> getUserOwnerProducts(String email) {
+    public List<ProductSpecificDetails> getUserOwnerProducts(String email) {
         Optional<User> owner = userRepository.findByEmail(email);
-        if (!owner.isPresent()) return null;
-        List<Product> products = productRepository.findAllByOwner(owner.get());
-        List<ProductResponse> productResponse = new ArrayList<>();
+        if (!owner.isPresent()) return new ArrayList<>();
+        List<Product> products = productRepository.findAllByManager(owner.get());
+        List<ProductSpecificDetails> productResponse = new ArrayList<>();
         for (Product product : products) {
-            ProductResponse response = ProductResponse.builder().
+            ProductSpecificDetails response = ProductSpecificDetails.builder().
                     productId(product.getProductId()).
                     title(product.getTitle()).
                     price(product.getPrice()).
-                    category(product.getCategory()).
                     inStock(product.getInStock()).
                     description(product.getDescription()).
                     image(product.getImage()).
-                    createdDate(product.getCreatedDate()).
+                    build();
+            productResponse.add(response);
+        }
+        return productResponse;
+    }
+
+    public List<ProductSpecificDetails> getUserPurchasedProducts(String email) {
+        Optional<User> owner = userRepository.findByEmail(email);
+        if (!owner.isPresent()) return new ArrayList<>();
+        List<Long> products = checkoutRepository.findCustomerPurchases(owner.get().getUserId());
+        log.info("Length of Purchased Products {}", products.size());
+        List<ProductSpecificDetails> productResponse = new ArrayList<>();
+        for (Long productId : products) {
+            Product product = productRepository.getById(productId);
+            ProductSpecificDetails response = ProductSpecificDetails.builder().
+                    productId(product.getProductId()).
+                    title(product.getTitle()).
+                    price(product.getPrice()).
+                    inStock(product.getInStock()).
+                    description(product.getDescription()).
+                    image(product.getImage()).
                     build();
             productResponse.add(response);
         }

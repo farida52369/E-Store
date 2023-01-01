@@ -4,46 +4,39 @@
   </div>
 </header>
 <div class="container">
-  <section id="cart" *ngFor="let item of cart.products;let indexOfelement=index;">
+  <section id="cart" *ngFor="let item of product;let indexOfelement=index;">
     <article class="product">
       <header>
         <a class="remove">
-          <img src="{{item.img}}" alt="">
+          <img src="data:image/jpeg;base64,{{item.image}}" alt="">
           <h3 (click)="removeProduct(indexOfelement)">Remove product</h3>
         </a>
       </header>
       <div class="content">
-        <h1>{{item.name}}</h1><p>{{item.desc}}</p>
+        <h1>{{item.title}}</h1><p>{{item.description}}</p>
       </div>
-
       <footer class="content">
         <button class="qt-minus" id="minus" (click)="subtractProduct(indexOfelement)">-</button>
         <span class="qt" id="quan">{{item.quantity}}</span>
         <button class="qt-plus" id="plus" (click)=" addProduct(indexOfelement)">+</button>
-
-        <h2 class="full-price">{{item.total_price}}</h2>
+        <h2 class="full-price">{{item.totalPrice}}</h2>
         <h2 class="price">{{item.price}}</h2>
       </footer>
-
     </article>
   </section>
 </div>
-
 <footer id="site-footer">
   <div class="container clearfix">
-
     <div class="left">
-      <a class="delete-all" (click)="deleteAll()"> delete all items </a>
+      <a class="delete-all btn" (click)="deleteAll()"> Delete All Items </a>
       <h2 class="subtotal">Subtotal: <span>{{subtotal}}</span>$</h2>
       <h3 class="tax">Taxes (5%): <span>{{tax}}</span>$</h3>
-      <h3 class="shipping">Shipping: <span>{{cart.shipping}}</span>$</h3>
+      <h3 class="shipping">Shipping: <span>{{shipping}}</span>$</h3>
     </div>
-
     <div class="right">
       <a class="btn" (click)="backHome()">Continue to Shopping</a>
       <h1 class="total">Total: <span>{{total}}</span>$</h1>
-      <a class="btn">Checkout</a>
+      <a class="btn" (click)="check()">Checkout</a>
     </div>
-
   </div>
 </footer>

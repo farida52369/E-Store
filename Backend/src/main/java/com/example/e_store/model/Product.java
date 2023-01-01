@@ -1,17 +1,17 @@
 package com.example.e_store.model;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
-import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -25,10 +25,9 @@ public class Product {
     private Double price;
     @NotBlank(message = "Category for products can't be blank")
     private String category;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ownerId", referencedColumnName = "userId")
-    @ToString.Exclude
-    private User owner;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "managerId", referencedColumnName = "userId")
+    private User manager;
     @NotNull(message = "Quantity in stock for products can't be null")
     private Integer inStock;
     @Lob
@@ -38,17 +37,4 @@ public class Product {
     // @Column(name = "productImage", length = 1000)
     private byte[] image;
     private Instant createdDate;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Product product = (Product) o;
-        return productId != null && Objects.equals(productId, product.productId);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

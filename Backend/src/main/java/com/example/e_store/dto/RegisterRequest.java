@@ -15,13 +15,12 @@ public class RegisterRequest {
     private String dateOfBirth;
     private String phoneNumber;
     private String gender;
+    private Boolean isManager;
 
     @Override
     public String toString() {
-        return "User Info\n" + "Name: " + firstName + " " + lastName + "\n" +
-                "Email: " + email + "\n" +
-                "Date Of Birth: " + dateOfBirth + "\n" +
-                "Phone Number: " + phoneNumber + "\n" +
-                "Gender: " + gender + "\n";
+        return "User Info\n" + "Name: " + firstName + " " + lastName + "\nEmail: "
+                + email + "\nDate Of Birth: " + dateOfBirth + "\nPhone Number: "
+                + phoneNumber + "\nGender: " + gender + "\nIs Manager: " + isManager + "\n";
     }
 }
