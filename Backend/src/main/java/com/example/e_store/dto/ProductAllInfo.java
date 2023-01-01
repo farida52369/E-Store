@@ -5,15 +5,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ProductSpecificDetails {
+public class ProductAllInfo {
     private Long productId;
     private String title;
-    private String description;
     private Double price;
+    private String category;
     private Integer inStock;
+    private String description;
     private byte[] image;
+    private Instant createdDate;
+    private Boolean isOwner;
+    private String owner;
 }

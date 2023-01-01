@@ -189,7 +189,7 @@ a:hover {
   color: #010a09;
   font-size: 25px;
   font-weight: 300;
-  margin: 17px 0 20px 0;
+  margin: 10px 0 20px 0;
 }
 
 .product footer.content {
@@ -268,12 +268,11 @@ a:hover {
 }
 
 #site-footer h1 {
-  background: #fcfcfc;
   border: 1px solid #ccc;
   border-style: none none solid none;
   font-size: 24px;
   font-weight: 300;
-  margin: 0 0 7px 0;
+  margin: 10px;
   padding: 14px 40px;
   text-align: center;
 }
@@ -285,7 +284,7 @@ a:hover {
 }
 
 #site-footer h3 {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 300;
   margin: 15px 0;
 }
@@ -293,29 +292,28 @@ a:hover {
 .left {
   float: left;
 }
+
 .right {
   float: right;
 }
 
 .btn {
-  background: #eb98aa;
-  border: 1px solid #999;
-  border-style: none none solid none;
   cursor: pointer;
-  border-radius: 12px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
+  border-radius: 14px;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.8);
   display: block;
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
-  padding: 16px 0;
-  width: 290px;
+  padding: 14px 0;
+  width: 260px;
   text-align: center;
+  background-color: #f27dbe;
 }
 
 .btn:hover {
   color: #fff;
-  background: #a12a92;
+  background-color: #e03997;
 }
 
 .type {

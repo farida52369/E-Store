@@ -1,81 +1,81 @@
-<div class="container">
-  <div class="card">
-    <div class="container-fliud">
-      <div class="wrapper row">
-        <div class="preview col-md-6">
-          <div class="preview-pic tab-content">
-            <div class="tab-pane active" id="pic-1"><img src="data:image/jpeg;base64,{{product.image}}" /></div>
-          </div>
-          <br>
-        </div>
-        <div class="preview col-md-4">
-          <div class="rating">
-            <!-- 
-              <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
-              <span class="review-no">41 reviews</span> 
-            -->
-            <br>
-            <br>
-            <span class="seller">
-              <b>Owner: Rowan</b>
-            </span>
-            <br>
+<div class="all-page">
+  <div class="container">
+    <div>
+      <h1 class="header">Product Info</h1>
+    </div>
+    <div class="card">
+      <div class="container-fliud">
+        <div class="wrapper row">
+          <div class="preview col-md-6">
+            <div class="preview-pic tab-content">
+              <div class="tab-pane active" id="pic-1"><img src="data:image/jpeg;base64,{{product.image}}" /></div>
+            </div>
             <br>
           </div>
-
-          <span class="product-title">
-            <span *ngIf="confirmEdit" (click)="editTitle()" class="fa fa-edit" style="font-size:28px;"> </span>
-            <span *ngIf="noEdit_title" id="title"><span class="color">Product Name :</span> {{product.title}}</span>
-            <input *ngIf="!noEdit_title" id="title_after_edit" value={{product.title}} />
-            <button *ngIf="!noEdit_title" (click)="exitEditTitle()">Ok </button>
-          </span>
-
-          <span class="price">
-            <span *ngIf="confirmEdit" (click)="editPrice()" class="fa fa-edit" style="font-size:28px;"></span>
-            <span *ngIf="noEdit_price" id="price"><span class="color">Price :</span> {{product.price}}</span>
-            <input *ngIf="!noEdit_price" id="price_after_edit" value={{product.price}} />
-            <button *ngIf="!noEdit_price" (click)="exitEditPrice()">Ok </button>
-          </span>
-
-          <span class="quantity">
-            <span *ngIf="confirmEdit" (click)="editInStock()" class="fa fa-edit" style="font-size:28px;"> </span>
-            <span *ngIf="noEdit_inStock" id="inStock"><span class="color">Quantity :</span> {{product.inStock}}</span>
-            <input *ngIf="!noEdit_inStock" id="inStock_after_edit" value={{product.inStock}} />
-            <button *ngIf="!noEdit_inStock" (click)="exitEditInStock()">Ok </button>
-          </span>
-
-          <span class="category">
-            <span *ngIf="confirmEdit" (click)="editCategory()" class="fa fa-edit" style="font-size:28px;"> </span>
-            <span *ngIf="noEdit_cat" id="cat"><span class="color">Category :</span> {{product.category}}</span>
-            <input *ngIf="!noEdit_cat" id="cat_after_edit" value={{product.category}} />
-            <button *ngIf="!noEdit_cat" (click)="exitEditCategory()">Ok </button>
-          </span>
-
-
-          <span class="product-description">
-            <span *ngIf="confirmEdit" (click)="editDescription()" class="fa fa-edit" style="font-size:28px;"> </span>
-            <span *ngIf="noEdit_desc" id="desc"><span class="color">Description : </span>
-              {{product.description}}</span>
-            <input *ngIf="!noEdit_desc" id="desc_after_edit" value={{product.description}} />
-            <button *ngIf="!noEdit_desc" type="button" (click)="exitEditDescription()">Ok </button>
-          </span>
-          <div class="action">
-
-            <button class="add-to-cart btn btn-default" type="button" (click)="addToCart()">add to cart</button>
-
-            <!-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> -->
-
-            <button class="add-to-cart btn btn-default" type="button" (click)="backHome()">Continue Shopping</button>
-            <br>
-            <span id="to-cart"><i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully
+          <div class="preview col-md-6">
+            <div class="rating">
+              <!-- 
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span> 
+              -->
+              <br>
+              <br>
+              <span class="seller">
+                <b>Owner: {{ product.owner }}</b>
+              </span>
+              <br>
+              <br>
+            </div>
+  
+            <span class="product-title">
+              <span *ngIf="isOwner" (click)="editTitle()" class="fa fa-edit" style="font-size:28px;"> </span>
+              <span *ngIf="noTitleEdit" id="title"><span class="color"><b>Title: </b></span> {{product.title}}</span>
+              <input *ngIf="!noTitleEdit" id="title_after_edit" value={{product.title}} />
+              <button *ngIf="!noTitleEdit" (click)="exitEditTitle()">Ok </button>
             </span>
-
+            <span class="price">
+              <span *ngIf="isOwner" (click)="editPrice()" class="fa fa-edit" style="font-size:28px;"></span>
+              <span *ngIf="noPriceEditing" id="price"><span class="color"><b>Price: </b></span> {{product.price}}$</span>
+              <input *ngIf="!noPriceEditing" id="price_after_edit" value={{product.price}} />
+              <button *ngIf="!noPriceEditing" (click)="exitEditPrice()">Ok </button>
+            </span>
+            <span class="quantity">
+              <span *ngIf="isOwner" (click)="editInStock()" class="fa fa-edit" style="font-size:28px;"> </span>
+              <span *ngIf="noInStockEditing" id="inStock"><span class="color"><b>Quantity: </b></span> {{product.inStock}}</span>
+              <input *ngIf="!noInStockEditing" id="inStock_after_edit" value={{product.inStock}} />
+              <button *ngIf="!noInStockEditing" (click)="exitEditInStock()">Ok </button>
+            </span>
+            <span class="category">
+              <span *ngIf="isOwner" (click)="editCategory()" class="fa fa-edit" style="font-size:28px;"> </span>
+              <span *ngIf="noCategoryEdit" id="cat"><span class="color"><b>Category: </b></span> {{product.category}}</span>
+              <input *ngIf="!noCategoryEdit" id="cat_after_edit" value={{product.category}} />
+              <button *ngIf="!noCategoryEdit" (click)="exitEditCategory()">Ok </button>
+            </span>
+            <span class="product-description">
+              <span *ngIf="isOwner" (click)="editDescription()" class="fa fa-edit" style="font-size:28px;"> </span>
+              <span *ngIf="noDescriptionEditing" id="desc">
+                <span class="color"><b>About The Product: </b></span>
+                {{product.description}}
+              </span>
+              <input *ngIf="!noDescriptionEditing" id="desc_after_edit" value={{product.description}} />
+              <button *ngIf="!noDescriptionEditing" type="button" (click)="exitEditDescription()">Ok </button>
+            </span>
+            <div class="action">
+              <button *ngIf="isOwner" class="add-to-cart btn btn-default" type="button" (click)="saveChanges()">Save</button>
+              <button class="add-to-cart btn btn-default" type="button" (click)="addToCart()">Add To Cart</button>
+              <!-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> -->
+              <button class="add-to-cart btn btn-default" type="button" (click)="backHome()">Continue Shopping</button>
+              <br>
+              <span id="to-cart">
+                <i class="fa fa-exclamation" style="font-style: italic;"></i>Added to cart successfully
+              </span>
+            </div>
           </div>
         </div>
       </div>

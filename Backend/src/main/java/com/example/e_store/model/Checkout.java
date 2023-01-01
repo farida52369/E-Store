@@ -14,10 +14,10 @@ import java.io.Serializable;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "checkout")
 public class Checkout implements Serializable {
     @EmbeddedId
     private CompositeKey compositeKey;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "quantity")
     private Integer quantity;
 }

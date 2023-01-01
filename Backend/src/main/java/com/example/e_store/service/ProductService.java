@@ -1,8 +1,6 @@
 package com.example.e_store.service;
 
-import com.example.e_store.dto.ProductRequest;
-import com.example.e_store.dto.ProductResponse;
-import com.example.e_store.dto.ProductSpecificDetails;
+import com.example.e_store.dto.*;
 import com.example.e_store.model.Product;
 import com.example.e_store.model.User;
 import com.example.e_store.repository.ProductRepository;
@@ -15,13 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@AllArgsConstructor
 @Slf4j
+@Service
 @Transactional
+@AllArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -50,18 +49,19 @@ public class ProductService {
         }
     }
 
-    public ProductSpecificDetails[] getAllProducts() {
+    public List<ProductSpecificDetails> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        ProductSpecificDetails[] res = new ProductSpecificDetails[products.size()];
-        for (int i = 0; i < products.size(); i++) {
-            Product tempProduct = products.get(i);
-            res[i] = ProductSpecificDetails.builder().
-                    productId(tempProduct.getProductId()).
-                    title(tempProduct.getTitle()).
-                    description(tempProduct.getDescription()).
-                    price(tempProduct.getPrice()).
-                    image(tempProduct.getImage()).
-                    build();
+        List<ProductSpecificDetails> res = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getInStock() <= 0) continue;
+            res.add(ProductSpecificDetails.builder().
+                    productId(product.getProductId()).
+                    title(product.getTitle()).
+                    description(product.getDescription()).
+                    price(product.getPrice()).
+                    image(product.getImage()).
+                    inStock(product.getInStock()).
+                    build());
         }
         return res;
     }
@@ -78,5 +78,31 @@ public class ProductService {
                 image(product.getImage()).
                 createdDate(product.getCreatedDate()).
                 build();
+    }
+
+    public ProductAllInfo productAllInfo(Long productId, String email) {
+        Product product = productRepository.getById(productId);
+        return ProductAllInfo.builder().
+                productId(productId).
+                price(product.getPrice()).
+                isOwner(product.getManager().getEmail().equalsIgnoreCase(email)).
+                owner(email).
+                image(product.getImage()).
+                createdDate(product.getCreatedDate()).
+                inStock(product.getInStock()).
+                title(product.getTitle()).
+                description(product.getDescription()).
+                category(product.getCategory()).
+                build();
+    }
+
+    public void editProduct(ProductEdit productEdit) {
+        Product product = productRepository.getById(productEdit.getProductId());
+        product.setInStock(productEdit.getInStock());
+        product.setCategory(productEdit.getCategory());
+        product.setPrice(productEdit.getPrice());
+        product.setTitle(productEdit.getTitle());
+        product.setDescription(productEdit.getDescription());
+        productRepository.save(product);
     }
 }

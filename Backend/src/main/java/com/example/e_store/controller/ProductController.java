@@ -1,8 +1,6 @@
 package com.example.e_store.controller;
 
-import com.example.e_store.dto.ProductRequest;
-import com.example.e_store.dto.ProductResponse;
-import com.example.e_store.dto.ProductSpecificDetails;
+import com.example.e_store.dto.*;
 import com.example.e_store.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -35,7 +35,7 @@ public class ProductController {
             method = RequestMethod.GET,
             value = "/all"
     )
-    public ResponseEntity<ProductSpecificDetails[]> getAllProducts() {
+    public ResponseEntity<List<ProductSpecificDetails>> getAllProducts() {
         log.info("Getting All Products .. ");
         return ResponseEntity.ok().body(productService.getAllProducts());
     }
@@ -45,7 +45,25 @@ public class ProductController {
             value = "/{id}"
     )
     public ResponseEntity<ProductResponse> getSpecificProduct(@PathVariable Long id) {
-        log.info("Getting All Products .. ");
+        log.info("Getting Specific Product .. ");
         return ResponseEntity.ok().body(productService.getSpecificProduct(id));
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/{productId}/owner/{email}"
+    )
+    public ResponseEntity<ProductAllInfo> isUserTheOwnerOfThisProduct(@PathVariable Long productId, @PathVariable String email) {
+        return new ResponseEntity<>(productService.productAllInfo(productId, email), HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            consumes = {"application/json"},
+            value = "/edit"
+    )
+    public ResponseEntity<?> editProduct(@RequestBody ProductEdit productEdit) {
+        productService.editProduct(productEdit);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

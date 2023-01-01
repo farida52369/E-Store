@@ -1,17 +1,17 @@
 .form-submit {
   display: inline-block;
-  background: #ee8cc2;
+  background-color: #f27dbe;
   color: #fff;
-  border-bottom: none;
   width: auto;
-  padding: 15px 39px;
+  padding: 10px 20px;
   cursor: pointer;
   border-radius: 12px;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.8);
+  font-size: 22px;
 }
 
 .form-submit:hover {
-  background: rgb(150, 74, 127);
+  background-color: #e03997;
 }
 
 /* ==========================================================================
@@ -82,8 +82,8 @@
 .form-row .name {
   width: 188px;
   color: rgb(29, 28, 28);
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 600;
   margin-top: 1px;
 }
 
@@ -200,6 +200,7 @@ button {
      ========================================================================== */
 .page-wrapper {
   min-height: 100vh;
+  background: #f69dce;
 }
 
 body {
@@ -381,130 +382,6 @@ h6 {
 }
 
 /* ==========================================================================
-     #BUTTON
-     ========================================================================== */
-.btn {
-  display: inline-block;
-  line-height: 50px;
-  padding: 0 30px;
-  -webkit-transition: all 0.4s ease;
-  -o-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-  cursor: pointer;
-  font-size: 15px;
-  text-transform: capitalize;
-  font-weight: 700;
-  color: #fff;
-  font-family: inherit;
-}
-
-.btn--radius {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-.btn--radius-2 {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
-.btn--pill {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-}
-
-.btn--green {
-  background: #57b846;
-}
-
-.btn--green:hover {
-  background: #4dae3c;
-}
-
-.btn--blue {
-  background: #4272d7;
-}
-
-.btn--blue:hover {
-  background: #3868cd;
-}
-
-.btn--blue-2 {
-  background: #ee8cc2;
-}
-.btn--blue-2:hover {
-  background: rgb(150, 74, 127);
-}
-
-.btn--blue-2:hover {
-  background: #ee8cc2;
-}
-
-.btn--red {
-  background: #ff4b5a;
-}
-
-.btn--red:hover {
-  background: #eb3746;
-}
-
-/* ==========================================================================
-     #DATE PICKER
-     ========================================================================== */
-td.active {
-  background-color: #2c6ed5;
-}
-
-input[type="date" i] {
-  padding: 14px;
-}
-
-.table-condensed td,
-.table-condensed th {
-  font-size: 14px;
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-  font-weight: 400;
-}
-
-.daterangepicker td {
-  width: 40px;
-  height: 30px;
-}
-
-.daterangepicker {
-  border: none;
-  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  display: none;
-  border: 1px solid #e0e0e0;
-  margin-top: 5px;
-}
-
-.daterangepicker::after,
-.daterangepicker::before {
-  display: none;
-}
-
-.daterangepicker thead tr th {
-  padding: 10px 0;
-}
-
-.daterangepicker .table-condensed th select {
-  border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  font-size: 14px;
-  padding: 5px;
-  outline: none;
-}
-
-/* ==========================================================================
      #FORM
      ========================================================================== */
 input,
@@ -517,7 +394,7 @@ select {
   -moz-box-shadow: none;
   box-shadow: none;
   width: 80%;
-  font-size: 17px;
+  font-size: 18px;
   font-family: inherit;
 }
 
@@ -539,7 +416,7 @@ textarea {
   -moz-border-radius: 3px;
   border-radius: 3px;
   color: #666;
-  font-size: 15px;
+  font-size: 18px;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
@@ -579,7 +456,6 @@ textarea {
   color: #999;
 }
 
-.input--style-6:focus,
 .textarea--style-6:focus {
   -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
@@ -598,7 +474,7 @@ textarea {
 }
 
 .label--desc {
-  font-size: 13px;
+  font-size: 18px;
   color: #999;
   margin-top: 10px;
 }
@@ -614,7 +490,7 @@ textarea {
 }
 
 .input-file + label {
-  font-size: 15px;
+  font-size: 18px;
   color: #fff;
   color: white;
   line-height: 40px;
@@ -638,7 +514,7 @@ textarea {
 }
 
 .input-file__info {
-  font-size: 15px;
+  font-size: 18px;
   color: #666;
 }
 
@@ -653,7 +529,7 @@ textarea {
      #TITLE
      ========================================================================== */
 .title {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 700;
   text-align: left;
   color: #fff;
@@ -670,10 +546,7 @@ textarea {
      #CARD
      ========================================================================== */
 .card {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background: #fff;
+  border: none;
 }
 
 .card-6 {
@@ -735,10 +608,10 @@ textarea {
 input::file-selector-button {
   font-weight: bold;
   color: white;
-  padding: 0.5em;
-  border: thin solid #ee8cc2;
-  border-radius: 3px;
+  padding: 0.7em;
+  border-radius: 5px;
   background-color: #ee8cc2;
+  margin-left: 10px;
 }
 
 /* Show Photo When Uplaod */

@@ -24,6 +24,7 @@ public class SortService {
         products.sort((p1, p2) -> (int) (p1.getPrice() - p2.getPrice()));
 
         for (Product product : products) {
+            if (product.getInStock() <= 0) continue;
             log.info("HOHO: Marry Christmas ... Product #{} is Matching for Sorting By Price ...", product.getProductId());
             ProductSpecificDetails productSpecificDetails = ProductSpecificDetails.builder().
                     productId(product.getProductId()).
@@ -31,6 +32,7 @@ public class SortService {
                     description(product.getDescription()).
                     price(product.getPrice()).
                     image(product.getImage()).
+                    inStock(product.getInStock()).
                     build();
             res.add(productSpecificDetails);
         }
@@ -43,6 +45,7 @@ public class SortService {
         products.sort(Comparator.comparingInt(Product::getInStock));
 
         for (Product product : products) {
+            if (product.getInStock() <= 0) continue;
             log.info("HOHO: Marry Christmas ... Product #{} is Matching for Sorting By Price ...", product.getProductId());
             ProductSpecificDetails productSpecificDetails = ProductSpecificDetails.builder().
                     productId(product.getProductId()).
@@ -50,6 +53,7 @@ public class SortService {
                     description(product.getDescription()).
                     price(product.getPrice()).
                     image(product.getImage()).
+                    inStock(product.getInStock()).
                     build();
             res.add(productSpecificDetails);
         }

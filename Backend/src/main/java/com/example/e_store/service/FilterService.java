@@ -22,6 +22,7 @@ public class FilterService {
         List<Product> products = productRepository.findAll();
         for (Product product : products) {
             if (product.getCategory().equalsIgnoreCase(category)) {
+                if (product.getInStock() <= 0) continue;
                 log.info("HOHO: Marry Christmas ... Product #{} is Matching for Category Filtering ...", product.getProductId());
                 ProductSpecificDetails productSpecificDetails = ProductSpecificDetails.builder().
                         productId(product.getProductId()).
@@ -29,6 +30,7 @@ public class FilterService {
                         description(product.getDescription()).
                         price(product.getPrice()).
                         image(product.getImage()).
+                        inStock(product.getInStock()).
                         build();
                 res.add(productSpecificDetails);
             }

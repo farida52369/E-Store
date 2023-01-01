@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cart } from '../dto/data';
+import { Cart, CheckoutProductInfo } from '../dto/data';
 import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable({
@@ -16,9 +16,9 @@ export class CartService {
 
     if (this.values == null) this.values = [];
     const find_prod = this.values.find((res) => {
-      if (res.quantity !== product.quantity && res.title === product.title) {
+      if (res.quantity !== product.quantity && res.productId === product.productId) {
         res.quantity = product.quantity;
-        res.total_price = res.quantity * res.price;
+        res.totalPrice = res.quantity * res.price;
       }
       return res.title === product.title;
     });
@@ -46,5 +46,17 @@ export class CartService {
 
   getCart() {
     return this.localStorage.retrieve('cart');
+  }
+
+  getCheckoutProducts(): Array<CheckoutProductInfo> {
+    let res: Array<CheckoutProductInfo> = [];
+    this.values = JSON.parse(this.getCart());
+    this.values.forEach((ele) => {
+      res.push({
+        productId: ele.productId,
+        quantity: ele.quantity,
+      });
+    });
+    return res;
   }
 }

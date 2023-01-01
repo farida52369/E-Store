@@ -25,6 +25,7 @@ public class SearchService {
             if (contains(product.getTitle(), searchBy) || contains(product.getDescription(), searchBy) ||
                     contains(product.getPrice().toString(), searchBy) || contains(product.getCategory(), searchBy) ||
                     contains(product.getInStock().toString(), searchBy)) {
+                if (product.getInStock() <= 0) continue;
                 log.info("HOHO: Marry Christmas ... Product #{} is Matching ...", product.getProductId());
                 ProductSpecificDetails productSpecificDetails = ProductSpecificDetails.builder().
                         productId(product.getProductId()).
@@ -32,6 +33,7 @@ public class SearchService {
                         description(product.getDescription()).
                         price(product.getPrice()).
                         image(product.getImage()).
+                        inStock(product.getInStock()).
                         build();
                 res.add(productSpecificDetails);
             }
